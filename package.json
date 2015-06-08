@@ -6,6 +6,19 @@
   "scripts": {
     "test": "flow check"
   },
+  "keywords": [
+    "react-native",
+    "react-component",
+    "react-native-component",
+    "react",
+    "mobile",
+    "ios",
+    "ui",
+    "collapse",
+    "collapsible",
+    "toggle",
+    "accordion"
+  ],
   "repository": {
     "type": "git",
     "url": "https://oblador@github.com/oblador/react-native-collapsible.git"
