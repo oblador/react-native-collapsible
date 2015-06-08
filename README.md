@@ -26,6 +26,10 @@ var Collapsible = require('Collapsible');
 |**`duration`**|Duration of transition in milliseconds|`300`|
 |**`easing`**|Name of [easing function](https://github.com/chenglou/tween-functions)|`easeOutCubic`|
 
+## Demo
+
+![demo](https://cloud.githubusercontent.com/assets/378279/8047315/0237ca2c-0e44-11e5-9a16-1da052406eb0.gif)
+
 ## Accordion Example
 
 Check full example in the `Example` folder. 
