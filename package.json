@@ -4,7 +4,7 @@
   "description": "Animated collapsible component for React Native, good for accordions, toggles etc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "flow check"
   },
   "repository": {
     "type": "git",

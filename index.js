@@ -1,5 +1,6 @@
 /**
  * @providesModule Collapsible
+ * @flow
  */
 'use strict';
 
@@ -14,40 +15,40 @@ var Collapsible = React.createClass({
 
   propTypes: {
     collapsed:  React.PropTypes.bool,
-    duration: React.PropTypes.number,
-    easing:   React.PropTypes.string,
+    duration:   React.PropTypes.number,
+    easing:     React.PropTypes.string,
   },
 
-  getDefaultProps() {
+  getDefaultProps() : Object {
     return {
       collapsed:  true,
-      duration: 300,
-      easing:   'easeOutCubic',
+      duration:   300,
+      easing:     'easeOutCubic',
     };
   },
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps(props : Object) {
     if(props.collapsed !== this.props.collapsed) {
       this._toggleCollapsed(props.collapsed);
     }
   },
 
-  getInitialState() {
+  getInitialState() : Object {
     return {
       height: 0,
       contentHeight: 0,
     };
   },
 
-  _toggleCollapsed(collapsed) {
+  _toggleCollapsed(collapsed : bool) {
     this.tweenState('height', {
-      easing: tweenState.easingTypes[this.props.easing],
+      easing:   tweenState.easingTypes[this.props.easing],
       duration: this.props.duration,
       endValue: collapsed ? 0 : this.state.contentHeight,
     });
   },
 
-  _handleLayoutChange(event) {
+  _handleLayoutChange(event : Object) {
     var { height } = event.nativeEvent.layout;
     this.setState({
       height: this.props.collapsed ? 0 : height,
