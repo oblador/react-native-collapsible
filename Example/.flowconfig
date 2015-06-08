@@ -1,5 +1,4 @@
 [ignore]
-.*/Example/*
 
 # We fork some components by platform.
 .*/*.web.js
@@ -24,7 +23,6 @@
 
 # Ignore jest
 .*/react-native/node_modules/jest-cli/.*
-
 
 [include]
 
