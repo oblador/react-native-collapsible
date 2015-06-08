@@ -1,0 +1,25 @@
+{
+  "name": "react-native-collapsible",
+  "version": "0.1.0",
+  "description": "Animated collapsible component for React Native, good for accordions, toggles etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://oblador@github.com/oblador/react-native-collapsible.git"
+  },
+  "author": "Joel Arvidsson <joel@oblador.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oblador/react-native-collapsible/issues"
+  },
+  "homepage": "https://github.com/oblador/react-native-collapsible",
+  "peerDependencies": {
+    "react-native": ">=0.4.0"
+  },
+  "dependencies": {
+    "react-tween-state": "0.0.5"
+  }
+}
