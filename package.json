@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/oblador/react-native-collapsible",
   "peerDependencies": {
-    "react-native": ">=0.4.0"
+    "react-native": ">=0.4.2"
   },
   "dependencies": {
     "react-tween-state": "0.0.5"
