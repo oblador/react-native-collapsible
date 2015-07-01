@@ -12,6 +12,7 @@ var {
   View,
   TouchableHighlight,
 } = React;
+var Accordion = require('Accordion');
 var Collapsible = require('Collapsible');
 
 var BACON_IPSUM = 'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
@@ -42,34 +43,50 @@ var CONTENT = [
 var Example = React.createClass({
   getInitialState: function() {
     return {
-      activeAccordion: false
+      collapsed: true
     };
   },
 
-  _toggleAccordion(accordion) {
-    this.setState({
-      activeAccordion: this.state.activeAccordion === accordion ? false : accordion,
-    });
+  _toggleExpanded() {
+    this.setState({ collapsed: !this.state.collapsed });
+  },
+
+  _renderHeader(section) {
+    return (
+      <View style={styles.header}>
+        <Text style={styles.headerText}>{section.title}</Text>
+      </View>
+    );
+  },
+
+  _renderContent(section) {
+    return (
+      <View style={styles.content}>
+        <Text>{section.content}</Text>
+      </View>
+    );
   },
 
   render: function() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Accordion Example</Text>
-        {CONTENT.map((accordion, key) =>
-          <View key={key}>
-            <TouchableHighlight onPress={() => this._toggleAccordion(key)}>
-              <View style={styles.header}>
-                <Text style={styles.headerText}>{accordion.title}</Text>
-              </View>
-            </TouchableHighlight>
-            <Collapsible collapsed={this.state.activeAccordion !== key}>
-              <View style={styles.content}>
-                <Text>{accordion.content}</Text>
-              </View>
-            </Collapsible>
+        <TouchableHighlight onPress={this._toggleExpanded}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Collapsible</Text>
           </View>
-        )}
+        </TouchableHighlight>
+        <Collapsible collapsed={this.state.collapsed}>
+          <View style={styles.content}>
+            <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
+          </View>
+        </Collapsible>
+        <Accordion
+          sections={CONTENT}
+          renderHeader={this._renderHeader}
+          renderContent={this._renderContent}
+          duration={500}
+        />
       </View>
     );
   }
