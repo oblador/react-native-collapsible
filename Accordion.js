@@ -11,7 +11,7 @@ var {
   TouchableHighlight,
 } = React;
 
-var Collapsible = require('./collapsible');
+var Collapsible = require('./Collapsible');
 
 var COLLAPSIBLE_PROPS = ['duration', 'easing'];
 

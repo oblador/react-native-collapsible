@@ -2,7 +2,7 @@
   "name": "react-native-collapsible",
   "version": "0.2.0",
   "description": "Animated collapsible component for React Native, good for accordions, toggles etc",
-  "main": "lib/collapsible.js",
+  "main": "Collapsible.js",
   "scripts": {
     "test": "flow check"
   },
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/oblador/react-native-collapsible",
   "peerDependencies": {
-    "react-native": ">=0.4.2 <1.0.0"
+    "react-native": ">=0.4.2 || 0.5.0-rc1 || 0.6.0-rc || 0.7.0-rc || 0.7.0-rc.2 || 0.8.0-rc"
   },
   "dependencies": {
     "react-tween-state": "0.0.5"
