@@ -12,8 +12,8 @@ var {
   View,
   TouchableHighlight,
 } = React;
-var Accordion = require('Accordion');
-var Collapsible = require('Collapsible');
+var Collapsible = require('react-native-collapsible');
+var Accordion = require('react-native-collapsible/Accordion');
 
 var BACON_IPSUM = 'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
 

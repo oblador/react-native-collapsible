@@ -12,7 +12,7 @@ npm install --save react-native-collapsible
 ## Collapsible Usage
 
 ```js
-var Collapsible = require('Collapsible');
+var Collapsible = require('react-native-collapsible');
 <Collapsible collapsed={isCollapsed}>
   <SomeCollapsedView />
 </Collapsible>
@@ -31,7 +31,7 @@ var Collapsible = require('Collapsible');
 This is a convenience component for a common use case, see demo below. 
 
 ```js
-var Accordion = require('Accordion');
+var Accordion = require('react-native-collapsible/Accordion');
 <Accordion 
   sections={['Section 1', 'Section 2', 'Section 3']}
   renderHeader={this._renderHeader}
@@ -60,7 +60,7 @@ Check full example in the `Example` folder.
 
 ```js
 var React = require('react-native');
-var Accordion = require('Accordion');
+var Accordion = require('react-native-collapsible/Accordion');
 
 var SECTIONS = [
   {
