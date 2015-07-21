@@ -1,6 +1,6 @@
 {
   "name": "react-native-collapsible",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Animated collapsible component for React Native, good for accordions, toggles etc",
   "main": "Collapsible.js",
   "scripts": {
