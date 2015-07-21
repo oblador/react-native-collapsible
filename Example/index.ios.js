@@ -73,7 +73,7 @@ var Example = React.createClass({
         <Text style={styles.title}>Accordion Example</Text>
         <TouchableHighlight onPress={this._toggleExpanded}>
           <View style={styles.header}>
-            <Text style={styles.headerText}>Collapsible</Text>
+            <Text style={styles.headerText}>Single Collapsible</Text>
           </View>
         </TouchableHighlight>
         <Collapsible collapsed={this.state.collapsed}>
@@ -85,7 +85,7 @@ var Example = React.createClass({
           sections={CONTENT}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
-          duration={500}
+          duration={400}
         />
       </View>
     );
