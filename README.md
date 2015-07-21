@@ -1,5 +1,5 @@
 # react-native-collapsible
-*Animated collapsible component for React Native, good for accordions, toggles etc*
+*Animated collapsible component for React Native using the new Animated API with fallback. *
 
 Pure JavaScript, supports dynamic content heights and components that is aware of its `collapsed` state (good for toggling arrows etc).
 
@@ -24,7 +24,7 @@ var Collapsible = require('react-native-collapsible');
 |---|---|---|
 |**`collapsed`**|Wether to show the child components or not|`true`|
 |**`duration`**|Duration of transition in milliseconds|`300`|
-|**`easing`**|Name of [easing function](https://github.com/chenglou/tween-functions)|`easeOutCubic`|
+|**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animation/Animated/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8) |`out`|
 
 ## Accordion Usage
 

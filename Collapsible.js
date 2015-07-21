@@ -7,6 +7,8 @@
 var React = require('react-native');
 var tweenState = require('react-tween-state');
 var {
+  Animated,
+  Easing,
   View,
 } = React;
 
@@ -16,14 +18,17 @@ var Collapsible = React.createClass({
   propTypes: {
     collapsed:  React.PropTypes.bool,
     duration:   React.PropTypes.number,
-    easing:     React.PropTypes.string,
+    easing:     React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.func
+    ]),
   },
 
   getDefaultProps() : Object {
     return {
       collapsed:  true,
       duration:   300,
-      easing:     'easeOutCubic',
+      easing:     'out',
     };
   },
 
@@ -35,38 +40,72 @@ var Collapsible = React.createClass({
 
   getInitialState() : Object {
     return {
-      height: 0,
+      height: (Animated ? new Animated.Value(0) : 0),
       contentHeight: 0,
     };
   },
 
   _toggleCollapsed(collapsed : bool) {
-    this.tweenState('height', {
-      easing:   tweenState.easingTypes[this.props.easing],
-      duration: this.props.duration,
-      endValue: collapsed ? 0 : this.state.contentHeight,
-    });
+    var height = collapsed ? 0 : this.state.contentHeight;
+    var { easing, duration } = this.props;
+
+    if(typeof easing === 'string') {
+      if(easing.substr(0, 'ease'.length) === 'ease') {
+        if(Easing) {
+          // This is referencing a function in the tween-functions library, try to see if there's a
+          // similar function in the bundled Easing component
+          easing = easing.substr(4, 1).toLowerCase() + easing.substr(5);
+        }
+      } else if(!Easing) {
+        // And the opposite
+        easing = 'ease' + easing.substr(0, 1).toUpperCase() + easing.substr(1);
+      }
+      if(Easing) {
+        easing = Easing[easing](Easing.ease);
+      } else {
+        easing = tweenState.easingTypes[easing];
+      }
+    }
+
+    if(Animated) {
+      if(this._animation) {
+        this._animation.stop();
+      }
+      this._animation = Animated.timing(this.state.height, {
+        toValue: height,
+        duration,
+        easing,
+      }).start();
+    } else {
+      this.tweenState('height', {
+        easing:   easing,
+        duration: this.props.duration,
+        endValue: height,
+      });
+    }
   },
 
   _handleLayoutChange(event : Object) {
-    var { height } = event.nativeEvent.layout;
+    var contentHeight = event.nativeEvent.layout.height;
+    var height = this.props.collapsed ? 0 : contentHeight
     this.setState({
-      height: this.props.collapsed ? 0 : height,
-      contentHeight: height,
+      height: (Animated ? new Animated.Value(height) : height),
+      contentHeight,
     });
   },
 
   render() {
+    var Container = (Animated ? Animated.View : View);
     var style = {
       overflow: 'hidden',
-      height:   this.getTweeningValue('height')
+      height: (Animated ? this.state.height : this.getTweeningValue('height'))
     };
     return (
-      <View style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
+      <Container style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
         <View ref="content" onLayout={this._handleLayoutChange}>
           {this.props.children}
         </View>
-      </View>
+      </Container>
     );
   }
 });
