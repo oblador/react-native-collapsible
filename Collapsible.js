@@ -12,6 +12,8 @@ var {
   View,
 } = React;
 
+var ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
+
 var Collapsible = React.createClass({
   mixins: [tweenState.Mixin],
 
@@ -28,7 +30,7 @@ var Collapsible = React.createClass({
     return {
       collapsed:  true,
       duration:   300,
-      easing:     'out',
+      easing:     'easeOutCubic',
     };
   },
 
@@ -50,20 +52,27 @@ var Collapsible = React.createClass({
     var { easing, duration } = this.props;
 
     if(typeof easing === 'string') {
-      if(easing.substr(0, 'ease'.length) === 'ease') {
-        if(Easing) {
-          // This is referencing a function in the tween-functions library, try to see if there's a
-          // similar function in the bundled Easing component
-          easing = easing.substr(4, 1).toLowerCase() + easing.substr(5);
-        }
-      } else if(!Easing) {
-        // And the opposite
-        easing = 'ease' + easing.substr(0, 1).toUpperCase() + easing.substr(1);
-      }
       if(Easing) {
-        easing = Easing[easing](Easing.ease);
+        var prefix, found = false;
+        for (var i = 0; i < ANIMATED_EASING_PREFIXES.length; i++) {
+          prefix = ANIMATED_EASING_PREFIXES[i];
+          if(easing.substr(0, prefix.length) === prefix) {
+            easing = easing.substr(prefix.length, 1).toLowerCase() + easing.substr(prefix.length + 1);
+            prefix = prefix.substr(4, 1).toLowerCase() + prefix.substr(5);
+            console.log(prefix, easing);
+            easing = Easing[prefix](Easing[easing || 'ease']);
+            found = true;
+            break;
+          }
+        };
+        if(!found) {
+          easing = Easing[easing];
+        }
       } else {
         easing = tweenState.easingTypes[easing];
+      }
+      if(!easing) {
+        throw new Error('Invalid easing type "' + this.props.easing +'"');
       }
     }
 

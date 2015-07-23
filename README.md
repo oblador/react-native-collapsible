@@ -24,7 +24,7 @@ var Collapsible = require('react-native-collapsible');
 |---|---|---|
 |**`collapsed`**|Wether to show the child components or not|`true`|
 |**`duration`**|Duration of transition in milliseconds|`300`|
-|**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animation/Animated/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8) |`out`|
+|**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animation/Animated/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. |`easeOutCubic`|
 
 ## Accordion Usage
 
