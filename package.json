@@ -1,7 +1,7 @@
 {
   "name": "react-native-collapsible",
-  "version": "0.3.0",
-  "description": "Animated collapsible component for React Native, good for accordions, toggles etc",
+  "version": "0.3.1",
+  "description": "Animated collapsible component for React Native using the new Animated API with fallback. Good for accordions, toggles etc",
   "main": "Collapsible.js",
   "scripts": {
     "test": "flow check"
