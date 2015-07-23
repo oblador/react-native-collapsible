@@ -82,10 +82,11 @@ var Example = React.createClass({
           </View>
         </Collapsible>
         <Accordion
+          easing="easeInBounce"
           sections={CONTENT}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
-          duration={400}
+          duration={600}
         />
       </View>
     );
