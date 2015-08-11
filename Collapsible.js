@@ -59,7 +59,6 @@ var Collapsible = React.createClass({
           if(easing.substr(0, prefix.length) === prefix) {
             easing = easing.substr(prefix.length, 1).toLowerCase() + easing.substr(prefix.length + 1);
             prefix = prefix.substr(4, 1).toLowerCase() + prefix.substr(5);
-            console.log(prefix, easing);
             easing = Easing[prefix](Easing[easing || 'ease']);
             found = true;
             break;
