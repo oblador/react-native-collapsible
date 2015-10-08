@@ -44,6 +44,7 @@ var Collapsible = React.createClass({
     return {
       height: new Animated.Value(ALMOST_ZERO),
       contentHeight: 0,
+      animating: false,
     };
   },
 
@@ -74,11 +75,12 @@ var Collapsible = React.createClass({
     if(this._animation) {
       this._animation.stop();
     }
+    this.setState({ animating: true });
     this._animation = Animated.timing(this.state.height, {
       toValue: height,
       duration,
       easing,
-    }).start();
+    }).start(event => this.setState({ animating: true }));
   },
 
   _handleLayoutChange(event : Object) {
@@ -97,7 +99,7 @@ var Collapsible = React.createClass({
     };
     return (
       <Animated.View style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
-        <View ref="content" onLayout={this._handleLayoutChange}>
+        <View onLayout={this.state.animating ? undefined : this._handleLayoutChange}>
           {this.props.children}
         </View>
       </Animated.View>
