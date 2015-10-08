@@ -1,5 +1,5 @@
 # react-native-collapsible
-*Animated collapsible component for React Native using the new Animated API with fallback*
+*Animated collapsible component for React Native using the Animated API*
 
 Pure JavaScript, supports dynamic content heights and components that is aware of its `collapsed` state (good for toggling arrows etc).
 
