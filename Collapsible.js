@@ -18,6 +18,7 @@ var ALMOST_ZERO = 0.00000001;
 
 var Collapsible = React.createClass({
   propTypes: {
+    align:      React.PropTypes.oneOf(['top', 'center', 'bottom']),
     collapsed:  React.PropTypes.bool,
     duration:   React.PropTypes.number,
     easing:     React.PropTypes.oneOfType([
@@ -28,6 +29,7 @@ var Collapsible = React.createClass({
 
   getDefaultProps() : Object {
     return {
+      align:      'top',
       collapsed:  true,
       duration:   300,
       easing:     'easeOutCubic',
@@ -93,15 +95,32 @@ var Collapsible = React.createClass({
   },
 
   render() {
+    var { height, contentHeight } = this.state;
     var style = {
       overflow: 'hidden',
-      height: this.state.height
+      height: height
     };
+    var contentStyle = {};
+    if(this.props.align === 'center') {
+      contentStyle.transform = [{
+        translateY: height.interpolate({
+          inputRange: [0, contentHeight],
+          outputRange: [contentHeight/-2, 0],
+        })
+      }];
+    } else if(this.props.align === 'bottom') {
+      contentStyle.transform = [{
+        translateY: height.interpolate({
+          inputRange: [0, contentHeight],
+          outputRange: [-contentHeight, 0],
+        })
+      }];
+    }
     return (
       <Animated.View style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
-        <View onLayout={this.state.animating ? undefined : this._handleLayoutChange}>
+        <Animated.View style={contentStyle} onLayout={this.state.animating ? undefined : this._handleLayoutChange}>
           {this.props.children}
-        </View>
+        </Animated.View>
       </Animated.View>
     );
   }

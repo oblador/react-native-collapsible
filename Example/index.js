@@ -76,7 +76,7 @@ var Example = React.createClass({
             <Text style={styles.headerText}>Single Collapsible</Text>
           </View>
         </TouchableHighlight>
-        <Collapsible collapsed={this.state.collapsed}>
+        <Collapsible collapsed={this.state.collapsed} align="center">
           <View style={styles.content}>
             <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
           </View>

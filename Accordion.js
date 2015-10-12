@@ -13,7 +13,7 @@ var {
 
 var Collapsible = require('./Collapsible');
 
-var COLLAPSIBLE_PROPS = ['duration', 'easing'];
+var COLLAPSIBLE_PROPS = Object.keys(Collapsible.propTypes);
 
 var Accordion = React.createClass({
   propTypes: {
@@ -21,6 +21,7 @@ var Accordion = React.createClass({
     renderHeader:   React.PropTypes.func.isRequired,
     renderContent:  React.PropTypes.func.isRequired,
     onChange:       React.PropTypes.func,
+    align:          React.PropTypes.oneOf(['top', 'center', 'bottom']),
     duration:       React.PropTypes.number,
     easing:         React.PropTypes.string,
   },
