@@ -49,7 +49,7 @@ var Accordion = React.createClass({
     });
 
     return (
-      <View>
+      <View {...this.props}>
       {this.props.sections.map((section, key) =>
         <View key={key}>
           <TouchableHighlight onPress={() => this._toggleSection(key)}>
