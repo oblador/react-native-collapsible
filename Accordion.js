@@ -14,6 +14,7 @@ var {
 var Collapsible = require('./Collapsible');
 
 var COLLAPSIBLE_PROPS = Object.keys(Collapsible.propTypes);
+var VIEW_PROPS = Object.keys(View.propTypes);
 
 var Accordion = React.createClass({
   propTypes: {
@@ -41,15 +42,18 @@ var Accordion = React.createClass({
   },
 
   render() : ReactElement {
+    var viewProps = {};
     var collapsibleProps = {};
     Object.keys(this.props).forEach((key) => {
       if(COLLAPSIBLE_PROPS.indexOf(key) !== -1) {
         collapsibleProps[key] = this.props[key];
+      } else if(VIEW_PROPS.indexOf(key) !== -1) {
+        viewProps[key] = this.props[key];
       }
     });
 
     return (
-      <View>
+      <View {...viewProps}>
       {this.props.sections.map((section, key) =>
         <View key={key}>
           <TouchableHighlight onPress={() => this._toggleSection(key)}>
