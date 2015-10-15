@@ -26,13 +26,13 @@ var Accordion = React.createClass({
     easing:         React.PropTypes.string,
   },
 
-  getInitialState: function() {
+  getInitialState: function() : Object {
     return {
       activeSection: false
     };
   },
 
-  _toggleSection(section) {
+  _toggleSection(section : number) : void {
     var activeSection = this.state.activeSection === section ? false : section;
     this.setState({ activeSection });
     if(this.props.onChange) {
@@ -40,7 +40,7 @@ var Accordion = React.createClass({
     }
   },
 
-  render() {
+  render() : ReactElement {
     var collapsibleProps = {};
     Object.keys(this.props).forEach((key) => {
       if(COLLAPSIBLE_PROPS.indexOf(key) !== -1) {

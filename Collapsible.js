@@ -36,7 +36,7 @@ var Collapsible = React.createClass({
     };
   },
 
-  componentWillReceiveProps(props : Object) {
+  componentWillReceiveProps(props : Object) : void {
     if(props.collapsed !== this.props.collapsed) {
       this._toggleCollapsed(props.collapsed);
     }
@@ -50,8 +50,8 @@ var Collapsible = React.createClass({
     };
   },
 
-  _toggleCollapsed(collapsed : bool) {
-    var height = collapsed ? ALMOST_ZERO : this.state.contentHeight;
+  _toggleCollapsed(collapsed : bool) : void {
+    var height : number = collapsed ? ALMOST_ZERO : this.state.contentHeight;
     var { easing, duration } = this.props;
 
     if(typeof easing === 'string') {
@@ -70,7 +70,7 @@ var Collapsible = React.createClass({
         easing = Easing[easing];
       }
       if(!easing) {
-        throw new Error('Invalid easing type "' + this.props.easing +'"');
+        throw new Error('Invalid easing type "' + this.props.easing + '"');
       }
     }
 
@@ -85,7 +85,7 @@ var Collapsible = React.createClass({
     }).start(event => this.setState({ animating: true }));
   },
 
-  _handleLayoutChange(event : Object) {
+  _handleLayoutChange(event : Object) : void {
     var contentHeight = event.nativeEvent.layout.height;
     var height = this.props.collapsed ? ALMOST_ZERO : contentHeight
     this.setState({
@@ -94,7 +94,7 @@ var Collapsible = React.createClass({
     });
   },
 
-  render() {
+  render() : ReactElement {
     var { height, contentHeight } = this.state;
     var style = {
       overflow: 'hidden',
