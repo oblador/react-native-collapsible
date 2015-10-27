@@ -12,6 +12,8 @@ var {
   View,
   TouchableHighlight,
 } = React;
+
+var Animatable = require('react-native-animatable');
 var Collapsible = require('react-native-collapsible');
 var Accordion = require('react-native-collapsible/Accordion');
 
@@ -51,19 +53,19 @@ var Example = React.createClass({
     this.setState({ collapsed: !this.state.collapsed });
   },
 
-  _renderHeader(section) {
+  _renderHeader(section, i, isActive) {
     return (
-      <View style={styles.header}>
+      <Animatable.View duration={400} style={styles.header} transition="backgroundColor" transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245, 252, 255, 1)'}>
         <Text style={styles.headerText}>{section.title}</Text>
-      </View>
+      </Animatable.View>
     );
   },
 
-  _renderContent(section) {
+  _renderContent(section, i, isActive) {
     return (
-      <View style={styles.content}>
-        <Text>{section.content}</Text>
-      </View>
+      <Animatable.View duration={400} style={styles.content} transition="backgroundColor" transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245, 252, 255, 1)'}>
+        <Animatable.Text animation={isActive ? 'bounceIn' : false}>{section.content}</Animatable.Text>
+      </Animatable.View>
     );
   },
 
@@ -82,11 +84,10 @@ var Example = React.createClass({
           </View>
         </Collapsible>
         <Accordion
-          easing="easeInBounce"
           sections={CONTENT}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
-          duration={600}
+          duration={400}
         />
       </View>
     );
