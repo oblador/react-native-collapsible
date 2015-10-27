@@ -104,6 +104,52 @@ var AccordionView = React.createClass({
 });
 ```
 
+### Transition backgrounds
+
+If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations. 
+
+Lets augment the example above with:
+```js
+var Animatable = require('react-native-animatable');
+
+(...)
+
+  _renderHeader(section, index, isActive) {
+    return (
+      <Animatable.View
+        style={styles.header}
+        duration={300}
+        transition="backgroundColor"
+        transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245,252,255,1)'}>
+        <Text style={styles.headerText}>{section.title}</Text>
+      </Animatable.View>
+    );
+  },
+  _renderContent(section, i, isActive) {
+    return (
+      <Animatable.View
+        style={styles.content}
+        duration={300}
+        transition="backgroundColor"
+        transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245,252,255,1)'}>
+        <Animatable.Text
+          duration={300}
+          easing="ease-out"
+          animation={isActive ? 'zoomIn' : false}>
+          {section.content}
+        </Animatable.Text>
+      </Animatable.View>
+    );
+  },
+
+(...)
+```
+
+To produce this (slowed down for visibility): 
+
+![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10766660/e3e88ff0-7cae-11e5-98b0-fdf2a8ac13ea.gif)
+
+
 ## License
 
 [MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
