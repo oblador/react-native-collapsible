@@ -147,7 +147,7 @@ var Animatable = require('react-native-animatable');
 
 To produce this (slowed down for visibility): 
 
-![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10766660/e3e88ff0-7cae-11e5-98b0-fdf2a8ac13ea.gif)
+![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10767769/2ddfe234-7cb4-11e5-8ef1-c0f8c67ead58.gif)
 
 
 ## License
