@@ -54,16 +54,16 @@ var Accordion = React.createClass({
 
     return (
       <View {...viewProps}>
-      {this.props.sections.map((section, key) =>
+      {this.props.sections.map((section, key) => (
         <View key={key}>
           <TouchableHighlight onPress={() => this._toggleSection(key)}>
-            {this.props.renderHeader(section, key)}
+            {this.props.renderHeader(section, key, this.state.activeSection === key)}
           </TouchableHighlight>
           <Collapsible collapsed={this.state.activeSection !== key} {...collapsibleProps}>
-            {this.props.renderContent(section, key)}
+            {this.props.renderContent(section, key, this.state.activeSection === key)}
           </Collapsible>
         </View>
-      )}
+      ))}
       </View>
     );
   }
