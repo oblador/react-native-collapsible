@@ -18,18 +18,25 @@ var VIEW_PROPS = Object.keys(View.propTypes);
 
 var Accordion = React.createClass({
   propTypes: {
-    sections:       React.PropTypes.array.isRequired,
-    renderHeader:   React.PropTypes.func.isRequired,
-    renderContent:  React.PropTypes.func.isRequired,
-    onChange:       React.PropTypes.func,
-    align:          React.PropTypes.oneOf(['top', 'center', 'bottom']),
-    duration:       React.PropTypes.number,
-    easing:         React.PropTypes.string,
+    sections:               React.PropTypes.array.isRequired,
+    renderHeader:           React.PropTypes.func.isRequired,
+    renderContent:          React.PropTypes.func.isRequired,
+    onChange:               React.PropTypes.func,
+    align:                  React.PropTypes.oneOf(['top', 'center', 'bottom']),
+    duration:               React.PropTypes.number,
+    easing:                 React.PropTypes.string,
+    initiallyActiveSection: React.PropTypes.number,
+  },
+
+  getDefaultProps: function() : Object {
+    return {
+      initiallyActiveSection: false,
+    };
   },
 
   getInitialState: function() : Object {
     return {
-      activeSection: false
+      activeSection: this.props.initiallyActiveSection,
     };
   },
 
