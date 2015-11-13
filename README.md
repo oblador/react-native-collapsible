@@ -48,6 +48,7 @@ var Accordion = require('react-native-collapsible/Accordion');
 |**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
 |**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
 |**`onChange(index)`**|An optional function that is called when currently active section is changed, `index === false` when collapsed|
+|**`activeSection`**|An optional index of the section to be initially active.|
 |**`align`**|See `Collapsible`|
 |**`duration`**|See `Collapsible`|
 |**`easing`**|See `Collapsible`|

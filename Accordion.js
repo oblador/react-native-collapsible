@@ -25,11 +25,13 @@ var Accordion = React.createClass({
     align:          React.PropTypes.oneOf(['top', 'center', 'bottom']),
     duration:       React.PropTypes.number,
     easing:         React.PropTypes.string,
+    activeSection:  React.PropTypes.number,
   },
 
   getInitialState: function() : Object {
+    var activeSection = this.props.activeSection;
     return {
-      activeSection: false
+      activeSection: activeSection === null || activeSection === undefined ? false : activeSection
     };
   },
 
