@@ -26,11 +26,13 @@ var Accordion = React.createClass({
     duration:               React.PropTypes.number,
     easing:                 React.PropTypes.string,
     initiallyActiveSection: React.PropTypes.number,
+    underlayColor:          React.PropTypes.string,
   },
 
   getDefaultProps: function() : Object {
     return {
       initiallyActiveSection: false,
+      underlayColor: 'black',
     };
   },
 
@@ -63,7 +65,7 @@ var Accordion = React.createClass({
       <View {...viewProps}>
       {this.props.sections.map((section, key) => (
         <View key={key}>
-          <TouchableHighlight onPress={() => this._toggleSection(key)}>
+          <TouchableHighlight onPress={() => this._toggleSection(key)} underlayColor={this.props.underlayColor}>
             {this.props.renderHeader(section, key, this.state.activeSection === key)}
           </TouchableHighlight>
           <Collapsible collapsed={this.state.activeSection !== key} {...collapsibleProps}>
