@@ -6,7 +6,6 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -55,7 +54,7 @@ var Example = React.createClass({
 
   _renderHeader(section, i, isActive) {
     return (
-      <Animatable.View duration={400} style={styles.header} transition="backgroundColor" transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245, 252, 255, 1)'}>
+      <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
         <Text style={styles.headerText}>{section.title}</Text>
       </Animatable.View>
     );
@@ -63,8 +62,8 @@ var Example = React.createClass({
 
   _renderContent(section, i, isActive) {
     return (
-      <Animatable.View duration={400} style={styles.content} transition="backgroundColor" transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245, 252, 255, 1)'}>
-        <Animatable.Text animation={isActive ? 'bounceIn' : false}>{section.content}</Animatable.Text>
+      <Animatable.View duration={400}  style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
+        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
       </Animatable.View>
     );
   },
@@ -120,6 +119,12 @@ var styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
+  active: {
+    backgroundColor: 'rgba(255,255,255,1)',
+  },
+  inactive: {
+    backgroundColor: 'rgba(245,252,255,1)',
+  },
 });
 
-AppRegistry.registerComponent('Example', () => Example);
+module.exports = Example;
