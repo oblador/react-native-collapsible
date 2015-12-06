@@ -122,7 +122,7 @@ var Animatable = require('react-native-animatable');
         style={styles.header}
         duration={300}
         transition="backgroundColor"
-        transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245,252,255,1)'}>
+        style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}>
         <Text style={styles.headerText}>{section.title}</Text>
       </Animatable.View>
     );
@@ -133,7 +133,7 @@ var Animatable = require('react-native-animatable');
         style={styles.content}
         duration={300}
         transition="backgroundColor"
-        transitionValue={isActive ? 'rgba(255,255,255,1)' :'rgba(245,252,255,1)'}>
+        style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}>
         <Animatable.Text
           duration={300}
           easing="ease-out"
