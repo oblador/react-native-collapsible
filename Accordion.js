@@ -31,7 +31,6 @@ var Accordion = React.createClass({
 
   getDefaultProps: function() : Object {
     return {
-      initiallyActiveSection: false,
       underlayColor: 'black',
     };
   },
