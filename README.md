@@ -73,7 +73,7 @@ var SECTIONS = [
   },
   {
     title: 'Second',
-    content: Lorem ipsum...,
+    content: 'Lorem ipsum...',
   }
 ];
 
