@@ -82,7 +82,7 @@ var Collapsible = React.createClass({
       toValue: height,
       duration,
       easing,
-    }).start(event => this.setState({ animating: true }));
+    }).start(event => this.setState({ animating: false }));
   },
 
   _handleLayoutChange(event : Object) : void {
