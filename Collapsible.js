@@ -118,8 +118,8 @@ var Collapsible = React.createClass({
       }];
     }
     return (
-      <Animated.View style={[this.props.style, style]} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
-        <Animated.View style={contentStyle} onLayout={this.state.animating ? undefined : this._handleLayoutChange}>
+      <Animated.View style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
+        <Animated.View style={[this.props.style, contentStyle]} onLayout={this.state.animating ? undefined : this._handleLayoutChange}>
           {this.props.children}
         </Animated.View>
       </Animated.View>
