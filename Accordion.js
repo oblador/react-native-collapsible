@@ -9,6 +9,7 @@ var {
   View,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
 } = React;
 
 var Collapsible = require('./Collapsible');
@@ -27,6 +28,7 @@ var Accordion = React.createClass({
     easing:                 React.PropTypes.string,
     initiallyActiveSection: React.PropTypes.number,
     underlayColor:          React.PropTypes.string,
+    useTouchableOpacity:    React.PropTypes.bool
   },
 
   getDefaultProps: function() : Object {
@@ -60,13 +62,15 @@ var Accordion = React.createClass({
       }
     });
 
+    var TouchableComponentToRender = this.props.useTouchableOpacity ? TouchableOpacity : TouchableHighlight;
+
     return (
       <View {...viewProps}>
       {this.props.sections.map((section, key) => (
         <View key={key}>
-          <TouchableHighlight onPress={() => this._toggleSection(key)} underlayColor={this.props.underlayColor}>
+          <TouchableComponentToRender onPress={() => this._toggleSection(key)} underlayColor={this.props.underlayColor}>
             {this.props.renderHeader(section, key, this.state.activeSection === key)}
-          </TouchableHighlight>
+          </TouchableComponentToRender>
           <Collapsible collapsed={this.state.activeSection !== key} {...collapsibleProps}>
             {this.props.renderContent(section, key, this.state.activeSection === key)}
           </Collapsible>
