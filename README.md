@@ -12,7 +12,7 @@ npm install --save react-native-collapsible
 ## Collapsible Usage
 
 ```js
-var Collapsible = require('react-native-collapsible');
+import Collapsible from 'react-native-collapsible';
 <Collapsible collapsed={isCollapsed}>
   <SomeCollapsedView />
 </Collapsible>
@@ -32,7 +32,7 @@ var Collapsible = require('react-native-collapsible');
 This is a convenience component for a common use case, see demo below. 
 
 ```js
-var Accordion = require('react-native-collapsible/Accordion');
+import Accordion from 'react-native-collapsible/Accordion';
 <Accordion 
   sections={['Section 1', 'Section 2', 'Section 3']}
   renderHeader={this._renderHeader}
@@ -63,10 +63,10 @@ var Accordion = require('react-native-collapsible/Accordion');
 Check full example in the `Example` folder. 
 
 ```js
-var React = require('react-native');
-var Accordion = require('react-native-collapsible/Accordion');
+import React, { Component } from 'react-native';
+import Accordion from 'react-native-collapsible/Accordion';
 
-var SECTIONS = [
+const SECTIONS = [
   {
     title: 'First',
     content: 'Lorem ipsum...',
@@ -77,14 +77,14 @@ var SECTIONS = [
   }
 ];
 
-var AccordionView = React.createClass({
+class AccordionView extends Component {
   _renderHeader(section) {
     return (
       <View style={styles.header}>
         <Text style={styles.headerText}>{section.title}</Text>
       </View>
     );
-  },
+  }
 
   _renderContent(section) {
     return (
@@ -92,9 +92,9 @@ var AccordionView = React.createClass({
         <Text>{section.content}</Text>
       </View>
     );
-  },
+  }
 
-  render: function() {
+  render {
     return (
       <Accordion
         sections={SECTIONS}
@@ -103,7 +103,7 @@ var AccordionView = React.createClass({
       />
     );
   }
-});
+}
 ```
 
 ### Transition backgrounds
@@ -112,7 +112,7 @@ If you combine with the [`react-native-animatable`](https://github.com/oblador/r
 
 Lets augment the example above with:
 ```js
-var Animatable = require('react-native-animatable');
+import * as Animatable from 'react-native-animatable';
 
 (...)
 
@@ -126,7 +126,8 @@ var Animatable = require('react-native-animatable');
         <Text style={styles.headerText}>{section.title}</Text>
       </Animatable.View>
     );
-  },
+  }
+
   _renderContent(section, i, isActive) {
     return (
       <Animatable.View
@@ -142,7 +143,7 @@ var Animatable = require('react-native-animatable');
         </Animatable.Text>
       </Animatable.View>
     );
-  },
+  }
 
 (...)
 ```
