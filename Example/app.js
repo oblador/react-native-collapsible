@@ -1,24 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
-
-var React = require('react-native');
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-} = React;
+} from 'react-native';
 
-var Animatable = require('react-native-animatable');
-var Collapsible = require('react-native-collapsible');
-var Accordion = require('react-native-collapsible/Accordion');
+import * as Animatable from 'react-native-animatable';
+import Collapsible from 'react-native-collapsible';
+import Accordion from 'react-native-collapsible/Accordion';
 
-var BACON_IPSUM = 'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
+const BACON_IPSUM = 'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
 
-var CONTENT = [
+const CONTENT = [
   {
     title: 'First',
     content: BACON_IPSUM,
@@ -41,59 +35,7 @@ var CONTENT = [
   },
 ];
 
-var Example = React.createClass({
-  getInitialState: function() {
-    return {
-      collapsed: true
-    };
-  },
-
-  _toggleExpanded() {
-    this.setState({ collapsed: !this.state.collapsed });
-  },
-
-  _renderHeader(section, i, isActive) {
-    return (
-      <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-        <Text style={styles.headerText}>{section.title}</Text>
-      </Animatable.View>
-    );
-  },
-
-  _renderContent(section, i, isActive) {
-    return (
-      <Animatable.View duration={400}  style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
-      </Animatable.View>
-    );
-  },
-
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Accordion Example</Text>
-        <TouchableHighlight onPress={this._toggleExpanded}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>Single Collapsible</Text>
-          </View>
-        </TouchableHighlight>
-        <Collapsible collapsed={this.state.collapsed} align="center">
-          <View style={styles.content}>
-            <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
-          </View>
-        </Collapsible>
-        <Accordion
-          sections={CONTENT}
-          renderHeader={this._renderHeader}
-          renderContent={this._renderContent}
-          duration={400}
-        />
-      </View>
-    );
-  }
-});
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -127,4 +69,54 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = Example;
+export default class ExampleView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { collapsed: true };
+  }
+
+  _toggleExpanded() {
+    this.setState({ collapsed: !this.state.collapsed });
+  }
+
+  _renderHeader(section, i, isActive) {
+    return (
+      <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
+        <Text style={styles.headerText}>{section.title}</Text>
+      </Animatable.View>
+    );
+  }
+
+  _renderContent(section, i, isActive) {
+    return (
+      <Animatable.View duration={400}  style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
+        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
+      </Animatable.View>
+    );
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Accordion Example</Text>
+        <TouchableHighlight onPress={this._toggleExpanded}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Single Collapsible</Text>
+          </View>
+        </TouchableHighlight>
+        <Collapsible collapsed={this.state.collapsed} align="center">
+          <View style={styles.content}>
+            <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
+          </View>
+        </Collapsible>
+        <Accordion
+          sections={CONTENT}
+          renderHeader={this._renderHeader}
+          renderContent={this._renderContent}
+          duration={400}
+        />
+      </View>
+    );
+  }
+}
