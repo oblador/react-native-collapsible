@@ -76,7 +76,7 @@ export default class ExampleView extends Component {
     this.state = { collapsed: true };
   }
 
-  _toggleExpanded() {
+  _toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
