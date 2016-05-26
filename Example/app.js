@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
   inactive: {
     backgroundColor: 'rgba(245,252,255,1)',
   },
+  buttons: {
+    marginTop: 10,
+  },
+  button: {
+    margin: 10,
+  },
 });
 
 export default class ExampleView extends Component {
@@ -110,12 +116,52 @@ export default class ExampleView extends Component {
             <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
           </View>
         </Collapsible>
-        <Accordion
+        <Accordion activeSection={this.state.activeSection}
           sections={CONTENT}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           duration={400}
+          onChange={(num) => {
+            this.setState({
+              activeSection: num,
+            });
+          }}
         />
+
+        <View style={styles.buttons}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              this.setState({
+                activeSection: 0,
+              });
+            }}
+          >
+            <Text>{'Select First'}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              this.setState({
+                activeSection: 2,
+              });
+            }}
+          >
+            <Text>{'Select Third'}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              this.setState({
+                activeSection: false,
+              });
+            }}
+          >
+            <Text>{'Reset'}</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
