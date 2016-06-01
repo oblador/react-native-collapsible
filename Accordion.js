@@ -24,10 +24,12 @@ class Accordion extends Component {
     easing: PropTypes.string,
     initiallyActiveSection: PropTypes.number,
     underlayColor: PropTypes.string,
+    styles: PropTypes.array,
   };
 
   static defaultProps = {
     underlayColor: 'black',
+    styles: undefined,
   };
 
   constructor(props) {
@@ -60,7 +62,7 @@ class Accordion extends Component {
     return (
       <View {...viewProps}>
       {this.props.sections.map((section, key) => (
-        <View key={key}>
+        <View style={this.props.styles} key={key}>
           <TouchableHighlight onPress={() => this._toggleSection(key)} underlayColor={this.props.underlayColor}>
             {this.props.renderHeader(section, key, this.state.activeSection === key)}
           </TouchableHighlight>
