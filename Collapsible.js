@@ -18,6 +18,7 @@ class Collapsible extends Component {
   static propTypes = {
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     collapsed: PropTypes.bool,
+    collapsedHeight: PropTypes.number,
     duration: PropTypes.number,
     easing: PropTypes.oneOfType([
       PropTypes.string,
@@ -29,6 +30,7 @@ class Collapsible extends Component {
   static defaultProps = {
     align: 'top',
     collapsed: true,
+    collapsedHeight: ALMOST_ZERO,
     duration: 300,
     easing: 'easeOutCubic',
   };
@@ -42,14 +44,14 @@ class Collapsible extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: new Animated.Value(ALMOST_ZERO),
+      height: new Animated.Value(props.collapsedHeight),
       contentHeight: 0,
       animating: false,
     };
   }
 
   _toggleCollapsed(collapsed) {
-    const height = collapsed ? ALMOST_ZERO : this.state.contentHeight;
+    const height = collapsed ? this.props.collapsedHeight : this.state.contentHeight;
     const { duration } = this.props;
     let easing = this.props.easing;
     if (typeof easing === 'string') {
@@ -86,7 +88,7 @@ class Collapsible extends Component {
 
   _handleLayoutChange(event) {
     const contentHeight = event.nativeEvent.layout.height;
-    const height = this.props.collapsed ? ALMOST_ZERO : contentHeight;
+    const height = this.props.collapsed ? this.props.collapsedHeight : contentHeight;
     this.setState({
       height: new Animated.Value(height),
       contentHeight,
