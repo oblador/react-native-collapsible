@@ -23,6 +23,10 @@ class Accordion extends Component {
     duration: PropTypes.number,
     easing: PropTypes.string,
     initiallyActiveSection: PropTypes.number,
+    activeSection: PropTypes.oneOfType([
+      PropTypes.bool, // if false, closes all sections
+      PropTypes.number, // sets index of section to open
+    ]),
     underlayColor: PropTypes.string,
   };
 
@@ -33,16 +37,28 @@ class Accordion extends Component {
   constructor(props) {
     super(props);
 
+    // if activeSection not specified, default to initiallyActiveSection
     this.state = {
-      activeSection: props.initiallyActiveSection,
+      activeSection: props.activeSection !== undefined ? props.activeSection : props.initiallyActiveSection,
     };
   }
 
   _toggleSection(section) {
     const activeSection = this.state.activeSection === section ? false : section;
-    this.setState({ activeSection });
+
+    if (this.props.activeSection === undefined) {
+      this.setState({ activeSection });
+    }
     if (this.props.onChange) {
       this.props.onChange(activeSection);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeSection !== undefined) {
+      this.setState({
+        activeSection: nextProps.activeSection,
+      });
     }
   }
 
