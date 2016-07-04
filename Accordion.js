@@ -38,6 +38,13 @@ class Accordion extends Component {
     };
   }
 
+  openNextSection() {
+    var nextKey = this.state.activeSection + 1;
+    this.setState({
+      activeSection: nextKey,
+    })
+  }
+
   _toggleSection(section) {
     const activeSection = this.state.activeSection === section ? false : section;
     this.setState({ activeSection });
