@@ -23,7 +23,7 @@ import Collapsible from 'react-native-collapsible';
 | Prop | Description | Default |
 |---|---|---|
 |**`align`**|Alignment of the content when transitioning, can be `top`, `center` or `bottom`|`top`|
-|**`collapsed`**|Wether to show the child components or not|`true`|
+|**`collapsed`**|Whether to show the child components or not|`true`|
 |**`collapsedHeight`**|Which height should the component collapse to|`0`|
 |**`duration`**|Duration of transition in milliseconds|`300`|
 |**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. |`easeOutCubic`|
