@@ -28,6 +28,12 @@ import Collapsible from 'react-native-collapsible';
 |**`duration`**|Duration of transition in milliseconds|`300`|
 |**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. |`easeOutCubic`|
 
+## methods
+
+| Prop | Description | Default |
+|---|---|---|
+|**`handleContentHeightChange(contentHeight)`**|An optional function called on the ref that allows for content resize|
+
 ## Accordion Usage
 
 This is a convenience component for a common use case, see demo below.
@@ -55,7 +61,6 @@ import Accordion from 'react-native-collapsible/Accordion';
 |**`align`**|See `Collapsible`|
 |**`duration`**|See `Collapsible`|
 |**`easing`**|See `Collapsible`|
-|**`handleContentHeightChange(contentHeight)`**|An optional function called on the ref that allows for content resize|
 
 ## Demo
 
