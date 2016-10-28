@@ -43,6 +43,10 @@ class Collapsible extends Component {
 
   constructor(props) {
     super(props);
+
+    this.handleContentHeightChange = this.handleContentHeightChange.bind(this);
+    this._handleLayoutChange = this._handleLayoutChange.bind(this);
+
     this.state = {
       height: new Animated.Value(props.collapsedHeight),
       contentHeight: 0,
@@ -87,10 +91,14 @@ class Collapsible extends Component {
   }
 
   _handleLayoutChange(event) {
-    const contentHeight = event.nativeEvent.layout.height;
-    const height = this.props.collapsed ? this.props.collapsedHeight : contentHeight;
+    const { height } = event.nativeEvent.layout
+    this.handleContentHeightChange(height);
+  }
+
+  handleContentHeightChange(contentHeight) {
+    const newHeight = this.props.collapsed ? this.props.collapsedHeight : contentHeight;
     this.setState({
-      height: new Animated.Value(height),
+      height: new Animated.Value(newHeight),
       contentHeight,
     });
   }
