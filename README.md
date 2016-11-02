@@ -23,7 +23,8 @@ import Collapsible from 'react-native-collapsible';
 | Prop | Description | Default |
 |---|---|---|
 |**`align`**|Alignment of the content when transitioning, can be `top`, `center` or `bottom`|`top`|
-|**`collapsed`**|Wether to show the child components or not|`true`|
+|**`collapsed`**|Whether to show the child components or not|`true`|
+|**`collapsedHeight`**|Which height should the component collapse to|`0`|
 |**`duration`**|Duration of transition in milliseconds|`300`|
 |**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. |`easeOutCubic`|
 
@@ -48,7 +49,8 @@ import Accordion from 'react-native-collapsible/Accordion';
 |**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
 |**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
 |**`onChange(index)`**|An optional function that is called when currently active section is changed, `index === false` when collapsed|
-|**`initiallyActiveSection`**|Which index in the `sections` array to be initially open. Defaults to none. |
+|**`initiallyActiveSection`**|Set which index in the `sections` array is initially open. Defaults to none. |
+|**`activeSection`**|Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections.|
 |**`underlayColor`**|The color of the underlay that will show through when tapping on headers. Defaults to black. |
 |**`align`**|See `Collapsible`|
 |**`duration`**|See `Collapsible`|
