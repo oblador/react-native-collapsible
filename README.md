@@ -96,7 +96,7 @@ class AccordionView extends Component {
     );
   }
 
-  render {
+  render() {
     return (
       <Accordion
         sections={SECTIONS}
@@ -131,7 +131,7 @@ import * as Animatable from 'react-native-animatable';
   }
 
   _renderContent(section, i, isActive) {
-    return() (
+    return (
       <Animatable.View
         style={styles.content}
         duration={300}
