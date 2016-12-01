@@ -28,13 +28,19 @@ import Collapsible from 'react-native-collapsible';
 |**`duration`**|Duration of transition in milliseconds|`300`|
 |**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. |`easeOutCubic`|
 
+## methods
+
+| Prop | Description | Default |
+|---|---|---|
+|**`handleContentHeightChange(contentHeight)`**|An optional function called on the ref that allows for content resize|
+
 ## Accordion Usage
 
-This is a convenience component for a common use case, see demo below. 
+This is a convenience component for a common use case, see demo below.
 
 ```js
 import Accordion from 'react-native-collapsible/Accordion';
-<Accordion 
+<Accordion
   sections={['Section 1', 'Section 2', 'Section 3']}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
@@ -60,9 +66,9 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 ![demo](https://cloud.githubusercontent.com/assets/378279/8047315/0237ca2c-0e44-11e5-9a16-1da052406eb0.gif)
 
-## Example 
+## Example
 
-Check full example in the `Example` folder. 
+Check full example in the `Example` folder.
 
 ```js
 import React, { Component } from 'react-native';
@@ -110,7 +116,7 @@ class AccordionView extends Component {
 
 ### Transition backgrounds
 
-If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations. 
+If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations.
 
 Lets augment the example above with:
 ```js
@@ -150,7 +156,7 @@ import * as Animatable from 'react-native-animatable';
 (...)
 ```
 
-To produce this (slowed down for visibility): 
+To produce this (slowed down for visibility):
 
 ![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10767769/2ddfe234-7cb4-11e5-8ef1-c0f8c67ead58.gif)
 
@@ -158,4 +164,3 @@ To produce this (slowed down for visibility):
 ## License
 
 [MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
-

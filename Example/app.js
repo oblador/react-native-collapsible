@@ -102,13 +102,32 @@ const styles = StyleSheet.create({
 });
 
 export default class ExampleView extends Component {
-  state = {
-    activeSection: false,
-    collapsed: true,
-  };
+  constructor(props) {
+    super(props);
+
+    this._toggleExpanded = this._toggleExpanded.bind(this);
+    this._toggleExpandedResizable = this._toggleExpandedResizable.bind(this);
+    this._setSection = this._setSection.bind(this);
+    this._resizeContent = this._resizeContent.bind(this);
+
+    this.state = {
+      activeSection: false,
+      collapsed: true,
+      resizableCollapsed: true,
+      contentHeight: 0,
+    };
+
+    this.refs = {
+      resizableCollapsible: null
+    };
+  }
 
   _toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
+  }
+
+  _toggleExpandedResizable = () => {
+    this.setState({ resizableCollapsed: !this.state.resizableCollapsed });
   }
 
   _setSection(section) {
@@ -131,7 +150,14 @@ export default class ExampleView extends Component {
     );
   }
 
+  _resizeContent({nativeEvent}) {
+    const contentHeight = nativeEvent.layout.height;
+    this.refs.resizableCollapsible.handleContentHeightChange(contentHeight);
+  }
+
   render() {
+    let { collapsed, resizableCollapsed, activeSection } = this.state;
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Accordion Example</Text>
@@ -154,11 +180,31 @@ export default class ExampleView extends Component {
             <Text style={styles.headerText}>Single Collapsible</Text>
           </View>
         </TouchableHighlight>
-        <Collapsible collapsed={this.state.collapsed} align="center">
+
+        <Collapsible collapsed={collapsed} align="center">
           <View style={styles.content}>
             <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
           </View>
         </Collapsible>
+
+        <TouchableHighlight onPress={this._toggleExpandedResizable}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Collapsible that Resizes on Expand/Collapse</Text>
+          </View>
+        </TouchableHighlight>
+
+        <Collapsible
+          collapsed={resizableCollapsed}
+          align="center"
+          ref="resizableCollapsible"
+        >
+          {resizableCollapsed ? null : (
+            <View style={styles.content} onLayout={this._resizeContent}>
+              <Text>Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs</Text>
+            </View>
+          )}
+        </Collapsible>
+
         <Accordion
           activeSection={this.state.activeSection}
           sections={CONTENT}
