@@ -98,7 +98,7 @@ class Collapsible extends Component {
   render() {
     const { height, contentHeight } = this.state;
     const style = {
-      overflow: 'hidden',
+      overflow: 'scroll',
       height: height,
     };
     let contentStyle = {};
