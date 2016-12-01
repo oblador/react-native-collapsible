@@ -96,7 +96,7 @@ class AccordionView extends Component {
     );
   }
 
-  render {
+  render() {
     return (
       <Accordion
         sections={SECTIONS}
