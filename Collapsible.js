@@ -86,7 +86,7 @@ class Collapsible extends Component {
     }).start(event => this.setState({ animating: false }));
   }
 
-  _handleLayoutChange(event) {
+  _handleLayoutChange = (event) => {
     const contentHeight = event.nativeEvent.layout.height;
     const height = this.props.collapsed ? this.props.collapsedHeight : contentHeight;
     this.setState({
@@ -119,7 +119,7 @@ class Collapsible extends Component {
     }
     return (
       <Animated.View style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
-        <Animated.View style={[this.props.style, contentStyle]} onLayout={this.state.animating ? undefined : event => this._handleLayoutChange(event)}>
+        <Animated.View style={[this.props.style, contentStyle]} onLayout={this._handleLayoutChange}>
           {this.props.children}
         </Animated.View>
       </Animated.View>
