@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "react": "^15.1.0",
-    "react-native": "^0.28.0",
+    "react-native": "0.36.1",
     "react-native-animatable": "^0.6.0",
     "react-native-collapsible": "file:../"
   }
