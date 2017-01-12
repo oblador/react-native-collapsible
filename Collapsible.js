@@ -7,6 +7,7 @@ import {
   Animated,
   Easing,
   View,
+  ScrollView
 } from 'react-native';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
@@ -86,8 +87,7 @@ class Collapsible extends Component {
     }).start(event => this.setState({ animating: false }));
   }
 
-  _handleLayoutChange(event) {
-    const contentHeight = event.nativeEvent.layout.height;
+  _handleLayoutChange(contentHeight) {
     const height = this.props.collapsed ? this.props.collapsedHeight : contentHeight;
     this.setState({
       height: new Animated.Value(height),
@@ -117,10 +117,20 @@ class Collapsible extends Component {
         }),
       }];
     }
+
     return (
       <Animated.View style={style} pointerEvents={this.props.collapsed ? 'none' : 'auto'}>
-        <Animated.View style={[this.props.style, contentStyle]} onLayout={this.state.animating ? undefined : event => this._handleLayoutChange(event)}>
-          {this.props.children}
+        <Animated.View style={[this.props.style, contentStyle]}>
+          <ScrollView
+            onContentSizeChange={(contentWidth, contentHeight) => this._handleLayoutChange(contentHeight)}
+            scrollEnabled={false}
+            showVerticalScrollIndicator={false}
+            bounces={false}
+            scrollsToTop={false}
+            style={{height: contentHeight}}
+          >
+            {this.props.children}
+          </ScrollView>
         </Animated.View>
       </Animated.View>
     );
