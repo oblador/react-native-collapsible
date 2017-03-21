@@ -40,6 +40,15 @@ class Collapsible extends Component {
     }
   }
 
+  componentDidMount() {
+    if (!this.props.collapsed) {
+      this._measureContent(contentHeight => {
+        this.state.height.setValue(contentHeight);
+        this.setState({ contentHeight });
+      });
+    }
+  }
+  
   constructor(props) {
     super(props);
     this.state = {
