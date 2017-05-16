@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   content: {
-    flex: 1,
     padding: 20,
     backgroundColor: '#fff',
   },

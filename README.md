@@ -44,7 +44,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 ## Properties
 
 | Prop | Description |
-|---|---|---|
+|---|---|
 |**`sections`**|An array of sections passed to the render methods|
 |**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
 |**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
@@ -96,7 +96,7 @@ class AccordionView extends Component {
     );
   }
 
-  render {
+  render() {
     return (
       <Accordion
         sections={SECTIONS}
