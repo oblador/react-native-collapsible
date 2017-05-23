@@ -12,6 +12,8 @@ import {
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
 
+const VIEW_PROPS = ViewPropTypes || View.propTypes;
+
 class Collapsible extends Component {
   static propTypes = {
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
@@ -22,7 +24,7 @@ class Collapsible extends Component {
       PropTypes.string,
       PropTypes.func,
     ]),
-    style: ViewPropTypes.style,
+    style: VIEW_PROPS.style,
   };
 
   static defaultProps = {

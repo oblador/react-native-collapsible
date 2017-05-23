@@ -12,7 +12,7 @@ import {
 import Collapsible from './Collapsible';
 
 const COLLAPSIBLE_PROPS = Object.keys(Collapsible.propTypes);
-const VIEW_PROPS = Object.keys(ViewPropTypes);
+const VIEW_PROPS = (ViewPropTypes) ? Object.keys(ViewPropTypes) : Object.keys(View.propTypes);
 
 class Accordion extends Component {
   static propTypes = {
