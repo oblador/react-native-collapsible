@@ -3,7 +3,6 @@
   "version": "0.8.0",
   "description": "Animated collapsible component for React Native using the Animated API. Good for accordions, toggles etc",
   "main": "Collapsible.js",
-  "typings": "./typings/index.d.ts",
   "scripts": {
     "test": "eslint *.js"
   },
@@ -32,7 +31,6 @@
   },
   "homepage": "https://github.com/oblador/react-native-collapsible",
   "devDependencies": {
-    "@types/react-native": "^0.42.0",
     "babel": "^6.5.2",
     "babel-eslint": "^4.1.6",
     "eslint": "^1.10.3",
