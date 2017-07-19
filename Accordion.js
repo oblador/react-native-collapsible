@@ -5,7 +5,7 @@ import React, {
 
 import {
   View,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 
 import Collapsible from './Collapsible';
@@ -28,10 +28,12 @@ class Accordion extends Component {
       PropTypes.number, // sets index of section to open
     ]),
     underlayColor: PropTypes.string,
+    activeOpacity: PropTypes.Number
   };
 
   static defaultProps = {
     underlayColor: 'black',
+    activeOpacity: 0.2
   };
 
   constructor(props) {
@@ -77,9 +79,9 @@ class Accordion extends Component {
       <View {...viewProps}>
       {this.props.sections.map((section, key) => (
         <View key={key}>
-          <TouchableHighlight onPress={() => this._toggleSection(key)} underlayColor={this.props.underlayColor}>
+          <TouchableOpacity onPress={() => this._toggleSection(key)} underlayColor={this.props.underlayColor} activeOpacity={this.props.activeOpacity}>
             {this.props.renderHeader(section, key, this.state.activeSection === key)}
-          </TouchableHighlight>
+          </TouchableOpacity>
           <Collapsible collapsed={this.state.activeSection !== key} {...collapsibleProps}>
             {this.props.renderContent(section, key, this.state.activeSection === key)}
           </Collapsible>
