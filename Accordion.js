@@ -28,7 +28,7 @@ class Accordion extends Component {
       PropTypes.number, // sets index of section to open
     ]),
     underlayColor: PropTypes.string,
-    activeOpacity: PropTypes.Number
+    activeOpacity: PropTypes.number
   };
 
   static defaultProps = {
