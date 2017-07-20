@@ -7,9 +7,12 @@ import {
   Animated,
   Easing,
   View,
+  ViewPropTypes,
 } from 'react-native';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
+
+const VIEW_PROPS = ViewPropTypes || View.propTypes;
 
 class Collapsible extends Component {
   static propTypes = {
@@ -21,7 +24,7 @@ class Collapsible extends Component {
       PropTypes.string,
       PropTypes.func,
     ]),
-    style: View.propTypes.style,
+    style: VIEW_PROPS.style,
   };
 
   static defaultProps = {
@@ -81,16 +84,16 @@ class Collapsible extends Component {
 
   _toggleCollapsed(collapsed) {
     if (collapsed) {
-      this._transitionToHeight(this.props.collapsedHeight)
+      this._transitionToHeight(this.props.collapsedHeight);
     } else if (!this.contentHandle) {
       if (this.state.measured) {
-      this._transitionToHeight(this.state.contentHeight)
+        this._transitionToHeight(this.state.contentHeight);
       }
       return;
     } else {
       this._measureContent(contentHeight => {
         this._transitionToHeight(contentHeight);
-      })
+      });
     }
   }
 
@@ -148,7 +151,7 @@ class Collapsible extends Component {
     };
     const contentStyle = {};
     if (measuring) {
-      contentStyle.position = 'absolute',
+      contentStyle.position = 'absolute';
       contentStyle.opacity = 0;
     } else if (this.props.align === 'center') {
       contentStyle.transform = [{
