@@ -22,6 +22,7 @@ class Accordion extends Component {
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
     easing: PropTypes.string,
+    allowCollapse: PropTypes.bool,
     initiallyActiveSection: PropTypes.number,
     activeSection: PropTypes.oneOfType([
       PropTypes.bool, // if false, closes all sections
@@ -32,6 +33,7 @@ class Accordion extends Component {
 
   static defaultProps = {
     underlayColor: 'black',
+    allowCollapse: true
   };
 
   constructor(props) {
@@ -45,6 +47,10 @@ class Accordion extends Component {
 
   _toggleSection(section) {
     const activeSection = this.state.activeSection === section ? false : section;
+    
+    if (!this.props.allowCollapse && this.state.activeSection === section) {
+      return;
+    }
 
     if (this.props.activeSection === undefined) {
       this.setState({ activeSection });
