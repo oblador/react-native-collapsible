@@ -154,8 +154,9 @@ To produce this (slowed down for visibility):
 
 ![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10767769/2ddfe234-7cb4-11e5-8ef1-c0f8c67ead58.gif)
 
+## Contributing
+Interested in contributing to this repo? Have a look at our [Contributing Guide](https://github.com/oblador/react-native-collapsible/blob/master/.github/CONTRIBUTING.MD)
 
 ## License
-
 [MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
 
