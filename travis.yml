@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- stable
+cache:
+  yarn: true
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+  - next
+install:
+- yarn
+script:
+- yarn run test
