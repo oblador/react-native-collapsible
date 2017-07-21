@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Easing, View } from 'react-native';
+import { Animated, Easing } from 'react-native';
+import { ViewPropTypes } from './config';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
 
@@ -11,7 +12,7 @@ export default class Collapsible extends Component {
     collapsedHeight: PropTypes.number,
     duration: PropTypes.number,
     easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
     children: PropTypes.node,
   };
 
