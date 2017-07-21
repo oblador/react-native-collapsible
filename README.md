@@ -35,6 +35,7 @@ This is a convenience component for a common use case, see demo below.
 ```js
 import Accordion from 'react-native-collapsible/Accordion';
 <Accordion 
+  style={{height: 300}}
   sections={['Section 1', 'Section 2', 'Section 3']}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
