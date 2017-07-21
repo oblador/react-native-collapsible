@@ -31,9 +31,24 @@
   },
   "homepage": "https://github.com/oblador/react-native-collapsible",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-eslint": "^4.1.6",
-    "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.14.0"
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.17",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-react-native": "^2.3.2",
+    "prettier": "^1.5.3",
+    "react": "16.0.0-alpha.12",
+    "react-native": "~0.45.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   }
 }
