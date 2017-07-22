@@ -157,6 +157,32 @@ To produce this (slowed down for visibility):
 ## Contributing
 Interested in contributing to this repo? Have a look at our [Contributing Guide](https://github.com/oblador/react-native-collapsible/blob/master/.github/CONTRIBUTING.MD)
 
-## License
-[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
+## Maintainers
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/oblador">
+          <img width="150" height="150" src="https://github.com/oblador.png?v=3&s=150">
+          <br>
+          <strong>Joel Arvidsson</strong>
+        </a>
+        <br>
+        Author
+      </td>
+      <td align="center">
+        <a href="https://github.com/iRoachie">
+          <img width="150" height="150" src="https://github.com/iRoachie.png?v=3&s=150">
+          </br>
+          <strong>Kyle Roach</strong>
+        </a>
+        <br>
+        Maintainer
+      </td>
+    </tr>
+  <tbody>
+</table>
+
+## License
+[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015-2017
