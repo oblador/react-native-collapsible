@@ -121,7 +121,6 @@ import * as Animatable from 'react-native-animatable';
   _renderHeader(section, index, isActive) {
     return (
       <Animatable.View
-        style={styles.header}
         duration={300}
         transition="backgroundColor"
         style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}>
@@ -133,7 +132,6 @@ import * as Animatable from 'react-native-animatable';
   _renderContent(section, i, isActive) {
     return (
       <Animatable.View
-        style={styles.content}
         duration={300}
         transition="backgroundColor"
         style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}>
