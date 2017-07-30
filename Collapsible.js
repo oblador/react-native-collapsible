@@ -1,27 +1,18 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  Animated,
-  Easing,
-  View,
-} from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
 
-class Collapsible extends Component {
+export default class Collapsible extends Component {
   static propTypes = {
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     collapsed: PropTypes.bool,
     collapsedHeight: PropTypes.number,
     duration: PropTypes.number,
-    easing: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     style: View.propTypes.style,
+    children: PropTypes.node,
   };
 
   static defaultProps = {
@@ -31,14 +22,6 @@ class Collapsible extends Component {
     duration: 300,
     easing: 'easeOutCubic',
   };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.collapsed !== this.props.collapsed) {
-      this._toggleCollapsed(nextProps.collapsed);
-    } else if (nextProps.collapsed && nextProps.collapsedHeight !== this.props.collapsedHeight) {
-      this.state.height.setValue(nextProps.collapsedHeight);
-    }
-  }
 
   constructor(props) {
     super(props);
@@ -51,46 +34,66 @@ class Collapsible extends Component {
     };
   }
 
-  contentHandle = null;
-
-  _handleRef = (ref) => {
-    this.contentHandle = ref;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.collapsed !== this.props.collapsed) {
+      this._toggleCollapsed(nextProps.collapsed);
+    } else if (
+      nextProps.collapsed &&
+      nextProps.collapsedHeight !== this.props.collapsedHeight
+    ) {
+      this.state.height.setValue(nextProps.collapsedHeight);
+    }
   }
 
+  contentHandle = null;
+
+  _handleRef = ref => {
+    this.contentHandle = ref;
+  };
+
   _measureContent(callback) {
-    this.setState({
-      measuring: true,
-    }, () => {
-      requestAnimationFrame(() => {
-        if (!this.contentHandle) {
-          this.setState({
-            measuring: false,
-          }, () => callback(this.props.collapsedHeight));
-        } else {
-          this.contentHandle.getNode().measure((x, y, width, height) => {
-            this.setState({
-              measuring: false,
-              measured: true,
-              contentHeight: height,
-            }, () => callback(height));
-          });
-        }
-      });
-    });
+    this.setState(
+      {
+        measuring: true,
+      },
+      () => {
+        requestAnimationFrame(() => {
+          if (!this.contentHandle) {
+            this.setState(
+              {
+                measuring: false,
+              },
+              () => callback(this.props.collapsedHeight)
+            );
+          } else {
+            this.contentHandle.getNode().measure((x, y, width, height) => {
+              this.setState(
+                {
+                  measuring: false,
+                  measured: true,
+                  contentHeight: height,
+                },
+                () => callback(height)
+              );
+            });
+          }
+        });
+      }
+    );
   }
 
   _toggleCollapsed(collapsed) {
     if (collapsed) {
-      this._transitionToHeight(this.props.collapsedHeight)
+      this._transitionToHeight(this.props.collapsedHeight);
     } else if (!this.contentHandle) {
       if (this.state.measured) {
-      this._transitionToHeight(this.state.contentHeight)
+        this._transitionToHeight(this.state.contentHeight);
       }
       return;
     } else {
       this._measureContent(contentHeight => {
         this._transitionToHeight(contentHeight);
-      })
+      });
     }
   }
 
@@ -103,7 +106,9 @@ class Collapsible extends Component {
       for (let i = 0; i < ANIMATED_EASING_PREFIXES.length; i++) {
         prefix = ANIMATED_EASING_PREFIXES[i];
         if (easing.substr(0, prefix.length) === prefix) {
-          easing = easing.substr(prefix.length, 1).toLowerCase() + easing.substr(prefix.length + 1);
+          easing =
+            easing.substr(prefix.length, 1).toLowerCase() +
+            easing.substr(prefix.length + 1);
           prefix = prefix.substr(4, 1).toLowerCase() + prefix.substr(5);
           easing = Easing[prefix](Easing[easing || 'ease']);
           found = true;
@@ -126,12 +131,17 @@ class Collapsible extends Component {
       toValue: height,
       duration,
       easing,
-    }).start(event => this.setState({ animating: false }));
+    }).start(() => this.setState({ animating: false }));
   }
 
-  _handleLayoutChange = (event) => {
+  _handleLayoutChange = event => {
     const contentHeight = event.nativeEvent.layout.height;
-    if (this.state.animating || this.props.collapsed || this.state.measuring || this.state.contentHeight === contentHeight) {
+    if (
+      this.state.animating ||
+      this.props.collapsed ||
+      this.state.measuring ||
+      this.state.contentHeight === contentHeight
+    ) {
       return;
     }
     this.state.height.setValue(contentHeight);
@@ -148,28 +158,29 @@ class Collapsible extends Component {
     };
     const contentStyle = {};
     if (measuring) {
-      contentStyle.position = 'absolute',
+      contentStyle.position = 'absolute';
       contentStyle.opacity = 0;
     } else if (this.props.align === 'center') {
-      contentStyle.transform = [{
-        translateY: height.interpolate({
-          inputRange: [0, contentHeight],
-          outputRange: [contentHeight / -2, 0],
-        }),
-      }];
+      contentStyle.transform = [
+        {
+          translateY: height.interpolate({
+            inputRange: [0, contentHeight],
+            outputRange: [contentHeight / -2, 0],
+          }),
+        },
+      ];
     } else if (this.props.align === 'bottom') {
-      contentStyle.transform = [{
-        translateY: height.interpolate({
-          inputRange: [0, contentHeight],
-          outputRange: [-contentHeight, 0],
-        }),
-      }];
+      contentStyle.transform = [
+        {
+          translateY: height.interpolate({
+            inputRange: [0, contentHeight],
+            outputRange: [-contentHeight, 0],
+          }),
+        },
+      ];
     }
     return (
-      <Animated.View
-        style={style}
-        pointerEvents={collapsed ? 'none' : 'auto'}
-      >
+      <Animated.View style={style} pointerEvents={collapsed ? 'none' : 'auto'}>
         <Animated.View
           ref={this._handleRef}
           style={[this.props.style, contentStyle]}
@@ -181,5 +192,3 @@ class Collapsible extends Component {
     );
   }
 }
-
-module.exports = Collapsible;

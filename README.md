@@ -121,7 +121,6 @@ import * as Animatable from 'react-native-animatable';
   _renderHeader(section, index, isActive) {
     return (
       <Animatable.View
-        style={styles.header}
         duration={300}
         transition="backgroundColor"
         style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}>
@@ -133,7 +132,6 @@ import * as Animatable from 'react-native-animatable';
   _renderContent(section, i, isActive) {
     return (
       <Animatable.View
-        style={styles.content}
         duration={300}
         transition="backgroundColor"
         style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}>
@@ -154,8 +152,35 @@ To produce this (slowed down for visibility):
 
 ![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10767769/2ddfe234-7cb4-11e5-8ef1-c0f8c67ead58.gif)
 
+## Contributing
+Interested in contributing to this repo? Have a look at our [Contributing Guide](https://github.com/oblador/react-native-collapsible/blob/master/.github/CONTRIBUTING.MD)
+
+## Maintainers
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/oblador">
+          <img width="150" height="150" src="https://github.com/oblador.png?v=3&s=150">
+          <br>
+          <strong>Joel Arvidsson</strong>
+        </a>
+        <br>
+        Author
+      </td>
+      <td align="center">
+        <a href="https://github.com/iRoachie">
+          <img width="150" height="150" src="https://github.com/iRoachie.png?v=3&s=150">
+          </br>
+          <strong>Kyle Roach</strong>
+        </a>
+        <br>
+        Maintainer
+      </td>
+    </tr>
+  <tbody>
+</table>
 
 ## License
-
-[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
-
+[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015-2017
