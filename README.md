@@ -52,6 +52,8 @@ import Accordion from 'react-native-collapsible/Accordion';
 |**`initiallyActiveSection`**|Set which index in the `sections` array is initially open. Defaults to none. |
 |**`activeSection`**|Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections.|
 |**`underlayColor`**|The color of the underlay that will show through when tapping on headers. Defaults to black. |
+|**`touchableComponent`**| The touchable component used in the Accordion. Defaults to `TouchableHighlight` |
+|**`touchableProps`**| Properties for the `touchableComponent` |
 |**`align`**|See `Collapsible`|
 |**`duration`**|See `Collapsible`|
 |**`easing`**|See `Collapsible`|
