@@ -22,10 +22,13 @@ export default class Accordion extends Component {
       PropTypes.number, // sets index of section to open
     ]),
     underlayColor: PropTypes.string,
+    touchableComponent: PropTypes.func,
+    touchableProps: PropTypes.object,
   };
 
   static defaultProps = {
     underlayColor: 'black',
+    touchableComponent: TouchableHighlight,
   };
 
   constructor(props) {
@@ -71,20 +74,23 @@ export default class Accordion extends Component {
       }
     });
 
+    const Touchable = this.props.touchableComponent;
+
     return (
       <View {...viewProps}>
         {this.props.sections.map((section, key) =>
           <View key={key}>
-            <TouchableHighlight
+            <Touchable
               onPress={() => this._toggleSection(key)}
               underlayColor={this.props.underlayColor}
+              {...this.props.touchableProps}
             >
               {this.props.renderHeader(
                 section,
                 key,
                 this.state.activeSection === key
               )}
-            </TouchableHighlight>
+            </Touchable>
             <Collapsible
               collapsed={this.state.activeSection !== key}
               {...collapsibleProps}
