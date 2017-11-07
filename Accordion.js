@@ -88,7 +88,8 @@ export default class Accordion extends Component {
               {this.props.renderHeader(
                 section,
                 key,
-                this.state.activeSection === key
+                this.state.activeSection === key,
+                this.props.sections
               )}
             </Touchable>
             <Collapsible
@@ -98,7 +99,8 @@ export default class Accordion extends Component {
               {this.props.renderContent(
                 section,
                 key,
-                this.state.activeSection === key
+                this.state.activeSection === key,
+                this.props.sections
               )}
             </Collapsible>
           </View>

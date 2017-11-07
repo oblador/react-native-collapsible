@@ -46,8 +46,8 @@ import Accordion from 'react-native-collapsible/Accordion';
 | Prop | Description |
 |---|---|
 |**`sections`**|An array of sections passed to the render methods|
-|**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
-|**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
+|**`renderHeader(content, index, isActive, sections)`**|A function that should return a renderable representing the header|
+|**`renderContent(content, index, isActive, sections)`**|A function that should return a renderable representing the content|
 |**`onChange(index)`**|An optional function that is called when currently active section is changed, `index === false` when collapsed|
 |**`initiallyActiveSection`**|Set which index in the `sections` array is initially open. Defaults to none. |
 |**`activeSection`**|Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections.|
@@ -120,7 +120,7 @@ import * as Animatable from 'react-native-animatable';
 
 (...)
 
-  _renderHeader(section, index, isActive) {
+  _renderHeader(section, index, isActive, sections) {
     return (
       <Animatable.View
         duration={300}
@@ -131,7 +131,7 @@ import * as Animatable from 'react-native-animatable';
     );
   }
 
-  _renderContent(section, i, isActive) {
+  _renderContent(section, i, isActive, sections) {
     return (
       <Animatable.View
         duration={300}
