@@ -80,6 +80,11 @@ export default class Accordion extends Component {
       <View {...viewProps}>
         {this.props.sections.map((section, key) =>
           <View key={key}>
+            {this.props.renderSectionTitle(
+              section,
+              key,
+              this.state.activeSection === key
+            )}
             <Touchable
               onPress={() => this._toggleSection(key)}
               underlayColor={this.props.underlayColor}
