@@ -29,7 +29,7 @@ export default class Accordion extends Component {
 
   static defaultProps = {
     underlayColor: 'black',
-    renderSectionTitle: () => {},
+    renderSectionTitle: () => null,
     touchableComponent: TouchableHighlight,
   };
 
