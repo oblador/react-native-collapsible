@@ -30,12 +30,13 @@ import Collapsible from 'react-native-collapsible';
 
 ## Accordion Usage
 
-This is a convenience component for a common use case, see demo below. 
+This is a convenience component for a common use case, see demo below.
 
 ```js
 import Accordion from 'react-native-collapsible/Accordion';
-<Accordion 
+<Accordion
   sections={['Section 1', 'Section 2', 'Section 3']}
+  renderSectionTitle={this._renderSectionTitle}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
 />
@@ -47,6 +48,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 |---|---|
 |**`sections`**|An array of sections passed to the render methods|
 |**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
+|**`renderSectionTitle(content, index, isActive)`**|A function that should return a renderable representing the title of the section or any component above the touchable element for collapsible the accordion|
 |**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
 |**`onChange(index)`**|An optional function that is called when currently active section is changed, `index === false` when collapsed|
 |**`initiallyActiveSection`**|Set which index in the `sections` array is initially open. Defaults to none. |
@@ -62,9 +64,9 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 ![demo](https://cloud.githubusercontent.com/assets/378279/8047315/0237ca2c-0e44-11e5-9a16-1da052406eb0.gif)
 
-## Example 
+## Example
 
-Check full example in the `Example` folder. 
+Check full example in the `Example` folder.
 
 ```js
 import React, { Component } from 'react-native';
@@ -82,6 +84,14 @@ const SECTIONS = [
 ];
 
 class AccordionView extends Component {
+  _renderSectionTitle(section) {
+    return (
+      <View style={styles.content}>
+        <Text>{section.content}</Text>
+      </View>
+    );
+  }
+
   _renderHeader(section) {
     return (
       <View style={styles.header}>
@@ -102,6 +112,7 @@ class AccordionView extends Component {
     return (
       <Accordion
         sections={SECTIONS}
+        renderSectionTitle={this._renderSectionTitle}
         renderHeader={this._renderHeader}
         renderContent={this._renderContent}
       />
@@ -112,7 +123,7 @@ class AccordionView extends Component {
 
 ### Transition backgrounds
 
-If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations. 
+If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations.
 
 Lets augment the example above with:
 ```js
@@ -150,7 +161,7 @@ import * as Animatable from 'react-native-animatable';
 (...)
 ```
 
-To produce this (slowed down for visibility): 
+To produce this (slowed down for visibility):
 
 ![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10767769/2ddfe234-7cb4-11e5-8ef1-c0f8c67ead58.gif)
 
