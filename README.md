@@ -47,8 +47,8 @@ import Accordion from 'react-native-collapsible/Accordion';
 | Prop | Description |
 |---|---|
 |**`sections`**|An array of sections passed to the render methods|
+|**`renderSectionTitle(content, index, isActive)`**|A function that should return a renderable representing the title of the section or any component above renderHeader|
 |**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
-|**`renderSectionTitle(content, index, isActive)`**|A function that should return a renderable representing the title of the section or any component above the touchable element for collapsible the accordion|
 |**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
 |**`onChange(index)`**|An optional function that is called when currently active section is changed, `index === false` when collapsed|
 |**`initiallyActiveSection`**|Set which index in the `sections` array is initially open. Defaults to none. |
