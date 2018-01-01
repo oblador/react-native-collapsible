@@ -1,5 +1,6 @@
 # react-native-collapsible
-*Animated collapsible component for React Native using the Animated API*
+
+_Animated collapsible component for React Native using the Animated API_
 
 Pure JavaScript, supports dynamic content heights and components that is aware of its `collapsed` state (good for toggling arrows etc).
 
@@ -15,56 +16,57 @@ npm install --save react-native-collapsible
 import Collapsible from 'react-native-collapsible';
 <Collapsible collapsed={isCollapsed}>
   <SomeCollapsedView />
-</Collapsible>
+</Collapsible>;
 ```
 
 ## Properties
 
-| Prop | Description | Default |
-|---|---|---|
-|**`align`**|Alignment of the content when transitioning, can be `top`, `center` or `bottom`|`top`|
-|**`collapsed`**|Whether to show the child components or not|`true`|
-|**`collapsedHeight`**|Which height should the component collapse to|`0`|
-|**`duration`**|Duration of transition in milliseconds|`300`|
-|**`easing`**|Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. |`easeOutCubic`|
+| Prop                  | Description                                                                                                                                                                                                                                                                                                             | Default        |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| **`align`**           | Alignment of the content when transitioning, can be `top`, `center` or `bottom`                                                                                                                                                                                                                                         | `top`          |
+| **`collapsed`**       | Whether to show the child components or not                                                                                                                                                                                                                                                                             | `true`         |
+| **`collapsedHeight`** | Which height should the component collapse to                                                                                                                                                                                                                                                                           | `0`            |
+| **`duration`**        | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
+| **`easing`**          | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
 
 ## Accordion Usage
 
-This is a convenience component for a common use case, see demo below. 
+This is a convenience component for a common use case, see demo below.
 
 ```js
 import Accordion from 'react-native-collapsible/Accordion';
-<Accordion 
+<Accordion
   sections={['Section 1', 'Section 2', 'Section 3']}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
-/>
+/>;
 ```
 
 ## Properties
 
-| Prop | Description |
-|---|---|
-|**`sections`**|An array of sections passed to the render methods|
-|**`renderHeader(content, index, isActive)`**|A function that should return a renderable representing the header|
-|**`renderContent(content, index, isActive)`**|A function that should return a renderable representing the content|
-|**`onChange(index)`**|An optional function that is called when currently active section is changed, `index === false` when collapsed|
-|**`initiallyActiveSection`**|Set which index in the `sections` array is initially open. Defaults to none. |
-|**`activeSection`**|Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections.|
-|**`underlayColor`**|The color of the underlay that will show through when tapping on headers. Defaults to black. |
-|**`touchableComponent`**| The touchable component used in the Accordion. Defaults to `TouchableHighlight` |
-|**`touchableProps`**| Properties for the `touchableComponent` |
-|**`align`**|See `Collapsible`|
-|**`duration`**|See `Collapsible`|
-|**`easing`**|See `Collapsible`|
+| Prop                                          | Description                                                                                                     |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **`sections`**                                | An array of sections passed to the render methods                                                               |
+| **`renderHeader(content, index, isActive)`**  | A function that should return a renderable representing the header                                              |
+| **`renderContent(content, index, isActive)`** | A function that should return a renderable representing the content                                             |
+| **`onChange(index)`**                         | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
+| **`initiallyActiveSection`**                  | Set which index in the `sections` array is initially open. Defaults to none.                                    |
+| **`activeSection`**                           | Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections. |
+| **`underlayColor`**                           | The color of the underlay that will show through when tapping on headers. Defaults to black.                    |
+| **`touchableComponent`**                      | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                 |
+| **`touchableProps`**                          | Properties for the `touchableComponent`                                                                         |
+| **`disabled`**                                | Set whether the user can interact with the Accordion                                                            |
+| **`align`**                                   | See `Collapsible`                                                                                               |
+| **`duration`**                                | See `Collapsible`                                                                                               |
+| **`easing`**                                  | See `Collapsible`                                                                                               |
 
 ## Demo
 
 ![demo](https://cloud.githubusercontent.com/assets/378279/8047315/0237ca2c-0e44-11e5-9a16-1da052406eb0.gif)
 
-## Example 
+## Example
 
-Check full example in the `Example` folder. 
+Check full example in the `Example` folder.
 
 ```js
 import React, { Component } from 'react-native';
@@ -73,11 +75,11 @@ import Accordion from 'react-native-collapsible/Accordion';
 const SECTIONS = [
   {
     title: 'First',
-    content: 'Lorem ipsum...',
+    content: 'Lorem ipsum...'
   },
   {
     title: 'Second',
-    content: 'Lorem ipsum...',
+    content: 'Lorem ipsum...'
   }
 ];
 
@@ -112,9 +114,10 @@ class AccordionView extends Component {
 
 ### Transition backgrounds
 
-If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations. 
+If you combine with the [`react-native-animatable`](https://github.com/oblador/react-native-animatable) library you can easily transition the background color between the active and inactive state or add animations.
 
 Lets augment the example above with:
+
 ```js
 import * as Animatable from 'react-native-animatable';
 
@@ -152,13 +155,14 @@ import * as Animatable from 'react-native-animatable';
 (...)
 ```
 
-To produce this (slowed down for visibility): 
+To produce this (slowed down for visibility):
 
 ![accordion-demo](https://cloud.githubusercontent.com/assets/378279/10767769/2ddfe234-7cb4-11e5-8ef1-c0f8c67ead58.gif)
 
 ## Contributing
+
 Interested in contributing to this repo? Have a look at our [Contributing Guide](https://github.com/oblador/react-native-collapsible/blob/master/.github/CONTRIBUTING.MD)
 
 ## License
-[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
 
+[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015
