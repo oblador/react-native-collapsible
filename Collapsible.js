@@ -46,6 +46,15 @@ export default class Collapsible extends Component {
     }
   }
 
+  componentDidMount() {
+    if (!this.props.collapsed) {
+      this._measureContent(contentHeight => {
+        this.state.height.setValue(contentHeight);
+        this.setState({ contentHeight });
+      });
+    }
+  }
+
   contentHandle = null;
 
   _handleRef = ref => {
