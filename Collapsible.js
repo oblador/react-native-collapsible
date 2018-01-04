@@ -36,6 +36,14 @@ export default class Collapsible extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (!nextProps.collapsed && !this.props.collapsed) {
+      this.setState({measured: false}, () => this._componentWillReceiveProps(nextProps));
+    } else {
+      this._componentWillReceiveProps(nextProps);
+    }
+  }
+
+  _componentWillReceiveProps(nextProps) {
     if (nextProps.collapsed !== this.props.collapsed) {
       this._toggleCollapsed(nextProps.collapsed);
     } else if (
