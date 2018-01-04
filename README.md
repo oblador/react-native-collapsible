@@ -44,21 +44,21 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 ## Properties
 
-| Prop                                          | Description                                                                                                     |
-| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **`sections`**                                | An array of sections passed to the render methods                                                               |
-| **`renderHeader(content, index, isActive)`**  | A function that should return a renderable representing the header                                              |
-| **`renderContent(content, index, isActive)`** | A function that should return a renderable representing the content                                             |
-| **`onChange(index)`**                         | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
-| **`initiallyActiveSection`**                  | Set which index in the `sections` array is initially open. Defaults to none.                                    |
-| **`activeSection`**                           | Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections. |
-| **`underlayColor`**                           | The color of the underlay that will show through when tapping on headers. Defaults to black.                    |
-| **`touchableComponent`**                      | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                 |
-| **`touchableProps`**                          | Properties for the `touchableComponent`                                                                         |
-| **`disabled`**                                | Set whether the user can interact with the Accordion                                                            |
-| **`align`**                                   | See `Collapsible`                                                                                               |
-| **`duration`**                                | See `Collapsible`                                                                                               |
-| **`easing`**                                  | See `Collapsible`                                                                                               |
+| Prop                                                    | Description                                                                                                     |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **`sections`**                                          | An array of sections passed to the render methods                                                               |
+| **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                              |
+| **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                             |
+| **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
+| **`initiallyActiveSection`**                            | Set which index in the `sections` array is initially open. Defaults to none.                                    |
+| **`activeSection`**                                     | Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections. |
+| **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                    |
+| **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                 |
+| **`touchableProps`**                                    | Properties for the `touchableComponent`                                                                         |
+| **`disabled`**                                          | Set whether the user can interact with the Accordion                                                            |
+| **`align`**                                             | See `Collapsible`                                                                                               |
+| **`duration`**                                          | See `Collapsible`                                                                                               |
+| **`easing`**                                            | See `Collapsible`                                                                                               |
 
 ## Demo
 
@@ -123,7 +123,7 @@ import * as Animatable from 'react-native-animatable';
 
 (...)
 
-  _renderHeader(section, index, isActive) {
+  _renderHeader(section, index, isActive, sections) {
     return (
       <Animatable.View
         duration={300}
@@ -134,7 +134,7 @@ import * as Animatable from 'react-native-animatable';
     );
   }
 
-  _renderContent(section, i, isActive) {
+  _renderContent(section, i, isActive, sections) {
     return (
       <Animatable.View
         duration={300}
@@ -189,4 +189,5 @@ Interested in contributing to this repo? Have a look at our [Contributing Guide]
 </table>
 
 ## License
+
 [MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015-2017
