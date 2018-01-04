@@ -40,7 +40,7 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-react-native": "^2.3.2",
-    "prettier": "^1.5.3",
+    "prettier": "^1.9.2",
     "react": "16.0.0-alpha.12",
     "react-native": "~0.45.1"
   },

@@ -24,10 +24,12 @@ export default class Accordion extends Component {
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
     underlayColor: 'black',
+    disabled: false,
     touchableComponent: TouchableHighlight,
   };
 
@@ -52,14 +54,16 @@ export default class Accordion extends Component {
   }
 
   _toggleSection(section) {
-    const activeSection =
-      this.state.activeSection === section ? false : section;
+    if (!this.props.disabled) {
+      const activeSection =
+        this.state.activeSection === section ? false : section;
 
-    if (this.props.activeSection === undefined) {
-      this.setState({ activeSection });
-    }
-    if (this.props.onChange) {
-      this.props.onChange(activeSection);
+      if (this.props.activeSection === undefined) {
+        this.setState({ activeSection });
+      }
+      if (this.props.onChange) {
+        this.props.onChange(activeSection);
+      }
     }
   }
 
@@ -78,7 +82,7 @@ export default class Accordion extends Component {
 
     return (
       <View {...viewProps}>
-        {this.props.sections.map((section, key) =>
+        {this.props.sections.map((section, key) => (
           <View key={key}>
             <Touchable
               onPress={() => this._toggleSection(key)}
@@ -104,7 +108,7 @@ export default class Accordion extends Component {
               )}
             </Collapsible>
           </View>
-        )}
+        ))}
       </View>
     );
   }
