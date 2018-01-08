@@ -5,11 +5,6 @@ cache:
   yarn: true
   directories:
   - node_modules
-branches:
-  only:
-  - master
-  - next
-  - /^v\d+\.\d+\.\d+.*$/
 install:
 - yarn
 script:
@@ -22,4 +17,4 @@ deploy:
   on:
     tags: true
     repo: oblador/react-native-collapsible
-    condition: "$TRAVIS_TAG =~ ^v\\d+\\.\\d+\\.\\d+.*$"
+    condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+.*$"
