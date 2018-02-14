@@ -60,8 +60,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`disabled`**                                          | Set whether the user can interact with the Accordion                                                            |
 | **`align`**                                             | See `Collapsible`                                                                                               |
 | **`duration`**                                          | See `Collapsible`                                                                                               |
-| **`easing`**                                            | See `Collapsible`                                                                                               |
-
+| **`easing`**                                            | See `Collapsib
 ## Demo
 
 ![demo](https://cloud.githubusercontent.com/assets/378279/8047315/0237ca2c-0e44-11e5-9a16-1da052406eb0.gif)
