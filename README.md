@@ -37,6 +37,7 @@ This is a convenience component for a common use case, see demo below.
 import Accordion from 'react-native-collapsible/Accordion';
 <Accordion
   sections={['Section 1', 'Section 2', 'Section 3']}
+  renderSectionTitle={this._renderSectionTitle}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
 />;
@@ -49,6 +50,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`sections`**                                          | An array of sections passed to the render methods                                                               |
 | **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                              |
 | **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                             |
+| **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element  |
 | **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
 | **`initiallyActiveSection`**                            | Set which index in the `sections` array is initially open. Defaults to none.                                    |
 | **`activeSection`**                                     | Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections. |
@@ -84,6 +86,14 @@ const SECTIONS = [
 ];
 
 class AccordionView extends Component {
+  _renderSectionTitle(section) {
+    return (
+      <View style={styles.content}>
+        <Text>{section.content}</Text>
+      </View>
+    );
+  }
+
   _renderHeader(section) {
     return (
       <View style={styles.header}>
@@ -104,6 +114,7 @@ class AccordionView extends Component {
     return (
       <Accordion
         sections={SECTIONS}
+        renderSectionTitle={this._renderSectionTitle}
         renderHeader={this._renderHeader}
         renderContent={this._renderContent}
       />
