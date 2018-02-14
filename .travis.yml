@@ -5,11 +5,16 @@ cache:
   yarn: true
   directories:
   - node_modules
-branches:
-  only:
-  - master
-  - next
 install:
 - yarn
 script:
 - yarn run test
+deploy:
+  provider: npm
+  email: joel@oblador.se
+  api_key:
+    secure: Yqks4/RjtiF4SDpKEzARdHsRrdSJlNYQjJvKuV2sHyulKEMDY+bj1PQbVZY34LanxzRSJ3Rm7BsHafTIf9NbApRLSST3F+adp2QnX1FzkTAz4Wm/hHuoT+GWH3x2xQ6duiYpfRsWwJpAqbLK7Dn493w8cw1AYlSa7GG97R/IlVN4AeXFqXsRMuFflYYMwXpnAgPgWhj7luA+aIhg4Zu/glhQqF8UgpFDsU6ZBxC5UTeUAYOkO/0RzXXhI7c0rR+Am/+Rx0CiiBv4QUUhigLtrVQAsi8WZok+l9JepmhxjOdx+Ixaote6WGEV3JklQcLwOyMP6f5eHkq8U8fVL67xFMnQ262/8G/0hKUdO0Ci+yNxKMClcaZwbx+YDbUVInzD+KXra1aaeOx6HcZkW8DQF+UGlE/C1weyhdsb0PqFOCv+mXwwJJ5SZjZwYgkpK8b6LbheeKzY0f/kiwkQcwRFXZfnJ4Jj5/ffgf2QlWAP5TCqAErA/O24il3k6jhiLrSQbQQ4mwsYKs9FTCq3gQYezLbtbbwB/RVLdKdXa+xeXYGwBELSefRBUY1RvKePNWIsMI3Jmvq/hk25cFotzv3qVtZ4Acm52P7Vj3/tzkQxqoTNWYBQfZO2YghUxnKsv92DKqL1qMZP4LTIuHFkerYifGQBnmqQINhreqJV5zGv2AE=
+  on:
+    tags: true
+    repo: oblador/react-native-collapsible
+    condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+.*$"
