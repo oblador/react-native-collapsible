@@ -12,7 +12,6 @@ export default class Accordion extends Component {
     sections: PropTypes.array.isRequired,
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
-    renderSectionTitle: PropTypes.func,
     onChange: PropTypes.func,
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
@@ -31,7 +30,6 @@ export default class Accordion extends Component {
   static defaultProps = {
     underlayColor: 'black',
     disabled: false,
-    renderSectionTitle: () => null,
     touchableComponent: TouchableHighlight,
   };
 
