@@ -7,8 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "~15.4.0-rc.4",
-    "react-native": "0.41.0",
+    "react": "16.2.0",
+    "react-native": "0.53.3",
     "react-native-animatable": "^1.1.0",
     "react-native-collapsible": "file:../"
   },
