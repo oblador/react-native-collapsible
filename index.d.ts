@@ -1,5 +1,6 @@
 declare module 'react-native-collapsible' {
   import * as React from 'react';
+  import { StyleProp, ViewStyle } from 'react-native';
 
   export type EasingMode =
     | 'linear'
@@ -69,6 +70,11 @@ declare module 'react-native-collapsible' {
      * @default easeOutCubic
      */
     easing?: EasingMode | any;
+
+    /**
+     * Optional styling for the container
+     */
+    style?: StyleProp<ViewStyle>;
   }
 
   export default class Collapsible extends React.Component<
