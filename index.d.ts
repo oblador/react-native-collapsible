@@ -85,7 +85,7 @@ declare module 'react-native-collapsible' {
 
 declare module 'react-native-collapsible/Accordion' {
   import * as React from 'react';
-  import { EasingMode } from './index';
+  import { EasingMode } from 'react-native-collapsible';
 
   export interface AccordionProps {
     /**
