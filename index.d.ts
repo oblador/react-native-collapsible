@@ -172,6 +172,18 @@ declare module 'react-native-collapsible/Accordion' {
      * @default easeOutCubic
      */
     easing?: EasingMode | any;
+
+    /**
+     * Component to use for the Touchable
+     *
+     * @default TouchableHighlight
+     */
+    touchableComponent?: React.ComponentClass;
+
+    /**
+     * Object of props to pass to the touchable component
+     */
+    touchableProps?: {};
   }
 
   export default class Accordion extends React.Component<AccordionProps, any> {}
