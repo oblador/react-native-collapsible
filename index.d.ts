@@ -106,7 +106,7 @@ declare module 'react-native-collapsible/Accordion' {
     /**
      * A function that should return a renderable representing the section title above the touchable
      */
-    renderSectionTitle(
+    renderSectionTitle?(
       content: any,
       index: number,
       isActive: boolean,
