@@ -1,5 +1,6 @@
 declare module 'react-native-collapsible' {
   import * as React from 'react';
+  import { StyleProp, ViewStyle } from 'react-native';
 
   export type EasingMode =
     | 'linear'
@@ -69,6 +70,11 @@ declare module 'react-native-collapsible' {
      * @default easeOutCubic
      */
     easing?: EasingMode | any;
+
+    /**
+     * Optional styling for the container
+     */
+    style?: StyleProp<ViewStyle>;
   }
 
   export default class Collapsible extends React.Component<
@@ -79,7 +85,7 @@ declare module 'react-native-collapsible' {
 
 declare module 'react-native-collapsible/Accordion' {
   import * as React from 'react';
-  import { EasingMode } from './index';
+  import { EasingMode } from 'react-native-collapsible';
 
   export interface AccordionProps {
     /**
@@ -100,7 +106,7 @@ declare module 'react-native-collapsible/Accordion' {
     /**
      * A function that should return a renderable representing the section title above the touchable
      */
-    renderSectionTitle(
+    renderSectionTitle?(
       content: any,
       index: number,
       isActive: boolean,
@@ -166,6 +172,18 @@ declare module 'react-native-collapsible/Accordion' {
      * @default easeOutCubic
      */
     easing?: EasingMode | any;
+
+    /**
+     * Component to use for the Touchable
+     *
+     * @default TouchableHighlight
+     */
+    touchableComponent?: React.ComponentClass;
+
+    /**
+     * Object of props to pass to the touchable component
+     */
+    touchableProps?: {};
   }
 
   export default class Accordion extends React.Component<AccordionProps, any> {}
