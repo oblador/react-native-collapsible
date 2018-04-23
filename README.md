@@ -28,6 +28,7 @@ import Collapsible from 'react-native-collapsible';
 | **`collapsedHeight`** | Which height should the component collapse to                                                                                                                                                                                                                                                                           | `0`            |
 | **`duration`**        | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
 | **`easing`**          | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
+| **`style`**           | Optional styling for the container                                                                                                                                                                                                                                                                                      |                |
 
 ## Accordion Usage
 
@@ -60,7 +61,9 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`disabled`**                                          | Set whether the user can interact with the Accordion                                                            |
 | **`align`**                                             | See `Collapsible`                                                                                               |
 | **`duration`**                                          | See `Collapsible`                                                                                               |
-| **`easing`**                                            | See `Collapsible
+| **`easing`**                                            | See `Collapsible`                                                                                               |
+| **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                               |
+
 ## Demo
 
 ![demo](https://cloud.githubusercontent.com/assets/378279/8047315/0237ca2c-0e44-11e5-9a16-1da052406eb0.gif)
