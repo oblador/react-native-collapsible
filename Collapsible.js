@@ -156,12 +156,8 @@ export default class Collapsible extends Component {
       return;
     }
 
-    this._measureContent(contentHeight => {
-      this.setState({
-        contentHeight,
-        height: new Animated.Value(contentHeight),
-      });
-    });
+    this.state.height.setValue(contentHeight);
+    this.setState({ contentHeight });
   };
 
   render() {
