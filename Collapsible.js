@@ -197,21 +197,15 @@ export default class Collapsible extends Component {
     }
     return (
       <Animated.View style={style} pointerEvents={collapsed ? 'none' : 'auto'}>
-      
         <Animated.View
           ref={this._handleRef}
           style={[this.props.style, contentStyle]}
           onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
-      
-          <View style={{ height: measured ? contentHeight : null }} >
-
+          <View style={{ height: measured ? contentHeight : null }}>
             {this.props.children}
-
           </View>
-      
         </Animated.View>
-      
       </Animated.View>
     );
   }
