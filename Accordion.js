@@ -31,6 +31,7 @@ export default class Accordion extends Component {
     underlayColor: 'black',
     disabled: false,
     expandFromBottom: false,
+    expandMultiple: false,
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
   };
