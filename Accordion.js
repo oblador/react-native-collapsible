@@ -24,6 +24,7 @@ export default class Accordion extends Component {
     touchableProps: PropTypes.object,
     disabled: PropTypes.bool,
     expandFromBottom: PropTypes.bool,
+    expandMultiple: PropTypes.bool,
   };
 
   static defaultProps = {
