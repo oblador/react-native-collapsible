@@ -18,7 +18,7 @@ export default class Accordion extends Component {
     duration: PropTypes.number,
     easing: PropTypes.string,
     initiallyActiveSection: PropTypes.number,
-    activeSections: PropTypes.arrayOf(PropTypes.number),
+    activeSections: PropTypes.oneOf(PropTypes.arrayOf(PropTypes.number), PropTypes.string),
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
@@ -28,6 +28,7 @@ export default class Accordion extends Component {
   };
 
   static defaultProps = {
+    activeSections: [],
     underlayColor: 'black',
     disabled: false,
     expandFromBottom: false,
