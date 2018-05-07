@@ -159,7 +159,7 @@ export default class ExampleView extends Component {
           </View>
         </Collapsible>
         <Accordion
-          activeSection={this.state.activeSection}
+          activeSections={[ this.state.activeSection ]}
           sections={CONTENT}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}

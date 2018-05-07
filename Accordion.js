@@ -14,7 +14,7 @@ export default class Accordion extends Component {
     renderContent: PropTypes.func.isRequired,
     renderSectionTitle: PropTypes.func,
     onChange: PropTypes.func,
-    align: PropTypes.oneOf(['top', 'center', 'bottom']),
+    align: PropTypes.oneOf([ 'top', 'center', 'bottom' ]),
     duration: PropTypes.number,
     easing: PropTypes.string,
     initiallyActiveSection: PropTypes.number,
@@ -42,7 +42,7 @@ export default class Accordion extends Component {
       activeSections:
         props.activeSections !== undefined
           ? props.activeSections
-          : [props.initiallyActiveSection],
+          : [ props.initiallyActiveSection ],
     };
   }
 
