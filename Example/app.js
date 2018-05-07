@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 
 export default class ExampleView extends Component {
   state = {
-    activeSection: false,
+    activeSections: [],
     collapsed: true,
   };
 
@@ -110,8 +110,8 @@ export default class ExampleView extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
-  _setSection(section) {
-    this.setState({ activeSection: section });
+  _setSections(sections) {
+    this.setState({ activeSections: sections });
   }
 
   _renderHeader(section, i, isActive) {
@@ -138,9 +138,9 @@ export default class ExampleView extends Component {
         <View style={styles.selectors}>
           <Text style={styles.selectTitle}>Select:</Text>
           {SELECTORS.map(selector => (
-            <TouchableHighlight key={selector.title} onPress={this._setSection.bind(this, selector.value)}>
+            <TouchableHighlight key={selector.title} onPress={this._setSections.bind(this, [ selector.value ])}>
               <View style={styles.selector}>
-                <Text style={selector.value === this.state.activeSection && styles.activeSelector}>
+                <Text style={this.state.activeSections.indexOf(selector.value) !== -1  && styles.activeSelector}>
                   {selector.title}
                 </Text>
               </View>
@@ -159,12 +159,13 @@ export default class ExampleView extends Component {
           </View>
         </Collapsible>
         <Accordion
-          activeSections={[ this.state.activeSection ]}
+          activeSections={this.state.activeSections}
           sections={CONTENT}
+          expandMultiple={true}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           duration={400}
-          onChange={this._setSection.bind(this)}
+          onChange={this._setSections.bind(this)}
         />
 
       </View>
