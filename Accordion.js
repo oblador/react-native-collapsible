@@ -48,7 +48,7 @@ export default class Accordion extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.activeSection !== undefined) {
+    if (nextProps.activeSections !== undefined) {
       this.setState({
         activeSections: nextProps.activeSections,
       });
@@ -63,7 +63,7 @@ export default class Accordion extends Component {
         baseSet.slice(0, pos) + baseSet.slice(pos+1, baseSet.length) :
         this.state.activeSections + [ section ]);
 
-      if (this.props.activeSection === undefined) {
+      if (this.props.activeSections === undefined) {
         this.setState({ activeSections });
       }
       if (this.props.onChange) {
@@ -101,7 +101,7 @@ export default class Accordion extends Component {
         {this.props.renderContent(
           section,
           key,
-          this.state.activeSection === key,
+          this.state.activeSections.indexOf(key) !== -1,
           this.props.sections
         )}
       </Collapsible>
@@ -114,7 +114,7 @@ export default class Accordion extends Component {
             {this.props.renderSectionTitle(
               section,
               key,
-              this.state.activeSection === key
+              this.state.activeSections.indexOf(key) !== -1
             )}
 
             {this.props.expandFromBottom && renderCollapsible(section, key)}
