@@ -28,6 +28,7 @@ import Collapsible from 'react-native-collapsible';
 | **`collapsedHeight`** | Which height should the component collapse to                                                                                                                                                                                                                                                                           | `0`            |
 | **`duration`**        | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
 | **`easing`**          | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
+| **`style`**           | Optional styling for the container                                                                                                                                                                                                                                                                                      |                |
 
 ## Accordion Usage
 
@@ -37,6 +38,7 @@ This is a convenience component for a common use case, see demo below.
 import Accordion from 'react-native-collapsible/Accordion';
 <Accordion
   sections={['Section 1', 'Section 2', 'Section 3']}
+  renderSectionTitle={this._renderSectionTitle}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
 />;
@@ -49,6 +51,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`sections`**                                          | An array of sections passed to the render methods                                                               |
 | **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                              |
 | **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                             |
+| **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element  |
 | **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
 | **`initiallyActiveSection`**                            | Set which index in the `sections` array is initially open. Defaults to none.                                    |
 | **`activeSection`**                                     | Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections. |
@@ -59,6 +62,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`align`**                                             | See `Collapsible`                                                                                               |
 | **`duration`**                                          | See `Collapsible`                                                                                               |
 | **`easing`**                                            | See `Collapsible`                                                                                               |
+| **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                               |
 
 ## Demo
 
@@ -84,6 +88,14 @@ const SECTIONS = [
 ];
 
 class AccordionView extends Component {
+  _renderSectionTitle(section) {
+    return (
+      <View style={styles.content}>
+        <Text>{section.content}</Text>
+      </View>
+    );
+  }
+
   _renderHeader(section) {
     return (
       <View style={styles.header}>
@@ -104,6 +116,7 @@ class AccordionView extends Component {
     return (
       <Accordion
         sections={SECTIONS}
+        renderSectionTitle={this._renderSectionTitle}
         renderHeader={this._renderHeader}
         renderContent={this._renderContent}
       />

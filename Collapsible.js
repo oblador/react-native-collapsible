@@ -155,6 +155,7 @@ export default class Collapsible extends Component {
     ) {
       return;
     }
+
     this.state.height.setValue(contentHeight);
     this.setState({ contentHeight });
   };
