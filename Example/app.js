@@ -138,7 +138,7 @@ export default class ExampleView extends Component {
         <View style={styles.selectors}>
           <Text style={styles.selectTitle}>Select:</Text>
           {SELECTORS.map(selector => (
-            <TouchableHighlight key={selector.title} onPress={this._setSections.bind(this, [ selector.value ])}>
+            <TouchableHighlight key={selector.title} onPress={this._setSections.bind(this, [selector.value])}>
               <View style={styles.selector}>
                 <Text style={this.state.activeSections.indexOf(selector.value) !== -1  && styles.activeSelector}>
                   {selector.title}
