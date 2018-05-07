@@ -96,7 +96,7 @@ export default class Accordion extends Component {
 
     const renderCollapsible = (section, key) => (
       <Collapsible
-        collapsed={this.state.activeSection !== key}
+        collapsed={this.state.activeSections.indexOf(key) === -1}
         {...collapsibleProps}
       >
         {this.props.renderContent(
