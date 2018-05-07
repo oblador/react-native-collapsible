@@ -60,7 +60,7 @@ export default class Accordion extends Component {
       const pos = baseSet.indexOf(section);
       const activeSections = (pos !== -1 ?
         baseSet.slice(0, pos) + baseSet.slice(pos+1, baseSet.length) :
-        activeSections = this.state.activeSections + [ section ])
+        this.state.activeSections + [ section ]);
 
       if (this.props.activeSection === undefined) {
         this.setState({ activeSections });
