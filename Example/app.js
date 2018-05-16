@@ -146,7 +146,7 @@ export default class ExampleView extends Component {
           {SELECTORS.map(selector => (
             <TouchableOpacity
               key={selector.title}
-              onPress={this._setSection.bind(this, selector.value)}
+              onPress={this._setSections.bind(this, [selector.value])}
             >
               <View style={styles.selector}>
                 <Text
