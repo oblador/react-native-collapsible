@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
@@ -144,7 +144,7 @@ export default class ExampleView extends Component {
         <View style={styles.selectors}>
           <Text style={styles.selectTitle}>Select:</Text>
           {SELECTORS.map(selector => (
-            <TouchableHighlight
+            <TouchableOpacity
               key={selector.title}
               onPress={this._setSection.bind(this, selector.value)}
             >
@@ -158,15 +158,15 @@ export default class ExampleView extends Component {
                   {selector.title}
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           ))}
         </View>
 
-        <TouchableHighlight onPress={this._toggleExpanded}>
+        <TouchableOpacity onPress={this._toggleExpanded}>
           <View style={styles.header}>
             <Text style={styles.headerText}>Single Collapsible</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
         <Collapsible collapsed={this.state.collapsed} align="center">
           <View style={styles.content}>
             <Text>
@@ -178,6 +178,7 @@ export default class ExampleView extends Component {
         <Accordion
           activeSection={this.state.activeSection}
           sections={CONTENT}
+          touchableComponent={TouchableOpacity}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           duration={400}
