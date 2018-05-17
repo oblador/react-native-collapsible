@@ -49,10 +49,10 @@ export default class Accordion extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.activeSection !== undefined) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.activeSection !== undefined) {
       this.setState({
-        activeSection: nextProps.activeSection,
+        activeSection: this.props.activeSection,
       });
     }
   }
