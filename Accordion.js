@@ -12,6 +12,7 @@ export default class Accordion extends Component {
     sections: PropTypes.array.isRequired,
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
+    renderSectionTitle: PropTypes.func,
     onChange: PropTypes.func,
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
@@ -25,12 +26,15 @@ export default class Accordion extends Component {
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
     disabled: PropTypes.bool,
+    expandFromBottom: PropTypes.bool,
   };
 
   static defaultProps = {
     underlayColor: 'black',
     disabled: false,
+    expandFromBottom: false,
     touchableComponent: TouchableHighlight,
+    renderSectionTitle: () => null,
   };
 
   constructor(props) {
@@ -67,6 +71,12 @@ export default class Accordion extends Component {
     }
   }
 
+  handleErrors = () => {
+    if (!Array.isArray(this.props.sections)) {
+      throw new Error('Sections should be an array');
+    }
+  };
+
   render() {
     let viewProps = {};
     let collapsibleProps = {};
@@ -78,12 +88,36 @@ export default class Accordion extends Component {
       }
     });
 
+    this.handleErrors();
+
     const Touchable = this.props.touchableComponent;
+
+    const renderCollapsible = (section, key) => (
+      <Collapsible
+        collapsed={this.state.activeSection !== key}
+        {...collapsibleProps}
+      >
+        {this.props.renderContent(
+          section,
+          key,
+          this.state.activeSection === key,
+          this.props.sections
+        )}
+      </Collapsible>
+    );
 
     return (
       <View {...viewProps}>
         {this.props.sections.map((section, key) => (
           <View key={key}>
+            {this.props.renderSectionTitle(
+              section,
+              key,
+              this.state.activeSection === key
+            )}
+
+            {this.props.expandFromBottom && renderCollapsible(section, key)}
+
             <Touchable
               onPress={() => this._toggleSection(key)}
               underlayColor={this.props.underlayColor}
@@ -96,17 +130,8 @@ export default class Accordion extends Component {
                 this.props.sections
               )}
             </Touchable>
-            <Collapsible
-              collapsed={this.state.activeSection !== key}
-              {...collapsibleProps}
-            >
-              {this.props.renderContent(
-                section,
-                key,
-                this.state.activeSection === key,
-                this.props.sections
-              )}
-            </Collapsible>
+
+            {!this.props.expandFromBottom && renderCollapsible(section, key)}
           </View>
         ))}
       </View>
