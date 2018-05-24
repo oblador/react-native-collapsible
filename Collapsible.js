@@ -198,9 +198,7 @@ export default class Collapsible extends Component {
           style={[this.props.style, contentStyle]}
           onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
-          <View style={{ height: measured ? contentHeight : null }}>
-            {this.props.children}
-          </View>
+          {this.props.children}
         </Animated.View>
       </Animated.View>
     );
