@@ -36,6 +36,7 @@ export default class Accordion extends Component {
     expandFromBottom: false,
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
+    onAnimationEnd: () => {},
   };
 
   constructor(props) {

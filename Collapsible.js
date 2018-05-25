@@ -23,6 +23,7 @@ export default class Collapsible extends Component {
     collapsedHeight: 0,
     duration: 300,
     easing: 'easeOutCubic',
+    onAnimationEnd: () => {},
   };
 
   constructor(props) {
