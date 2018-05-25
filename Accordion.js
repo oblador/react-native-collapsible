@@ -27,6 +27,7 @@ export default class Accordion extends Component {
     touchableProps: PropTypes.object,
     disabled: PropTypes.bool,
     expandFromBottom: PropTypes.bool,
+    onAnimationEnd: PropTypes.func,
   };
 
   static defaultProps = {
@@ -96,6 +97,12 @@ export default class Accordion extends Component {
       <Collapsible
         collapsed={this.state.activeSection !== key}
         {...collapsibleProps}
+        onAnimationEnd={() => {
+          const { onAnimationEnd } = this.props
+          if(onAnimationEnd) {
+            onAnimationEnd(section, key)
+          }
+        }}
       >
         {this.props.renderContent(
           section,
