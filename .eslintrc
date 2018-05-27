@@ -22,7 +22,7 @@
     "import",
     "react",
     "react-native",
-    "prettier",
+    "prettier"
   ],
   "rules": {
     "constructor-super": "error",
@@ -137,6 +137,6 @@
     "prettier/prettier": ["error", {
       "trailingComma": "es5",
       "singleQuote": true
-    }],
+    }]
   }
 }

@@ -23,7 +23,7 @@ export default class Collapsible extends Component {
     collapsedHeight: 0,
     duration: 300,
     easing: 'easeOutCubic',
-    onAnimationEnd: () => {},
+    onAnimationEnd: () => null,
   };
 
   constructor(props) {
@@ -144,7 +144,9 @@ export default class Collapsible extends Component {
       toValue: height,
       duration,
       easing,
-    }).start(() => this.setState({ animating: false }, this.props.onAnimationEnd));
+    }).start(() =>
+      this.setState({ animating: false }, this.props.onAnimationEnd)
+    );
   }
 
   _handleLayoutChange = event => {

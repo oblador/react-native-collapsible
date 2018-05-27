@@ -36,7 +36,7 @@ export default class Accordion extends Component {
     expandFromBottom: false,
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
-    onAnimationEnd: () => {},
+    onAnimationEnd: () => null,
   };
 
   constructor(props) {
@@ -98,12 +98,7 @@ export default class Accordion extends Component {
       <Collapsible
         collapsed={this.state.activeSection !== key}
         {...collapsibleProps}
-        onAnimationEnd={() => {
-          const { onAnimationEnd } = this.props
-          if(onAnimationEnd) {
-            onAnimationEnd(section, key)
-          }
-        }}
+        onAnimationEnd={() => this.props.onAnimationEnd(section, key)}
       >
         {this.props.renderContent(
           section,
