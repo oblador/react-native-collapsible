@@ -29,6 +29,7 @@ import Collapsible from 'react-native-collapsible';
 | **`duration`**        | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
 | **`easing`**          | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
 | **`style`**           | Optional styling for the container                                                                                                                                                                                                                                                                                      |                |
+| **`onAnimationEnd`**  | Callback when the toggle animation is done. Useful to avoid heavy layouting work during the animation                                                                                                                                                                                                                   | `() => {}`    |
 
 ## Accordion Usage
 
@@ -62,6 +63,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`align`**                                             | See `Collapsible`                                                                                               |
 | **`duration`**                                          | See `Collapsible`                                                                                               |
 | **`easing`**                                            | See `Collapsible`                                                                                               |
+| **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                              |
 | **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                               |
 
 ## Demo

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Easing, View } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import { ViewPropTypes } from './config';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
@@ -13,6 +13,7 @@ export default class Collapsible extends Component {
     duration: PropTypes.number,
     easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     style: ViewPropTypes.style,
+    onAnimationEnd: PropTypes.func,
     children: PropTypes.node,
   };
 
@@ -22,6 +23,7 @@ export default class Collapsible extends Component {
     collapsedHeight: 0,
     duration: 300,
     easing: 'easeOutCubic',
+    onAnimationEnd: () => null,
   };
 
   constructor(props) {
@@ -142,7 +144,9 @@ export default class Collapsible extends Component {
       toValue: height,
       duration,
       easing,
-    }).start(() => this.setState({ animating: false }));
+    }).start(() =>
+      this.setState({ animating: false }, this.props.onAnimationEnd)
+    );
   }
 
   _handleLayoutChange = event => {
@@ -198,9 +202,7 @@ export default class Collapsible extends Component {
           style={[this.props.style, contentStyle]}
           onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
-          <View style={{ height: measured ? contentHeight : null }}>
-            {this.props.children}
-          </View>
+          {this.props.children}
         </Animated.View>
       </Animated.View>
     );
