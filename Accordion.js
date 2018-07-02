@@ -50,7 +50,10 @@ export default class Accordion extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.activeSection !== undefined) {
+    if (
+      this.props.activeSection !== undefined &&
+      this.props.activeSection !== prevProps.activeSection
+    ) {
       this.setState({
         activeSection: this.props.activeSection,
       });
