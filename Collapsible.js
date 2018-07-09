@@ -157,7 +157,7 @@ export default class Collapsible extends Component {
           return;
         }
         this.props.onAnimationEnd();
-      })
+      });
     });
   }
 
