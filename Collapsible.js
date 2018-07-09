@@ -148,7 +148,7 @@ export default class Collapsible extends Component {
       toValue: height,
       duration,
       easing,
-    }).start(() =>
+    }).start(() => {
       if (this.unmounted) {
         return;
       }
@@ -158,7 +158,7 @@ export default class Collapsible extends Component {
         }
         this.props.onAnimationEnd();
       })
-    );
+    });
   }
 
   _handleLayoutChange = event => {
