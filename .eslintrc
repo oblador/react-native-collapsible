@@ -11,11 +11,7 @@
       "jsx": true
     }
   },
-  "extends": [
-    "prettier",
-    "prettier/flowtype",
-    "prettier/react"
-  ],
+  "extends": ["prettier", "prettier/flowtype", "prettier/react"],
   "plugins": [
     "babel",
     "flowtype",
@@ -97,17 +93,20 @@
     "import/imports-first": "error",
     "import/no-duplicates": "error",
     "import/no-namespace": "off",
-    "import/extensions": ["error", {
-      "js": "never",
-      "json": "always"
-    }],
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "json": "always"
+      }
+    ],
     "import/order": "off",
     "react/display-name": "off",
     "react/forbid-prop-types": "off",
     "react/no-danger": "error",
     "react/no-deprecated": "error",
     "react/no-did-mount-set-state": "error",
-    "react/no-did-update-set-state": "error",
+    "react/no-did-update-set-state": "off",
     "react/no-direct-mutation-state": "error",
     "react/no-is-mounted": "error",
     "react/no-multi-comp": "off",
@@ -134,9 +133,12 @@
     "react/jsx-uses-vars": "error",
     "react-native/no-unused-styles": "error",
     "react-native/split-platform-components": "off",
-    "prettier/prettier": ["error", {
-      "trailingComma": "es5",
-      "singleQuote": true
-    }]
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true
+      }
+    ]
   }
 }
