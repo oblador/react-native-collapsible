@@ -11,106 +11,56 @@ const BACON_IPSUM =
 const CONTENT = [
   {
     title: 'First',
-    content: BACON_IPSUM
+    content: BACON_IPSUM,
   },
   {
     title: 'Second',
-    content: BACON_IPSUM
+    content: BACON_IPSUM,
   },
   {
     title: 'Third',
-    content: BACON_IPSUM
+    content: BACON_IPSUM,
   },
   {
     title: 'Fourth',
-    content: BACON_IPSUM
+    content: BACON_IPSUM,
   },
   {
     title: 'Fifth',
-    content: BACON_IPSUM
-  }
+    content: BACON_IPSUM,
+  },
 ];
 
 const SELECTORS = [
   {
     title: 'First',
-    value: 0
+    value: 0,
   },
   {
     title: 'Third',
-    value: 2
+    value: 2,
   },
   {
     title: 'None',
-    value: false
-  }
+    value: false,
+  },
 ];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 22,
-    fontWeight: '300',
-    marginBottom: 20
-  },
-  header: {
-    backgroundColor: '#F5FCFF',
-    padding: 10
-  },
-  headerText: {
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '500'
-  },
-  content: {
-    padding: 20,
-    backgroundColor: '#fff'
-  },
-  active: {
-    backgroundColor: 'rgba(255,255,255,1)'
-  },
-  inactive: {
-    backgroundColor: 'rgba(245,252,255,1)'
-  },
-  selectors: {
-    marginBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  selector: {
-    backgroundColor: '#F5FCFF',
-    padding: 10
-  },
-  activeSelector: {
-    fontWeight: 'bold'
-  },
-  selectTitle: {
-    fontSize: 14,
-    fontWeight: '500',
-    padding: 10
-  }
-});
-
-export default class ExampleView extends Component {
+export default class App extends Component {
   state = {
     activeSection: false,
-    collapsed: true
+    collapsed: true,
   };
 
-  _toggleExpanded = () => {
+  toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  _setSection(section) {
+  setSection = section => {
     this.setState({ activeSection: section });
-  }
+  };
 
-  _renderHeader(section, i, isActive) {
+  renderHeader = (section, _, isActive) => {
     return (
       <Animatable.View
         duration={400}
@@ -120,9 +70,9 @@ export default class ExampleView extends Component {
         <Text style={styles.headerText}>{section.title}</Text>
       </Animatable.View>
     );
-  }
+  };
 
-  _renderContent(section, i, isActive) {
+  renderContent(section, _, isActive) {
     return (
       <Animatable.View
         duration={400}
@@ -146,7 +96,7 @@ export default class ExampleView extends Component {
           {SELECTORS.map(selector => (
             <TouchableOpacity
               key={selector.title}
-              onPress={this._setSection.bind(this, selector.value)}
+              onPress={() => this.setSection(selector.value)}
             >
               <View style={styles.selector}>
                 <Text
@@ -162,7 +112,7 @@ export default class ExampleView extends Component {
           ))}
         </View>
 
-        <TouchableOpacity onPress={this._toggleExpanded}>
+        <TouchableOpacity onPress={this.toggleExpanded}>
           <View style={styles.header}>
             <Text style={styles.headerText}>Single Collapsible</Text>
           </View>
@@ -179,12 +129,62 @@ export default class ExampleView extends Component {
           activeSection={this.state.activeSection}
           sections={CONTENT}
           touchableComponent={TouchableOpacity}
-          renderHeader={this._renderHeader}
-          renderContent={this._renderContent}
+          renderHeader={this.renderHeader}
+          renderContent={this.renderContent}
           duration={400}
-          onChange={this._setSection.bind(this)}
+          onChange={this.setSection}
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: '300',
+    marginBottom: 20,
+  },
+  header: {
+    backgroundColor: '#F5FCFF',
+    padding: 10,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  content: {
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  active: {
+    backgroundColor: 'rgba(255,255,255,1)',
+  },
+  inactive: {
+    backgroundColor: 'rgba(245,252,255,1)',
+  },
+  selectors: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  selector: {
+    backgroundColor: '#F5FCFF',
+    padding: 10,
+  },
+  activeSelector: {
+    fontWeight: 'bold',
+  },
+  selectTitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    padding: 10,
+  },
+});
