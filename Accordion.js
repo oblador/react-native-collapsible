@@ -28,6 +28,7 @@ export default class Accordion extends Component {
     disabled: PropTypes.bool,
     expandFromBottom: PropTypes.bool,
     expandMultiple: PropTypes.bool,
+    onAnimationEnd: PropTypes.func,
   };
 
   static defaultProps = {
@@ -38,6 +39,7 @@ export default class Accordion extends Component {
     expandMultiple: false,
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
+    onAnimationEnd: () => null,
   };
 
   constructor(props) {
@@ -52,10 +54,13 @@ export default class Accordion extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.activeSections !== undefined) {
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.activeSections !== undefined &&
+      this.props.activeSections !== prevProps.activeSections
+    ) {
       this.setState({
-        activeSections: nextProps.activeSections,
+        activeSections: this.props.activeSections,
       });
     }
   }
@@ -105,6 +110,7 @@ export default class Accordion extends Component {
       <Collapsible
         collapsed={this.state.activeSections.indexOf(key) === -1}
         {...collapsibleProps}
+        onAnimationEnd={() => this.props.onAnimationEnd(section, key)}
       >
         {this.props.renderContent(
           section,
