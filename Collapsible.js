@@ -37,13 +37,13 @@ export default class Collapsible extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.collapsed && !this.props.collapsed) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.collapsed !== this.props.collapsed) {
       this.setState({ measured: false }, () =>
-        this._componentWillReceiveProps(nextProps)
+        this._componentDidUpdate(prevProps)
       );
     } else {
-      this._componentWillReceiveProps(nextProps);
+      this._componentDidUpdate(prevProps);
     }
   }
 
@@ -51,14 +51,14 @@ export default class Collapsible extends Component {
     this.unmounted = true;
   }
 
-  _componentWillReceiveProps(nextProps) {
-    if (nextProps.collapsed !== this.props.collapsed) {
-      this._toggleCollapsed(nextProps.collapsed);
+  _componentDidUpdate(prevProps) {
+    if (prevProps.collapsed !== this.props.collapsed) {
+      this._toggleCollapsed(this.props.collapsed);
     } else if (
-      nextProps.collapsed &&
-      nextProps.collapsedHeight !== this.props.collapsedHeight
+      this.props.collapsed &&
+      prevProps.collapsedHeight !== this.props.collapsedHeight
     ) {
-      this.state.height.setValue(nextProps.collapsedHeight);
+      this.state.height.setValue(this.props.collapsedHeight);
     }
   }
 
