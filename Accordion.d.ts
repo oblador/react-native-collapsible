@@ -62,7 +62,7 @@ export interface AccordionProps {
   initiallyActiveSection?: number;
 
   /**
-   * Control which index in the sections array is currently open. Defaults to none. If false, closes all sections.
+   * Control which indices in the sections array are currently open. Defaults to none. If empty, closes all sections.
    */
   activeSections?: Array<number | string>;
 
