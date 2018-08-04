@@ -50,6 +50,13 @@ export interface AccordionProps {
   expandFromBottom?: boolean;
 
   /**
+   * Allow more than one section to be expanded at a time. Defaults to false for legacy behavior.
+   *
+   * @default false
+   */
+  expandMultiple?: boolean;
+
+  /**
    * Set which index in the sections array is initially open. Defaults to none.
    */
   initiallyActiveSection?: number;
@@ -57,7 +64,7 @@ export interface AccordionProps {
   /**
    * Control which index in the sections array is currently open. Defaults to none. If false, closes all sections.
    */
-  activeSection?: boolean | number;
+  activeSections?: Array<number | string>;
 
   /**
    * The color of the underlay that will show through when tapping on headers.
