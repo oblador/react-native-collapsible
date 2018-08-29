@@ -95,6 +95,11 @@ export default class Collapsible extends Component {
     );
   }
 
+  _afterMeasure = () => {
+    this._toggleCollapsed(this.props.collapsed);
+  }
+
+
   _toggleCollapsed(collapsed) {
     if (collapsed) {
       this._transitionToHeight(this.props.collapsedHeight);
@@ -104,9 +109,7 @@ export default class Collapsible extends Component {
       }
       return;
     } else {
-      this._measureContent(contentHeight => {
-        this._transitionToHeight(contentHeight);
-      });
+      this._measureContent(this._afterMeasure);
     }
   }
 
