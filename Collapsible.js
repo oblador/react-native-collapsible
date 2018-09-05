@@ -96,7 +96,10 @@ export default class Collapsible extends Component {
   }
 
   _afterMeasure = () => {
-    this._toggleCollapsed(this.props.collapsed);
+    const {collapsed, collapsedHeight} = this.props;
+    const {contentHeight} = this.state;
+    
+    this._toggleCollapsed(collapsed ? collapsedHeight : contentHeight);
   };
 
   _toggleCollapsed(collapsed) {
