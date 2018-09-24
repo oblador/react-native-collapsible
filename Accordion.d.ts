@@ -64,7 +64,7 @@ export interface AccordionProps {
   /**
    * Control which indices in the sections array are currently open. Defaults to none. If empty, closes all sections.
    */
-  activeSections?: Array<number | string>;
+  activeSections: number[];
 
   /**
    * The color of the underlay that will show through when tapping on headers.
@@ -107,5 +107,4 @@ export interface AccordionProps {
   touchableProps?: {};
 }
 
-export default class Accordion extends React.Component<AccordionProps, any> {}
-
+export default class Accordion extends React.Component<AccordionProps> {}
