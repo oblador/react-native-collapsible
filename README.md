@@ -55,7 +55,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element  |
 | **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
 | **`initiallyActiveSection`**                            | Set which index in the `sections` array is initially open. Defaults to none.                                    |
-| **`activeSection`**                                     | Control which index in the `sections` array is currently open. Defaults to none. If false, closes all sections. |
+| **`activeSections`**                                    | Control which indices in the `sections` array are currently open. Defaults to empty array. If empty, closes all sections. |
 | **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                    |
 | **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                 |
 | **`touchableProps`**                                    | Properties for the `touchableComponent`                                                                         |
@@ -65,6 +65,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`easing`**                                            | See `Collapsible`                                                                                               |
 | **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                              |
 | **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                               |
+| **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.
 
 ## Demo
 

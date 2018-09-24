@@ -18,22 +18,25 @@ export default class Accordion extends Component {
     duration: PropTypes.number,
     easing: PropTypes.string,
     initiallyActiveSection: PropTypes.number,
-    activeSection: PropTypes.oneOfType([
-      PropTypes.bool, // if false, closes all sections
-      PropTypes.number, // sets index of section to open
-    ]),
+    activeSections: PropTypes.oneOf(
+      PropTypes.arrayOf(PropTypes.number),
+      PropTypes.string
+    ),
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
     disabled: PropTypes.bool,
     expandFromBottom: PropTypes.bool,
+    expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
   };
 
   static defaultProps = {
+    activeSections: [],
     underlayColor: 'black',
     disabled: false,
     expandFromBottom: false,
+    expandMultiple: false,
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
@@ -42,36 +45,42 @@ export default class Accordion extends Component {
   constructor(props) {
     super(props);
 
-    // if activeSection not specified, default to initiallyActiveSection
+    // if activeSections not specified, default to initiallyActiveSection
     this.state = {
-      activeSection:
-        props.activeSection !== undefined
-          ? props.activeSection
-          : props.initiallyActiveSection,
+      activeSections:
+        props.activeSections !== undefined
+          ? props.activeSections
+          : [props.initiallyActiveSection],
     };
   }
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.activeSection !== undefined &&
-      this.props.activeSection !== prevProps.activeSection
+      this.props.activeSections !== undefined &&
+      this.props.activeSections !== prevProps.activeSections
     ) {
       this.setState({
-        activeSection: this.props.activeSection,
+        activeSections: this.props.activeSections,
       });
     }
   }
 
   _toggleSection(section) {
     if (!this.props.disabled) {
-      const activeSection =
-        this.state.activeSection === section ? false : section;
+      const baseSet = this.state.activeSections;
+      const pos = baseSet.indexOf(section);
+      const activeSections =
+        pos !== -1
+          ? baseSet.slice(0, pos) + baseSet.slice(pos + 1, baseSet.length)
+          : this.props.expandMultiple
+            ? this.state.activeSections + [section]
+            : [section];
 
-      if (this.props.activeSection === undefined) {
-        this.setState({ activeSection });
+      if (this.props.activeSections === undefined) {
+        this.setState({ activeSections });
       }
       if (this.props.onChange) {
-        this.props.onChange(activeSection);
+        this.props.onChange(activeSections);
       }
     }
   }
@@ -99,14 +108,14 @@ export default class Accordion extends Component {
 
     const renderCollapsible = (section, key) => (
       <Collapsible
-        collapsed={this.state.activeSection !== key}
+        collapsed={this.state.activeSections.indexOf(key) === -1}
         {...collapsibleProps}
         onAnimationEnd={() => this.props.onAnimationEnd(section, key)}
       >
         {this.props.renderContent(
           section,
           key,
-          this.state.activeSection === key,
+          this.state.activeSections.indexOf(key) !== -1,
           this.props.sections
         )}
       </Collapsible>
@@ -119,7 +128,7 @@ export default class Accordion extends Component {
             {this.props.renderSectionTitle(
               section,
               key,
-              this.state.activeSection === key
+              this.state.activeSections.indexOf(key) !== -1
             )}
 
             {this.props.expandFromBottom && renderCollapsible(section, key)}
@@ -132,7 +141,7 @@ export default class Accordion extends Component {
               {this.props.renderHeader(
                 section,
                 key,
-                this.state.activeSection === key,
+                this.state.activeSections.indexOf(key) !== -1,
                 this.props.sections
               )}
             </Touchable>

@@ -48,7 +48,7 @@ const SELECTORS = [
 
 export default class App extends Component {
   state = {
-    activeSection: false,
+    activeSections: [],
     collapsed: true,
   };
 
@@ -56,8 +56,8 @@ export default class App extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  setSection = section => {
-    this.setState({ activeSection: section });
+  setSections = sections => {
+    this.setState({ activeSections: sections });
   };
 
   renderHeader = (section, _, isActive) => {
@@ -96,12 +96,12 @@ export default class App extends Component {
           {SELECTORS.map(selector => (
             <TouchableOpacity
               key={selector.title}
-              onPress={() => this.setSection(selector.value)}
+              onPress={() => this.setSections([selector.value])}
             >
               <View style={styles.selector}>
                 <Text
                   style={
-                    selector.value === this.state.activeSection &&
+                    this.state.activeSections.indexOf(selector.value) !== -1 &&
                     styles.activeSelector
                   }
                 >
@@ -126,13 +126,14 @@ export default class App extends Component {
           </View>
         </Collapsible>
         <Accordion
-          activeSection={this.state.activeSection}
+          activeSections={this.state.activeSections}
           sections={CONTENT}
           touchableComponent={TouchableOpacity}
+          expandMultiple={true}
           renderHeader={this.renderHeader}
           renderContent={this.renderContent}
           duration={400}
-          onChange={this.setSection}
+          onChange={this.setSections}
         />
       </View>
     );
