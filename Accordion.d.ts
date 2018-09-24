@@ -57,14 +57,9 @@ export interface AccordionProps {
   expandMultiple?: boolean;
 
   /**
-   * Set which index in the sections array is initially open. Defaults to none.
-   */
-  initiallyActiveSection?: number;
-
-  /**
    * Control which indices in the sections array are currently open. Defaults to none. If empty, closes all sections.
    */
-  activeSections: number[];
+  activeSections?: number[];
 
   /**
    * The color of the underlay that will show through when tapping on headers.

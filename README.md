@@ -29,7 +29,7 @@ import Collapsible from 'react-native-collapsible';
 | **`duration`**        | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
 | **`easing`**          | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
 | **`style`**           | Optional styling for the container                                                                                                                                                                                                                                                                                      |                |
-| **`onAnimationEnd`**  | Callback when the toggle animation is done. Useful to avoid heavy layouting work during the animation                                                                                                                                                                                                                   | `() => {}`    |
+| **`onAnimationEnd`**  | Callback when the toggle animation is done. Useful to avoid heavy layouting work during the animation                                                                                                                                                                                                                   | `() => {}`     |
 
 ## Accordion Usage
 
@@ -47,25 +47,24 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 ## Properties
 
-| Prop                                                    | Description                                                                                                     |
-| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **`sections`**                                          | An array of sections passed to the render methods                                                               |
-| **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                              |
-| **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                             |
-| **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element  |
-| **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed  |
-| **`initiallyActiveSection`**                            | Set which index in the `sections` array is initially open. Defaults to none.                                    |
+| Prop                                                    | Description                                                                                                               |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **`sections`**                                          | An array of sections passed to the render methods                                                                         |
+| **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                                        |
+| **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                                       |
+| **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element            |
+| **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed            |
 | **`activeSections`**                                    | Control which indices in the `sections` array are currently open. Defaults to empty array. If empty, closes all sections. |
-| **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                    |
-| **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                 |
-| **`touchableProps`**                                    | Properties for the `touchableComponent`                                                                         |
-| **`disabled`**                                          | Set whether the user can interact with the Accordion                                                            |
-| **`align`**                                             | See `Collapsible`                                                                                               |
-| **`duration`**                                          | See `Collapsible`                                                                                               |
-| **`easing`**                                            | See `Collapsible`                                                                                               |
-| **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                              |
-| **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                               |
-| **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.
+| **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                              |
+| **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                           |
+| **`touchableProps`**                                    | Properties for the `touchableComponent`                                                                                   |
+| **`disabled`**                                          | Set whether the user can interact with the Accordion                                                                      |
+| **`align`**                                             | See `Collapsible`                                                                                                         |
+| **`duration`**                                          | See `Collapsible`                                                                                                         |
+| **`easing`**                                            | See `Collapsible`                                                                                                         |
+| **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                                        |
+| **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                                         |
+| **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                            |
 
 ## Demo
 

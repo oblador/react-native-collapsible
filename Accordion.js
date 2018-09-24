@@ -17,7 +17,6 @@ export default class Accordion extends Component {
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
     easing: PropTypes.string,
-    initiallyActiveSection: PropTypes.number,
     activeSections: PropTypes.arrayOf(PropTypes.number),
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
@@ -42,12 +41,8 @@ export default class Accordion extends Component {
   constructor(props) {
     super(props);
 
-    // if activeSections not specified, default to initiallyActiveSection
     this.state = {
-      activeSections:
-        props.activeSections !== undefined
-          ? props.activeSections
-          : [props.initiallyActiveSection],
+      activeSections: props.activeSections,
     };
   }
 
