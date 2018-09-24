@@ -18,10 +18,7 @@ export default class Accordion extends Component {
     duration: PropTypes.number,
     easing: PropTypes.string,
     initiallyActiveSection: PropTypes.number,
-    activeSections: PropTypes.oneOf(
-      PropTypes.arrayOf(PropTypes.number),
-      PropTypes.string
-    ),
+    activeSections: PropTypes.arrayOf(PropTypes.number),
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
@@ -67,18 +64,20 @@ export default class Accordion extends Component {
 
   _toggleSection(section) {
     if (!this.props.disabled) {
-      const baseSet = this.state.activeSections;
-      const pos = baseSet.indexOf(section);
-      const activeSections =
-        pos !== -1
-          ? baseSet.slice(0, pos) + baseSet.slice(pos + 1, baseSet.length)
-          : this.props.expandMultiple
-            ? this.state.activeSections + [section]
-            : [section];
+      let activeSections = [];
+
+      if (this.state.activeSections.includes(section)) {
+        activeSections = this.state.activeSections.filter(a => a !== section);
+      } else if (this.props.expandMultiple) {
+        activeSections = [...this.state.activeSections, section];
+      } else {
+        activeSections = [section];
+      }
 
       if (this.props.activeSections === undefined) {
         this.setState({ activeSections });
       }
+
       if (this.props.onChange) {
         this.props.onChange(activeSections);
       }

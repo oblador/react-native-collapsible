@@ -49,7 +49,6 @@ const SELECTORS = [
   },
   {
     title: 'None',
-    value: false,
   },
 ];
 
@@ -65,7 +64,9 @@ export default class App extends Component {
   };
 
   setSections = sections => {
-    this.setState({ activeSections: sections });
+    this.setState({
+      activeSections: sections.includes(undefined) ? [] : sections,
+    });
   };
 
   renderHeader = (section, _, isActive) => {
@@ -95,7 +96,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { multipleSelect } = this.state;
+    const { multipleSelect, activeSections } = this.state;
 
     return (
       <View style={styles.container}>
@@ -114,6 +115,7 @@ export default class App extends Component {
 
           <View style={styles.selectors}>
             <Text style={styles.selectTitle}>Select:</Text>
+
             {SELECTORS.map(selector => (
               <TouchableOpacity
                 key={selector.title}
@@ -122,8 +124,8 @@ export default class App extends Component {
                 <View style={styles.selector}>
                   <Text
                     style={
-                      this.state.activeSections.indexOf(selector.value) !==
-                        -1 && styles.activeSelector
+                      activeSections.includes(selector.value) &&
+                      styles.activeSelector
                     }
                   >
                     {selector.title}
@@ -147,7 +149,7 @@ export default class App extends Component {
             </View>
           </Collapsible>
           <Accordion
-            activeSections={this.state.activeSections}
+            activeSections={activeSections}
             sections={CONTENT}
             touchableComponent={TouchableOpacity}
             expandMultiple={multipleSelect}
