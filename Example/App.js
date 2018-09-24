@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Switch,
   ScrollView,
   StyleSheet,
   Text,
@@ -56,6 +57,7 @@ export default class App extends Component {
   state = {
     activeSections: [],
     collapsed: true,
+    multipleSelect: false,
   };
 
   toggleExpanded = () => {
@@ -93,10 +95,22 @@ export default class App extends Component {
   }
 
   render() {
+    const { multipleSelect } = this.state;
+
     return (
       <View style={styles.container}>
         <ScrollView>
           <Text style={styles.title}>Accordion Example</Text>
+
+          <View style={styles.multipleToggle}>
+            <Text style={styles.multipleToggle__title}>Multiple Select?</Text>
+            <Switch
+              value={multipleSelect}
+              onValueChange={multipleSelect =>
+                this.setState({ multipleSelect })
+              }
+            />
+          </View>
 
           <View style={styles.selectors}>
             <Text style={styles.selectTitle}>Select:</Text>
@@ -136,7 +150,7 @@ export default class App extends Component {
             activeSections={this.state.activeSections}
             sections={CONTENT}
             touchableComponent={TouchableOpacity}
-            expandMultiple={false}
+            expandMultiple={multipleSelect}
             renderHeader={this.renderHeader}
             renderContent={this.renderContent}
             duration={400}
@@ -195,5 +209,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     padding: 10,
+  },
+  multipleToggle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 30,
+    alignItems: 'center',
+  },
+  multipleToggle__title: {
+    fontSize: 16,
+    marginRight: 8,
   },
 });
