@@ -74,6 +74,11 @@ export interface CollapsibleProps {
    * Optional styling for the container
    */
   style?: StyleProp<ViewStyle>;
+  
+  /**
+   * Function called when the animation finished
+   */
+  onAnimationEnd?: () => null;
 }
 
 export default class Collapsible extends React.Component<CollapsibleProps> {}
