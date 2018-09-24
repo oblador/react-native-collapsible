@@ -38,33 +38,35 @@ This is a convenience component for a common use case, see demo below.
 ```js
 import Accordion from 'react-native-collapsible/Accordion';
 <Accordion
+  activeSections={[0]}
   sections={['Section 1', 'Section 2', 'Section 3']}
   renderSectionTitle={this._renderSectionTitle}
   renderHeader={this._renderHeader}
   renderContent={this._renderContent}
+  onChange={this._updateSections}
 />;
 ```
 
 ## Properties
 
-| Prop                                                    | Description                                                                                                               |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **`sections`**                                          | An array of sections passed to the render methods                                                                         |
-| **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                                        |
-| **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                                       |
-| **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element            |
-| **`onChange(index)`**                                   | An optional function that is called when currently active section is changed, `index === false` when collapsed            |
-| **`activeSections`**                                    | Control which indices in the `sections` array are currently open. Defaults to empty array. If empty, closes all sections. |
-| **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                              |
-| **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                           |
-| **`touchableProps`**                                    | Properties for the `touchableComponent`                                                                                   |
-| **`disabled`**                                          | Set whether the user can interact with the Accordion                                                                      |
-| **`align`**                                             | See `Collapsible`                                                                                                         |
-| **`duration`**                                          | See `Collapsible`                                                                                                         |
-| **`easing`**                                            | See `Collapsible`                                                                                                         |
-| **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                                        |
-| **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                                         |
-| **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                            |
+| Prop                                                    | Description                                                                                                    |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **`sections`**                                          | An array of sections passed to the render methods                                                              |
+| **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                             |
+| **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                            |
+| **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element |
+| **`onChange(indexes)`**                                 | A function that is called when the currently active section(s) are updated.                                    |
+| **`activeSections`**                                    | Control which indices in the `sections` array are currently open. If empty, closes all sections.               |
+| **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                   |
+| **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                |
+| **`touchableProps`**                                    | Properties for the `touchableComponent`                                                                        |
+| **`disabled`**                                          | Set whether the user can interact with the Accordion                                                           |
+| **`align`**                                             | See `Collapsible`                                                                                              |
+| **`duration`**                                          | See `Collapsible`                                                                                              |
+| **`easing`**                                            | See `Collapsible`                                                                                              |
+| **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                             |
+| **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                              |
+| **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                 |
 
 ## Demo
 
@@ -90,37 +92,47 @@ const SECTIONS = [
 ];
 
 class AccordionView extends Component {
-  _renderSectionTitle(section) {
+  state = {
+    activeSections: []
+  };
+
+  _renderSectionTitle = section => {
     return (
       <View style={styles.content}>
         <Text>{section.content}</Text>
       </View>
     );
-  }
+  };
 
-  _renderHeader(section) {
+  _renderHeader = section => {
     return (
       <View style={styles.header}>
         <Text style={styles.headerText}>{section.title}</Text>
       </View>
     );
-  }
+  };
 
-  _renderContent(section) {
+  _renderContent = section => {
     return (
       <View style={styles.content}>
         <Text>{section.content}</Text>
       </View>
     );
-  }
+  };
+
+  _updateSections = activeSections => {
+    this.setState({ activeSections });
+  };
 
   render() {
     return (
       <Accordion
         sections={SECTIONS}
+        activeSections={this.state.activeSections}
         renderSectionTitle={this._renderSectionTitle}
         renderHeader={this._renderHeader}
         renderContent={this._renderContent}
+        onChange={this._updateSections}
       />
     );
   }

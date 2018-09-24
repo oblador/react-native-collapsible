@@ -38,9 +38,9 @@ export interface AccordionProps {
   ): React.ReactElement<{}>;
 
   /**
-   * An optional function that is called when currently active section is changed, index === false when collapsed
+   * A function that is called when the currently active section(s) are updated.
    */
-  onChange?(index: number): void;
+  onChange(indexes: number[]): void;
 
   /**
    * Expand content from the bottom instead of the top
@@ -57,9 +57,9 @@ export interface AccordionProps {
   expandMultiple?: boolean;
 
   /**
-   * Control which indices in the sections array are currently open. Defaults to none. If empty, closes all sections.
+   * Control which indices in the sections array are currently open. If empty, closes all sections.
    */
-  activeSections?: number[];
+  activeSections: number[];
 
   /**
    * The color of the underlay that will show through when tapping on headers.

@@ -13,11 +13,11 @@ export default class Accordion extends Component {
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
     renderSectionTitle: PropTypes.func,
-    onChange: PropTypes.func,
+    activeSections: PropTypes.arrayOf(PropTypes.number).isRequired,
+    onChange: PropTypes.func.isRequired,
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
     easing: PropTypes.string,
-    activeSections: PropTypes.arrayOf(PropTypes.number),
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
@@ -28,7 +28,6 @@ export default class Accordion extends Component {
   };
 
   static defaultProps = {
-    activeSections: [],
     underlayColor: 'black',
     disabled: false,
     expandFromBottom: false,
