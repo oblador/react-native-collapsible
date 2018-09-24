@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-
+import { Constants } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -100,7 +100,7 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ paddingTop: 30 }}>
           <Text style={styles.title}>Accordion Example</Text>
 
           <View style={styles.multipleToggle}>
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    paddingTop: 60,
+    paddingTop: Constants.statusBarHeight,
   },
   title: {
     textAlign: 'center',
