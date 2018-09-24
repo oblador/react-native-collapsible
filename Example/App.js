@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-
+import {
+  Switch,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import { Constants } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -42,22 +49,24 @@ const SELECTORS = [
   },
   {
     title: 'None',
-    value: false,
   },
 ];
 
 export default class App extends Component {
   state = {
-    activeSection: false,
+    activeSections: [],
     collapsed: true,
+    multipleSelect: false,
   };
 
   toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  setSection = section => {
-    this.setState({ activeSection: section });
+  setSections = sections => {
+    this.setState({
+      activeSections: sections.includes(undefined) ? [] : sections,
+    });
   };
 
   renderHeader = (section, _, isActive) => {
@@ -87,53 +96,69 @@ export default class App extends Component {
   }
 
   render() {
+    const { multipleSelect, activeSections } = this.state;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Accordion Example</Text>
+        <ScrollView contentContainerStyle={{ paddingTop: 30 }}>
+          <Text style={styles.title}>Accordion Example</Text>
 
-        <View style={styles.selectors}>
-          <Text style={styles.selectTitle}>Select:</Text>
-          {SELECTORS.map(selector => (
-            <TouchableOpacity
-              key={selector.title}
-              onPress={() => this.setSection(selector.value)}
-            >
-              <View style={styles.selector}>
-                <Text
-                  style={
-                    selector.value === this.state.activeSection &&
-                    styles.activeSelector
-                  }
-                >
-                  {selector.title}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+          <View style={styles.multipleToggle}>
+            <Text style={styles.multipleToggle__title}>Multiple Select?</Text>
+            <Switch
+              value={multipleSelect}
+              onValueChange={multipleSelect =>
+                this.setState({ multipleSelect })
+              }
+            />
+          </View>
 
-        <TouchableOpacity onPress={this.toggleExpanded}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>Single Collapsible</Text>
+          <View style={styles.selectors}>
+            <Text style={styles.selectTitle}>Select:</Text>
+
+            {SELECTORS.map(selector => (
+              <TouchableOpacity
+                key={selector.title}
+                onPress={() => this.setSections([selector.value])}
+              >
+                <View style={styles.selector}>
+                  <Text
+                    style={
+                      activeSections.includes(selector.value) &&
+                      styles.activeSelector
+                    }
+                  >
+                    {selector.title}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
-        </TouchableOpacity>
-        <Collapsible collapsed={this.state.collapsed} align="center">
-          <View style={styles.content}>
-            <Text>
-              Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
-              ribs
-            </Text>
-          </View>
-        </Collapsible>
-        <Accordion
-          activeSection={this.state.activeSection}
-          sections={CONTENT}
-          touchableComponent={TouchableOpacity}
-          renderHeader={this.renderHeader}
-          renderContent={this.renderContent}
-          duration={400}
-          onChange={this.setSection}
-        />
+
+          <TouchableOpacity onPress={this.toggleExpanded}>
+            <View style={styles.header}>
+              <Text style={styles.headerText}>Single Collapsible</Text>
+            </View>
+          </TouchableOpacity>
+          <Collapsible collapsed={this.state.collapsed} align="center">
+            <View style={styles.content}>
+              <Text>
+                Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
+                ribs
+              </Text>
+            </View>
+          </Collapsible>
+          <Accordion
+            activeSections={activeSections}
+            sections={CONTENT}
+            touchableComponent={TouchableOpacity}
+            expandMultiple={multipleSelect}
+            renderHeader={this.renderHeader}
+            renderContent={this.renderContent}
+            duration={400}
+            onChange={this.setSections}
+          />
+        </ScrollView>
       </View>
     );
   }
@@ -142,8 +167,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: Constants.statusBarHeight,
   },
   title: {
     textAlign: 'center',
@@ -186,5 +211,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     padding: 10,
+  },
+  multipleToggle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 30,
+    alignItems: 'center',
+  },
+  multipleToggle__title: {
+    fontSize: 16,
+    marginRight: 8,
   },
 });

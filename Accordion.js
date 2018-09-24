@@ -13,20 +13,17 @@ export default class Accordion extends Component {
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
     renderSectionTitle: PropTypes.func,
-    onChange: PropTypes.func,
+    activeSections: PropTypes.arrayOf(PropTypes.number).isRequired,
+    onChange: PropTypes.func.isRequired,
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
     easing: PropTypes.string,
-    initiallyActiveSection: PropTypes.number,
-    activeSection: PropTypes.oneOfType([
-      PropTypes.bool, // if false, closes all sections
-      PropTypes.number, // sets index of section to open
-    ]),
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
     disabled: PropTypes.bool,
     expandFromBottom: PropTypes.bool,
+    expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
   };
 
@@ -34,45 +31,27 @@ export default class Accordion extends Component {
     underlayColor: 'black',
     disabled: false,
     expandFromBottom: false,
+    expandMultiple: false,
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
   };
 
-  constructor(props) {
-    super(props);
-
-    // if activeSection not specified, default to initiallyActiveSection
-    this.state = {
-      activeSection:
-        props.activeSection !== undefined
-          ? props.activeSection
-          : props.initiallyActiveSection,
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.activeSection !== undefined &&
-      this.props.activeSection !== prevProps.activeSection
-    ) {
-      this.setState({
-        activeSection: this.props.activeSection,
-      });
-    }
-  }
-
   _toggleSection(section) {
     if (!this.props.disabled) {
-      const activeSection =
-        this.state.activeSection === section ? false : section;
+      const { activeSections, expandMultiple, onChange } = this.props;
 
-      if (this.props.activeSection === undefined) {
-        this.setState({ activeSection });
+      let updatedSections = [];
+
+      if (activeSections.includes(section)) {
+        updatedSections = activeSections.filter(a => a !== section);
+      } else if (expandMultiple) {
+        updatedSections = [...activeSections, section];
+      } else {
+        updatedSections = [section];
       }
-      if (this.props.onChange) {
-        this.props.onChange(activeSection);
-      }
+
+      onChange && onChange(updatedSections);
     }
   }
 
@@ -85,59 +64,62 @@ export default class Accordion extends Component {
   render() {
     let viewProps = {};
     let collapsibleProps = {};
+
     Object.keys(this.props).forEach(key => {
-      if (COLLAPSIBLE_PROPS.indexOf(key) !== -1) {
+      if (COLLAPSIBLE_PROPS.includes(key)) {
         collapsibleProps[key] = this.props[key];
-      } else if (VIEW_PROPS.indexOf(key) !== -1) {
+      } else if (VIEW_PROPS.includes(key)) {
         viewProps[key] = this.props[key];
       }
     });
 
     this.handleErrors();
 
-    const Touchable = this.props.touchableComponent;
+    const {
+      activeSections,
+      expandFromBottom,
+      sections,
+      underlayColor,
+      touchableProps,
+      touchableComponent: Touchable,
+      onAnimationEnd,
+      renderContent,
+      renderHeader,
+      renderSectionTitle,
+    } = this.props;
 
     const renderCollapsible = (section, key) => (
       <Collapsible
-        collapsed={this.state.activeSection !== key}
+        collapsed={!activeSections.includes(key)}
         {...collapsibleProps}
-        onAnimationEnd={() => this.props.onAnimationEnd(section, key)}
+        onAnimationEnd={() => onAnimationEnd(section, key)}
       >
-        {this.props.renderContent(
-          section,
-          key,
-          this.state.activeSection === key,
-          this.props.sections
-        )}
+        {renderContent(section, key, activeSections.includes(key), sections)}
       </Collapsible>
     );
 
     return (
       <View {...viewProps}>
-        {this.props.sections.map((section, key) => (
+        {sections.map((section, key) => (
           <View key={key}>
-            {this.props.renderSectionTitle(
-              section,
-              key,
-              this.state.activeSection === key
-            )}
+            {renderSectionTitle(section, key, activeSections.includes(key))}
 
-            {this.props.expandFromBottom && renderCollapsible(section, key)}
+            {expandFromBottom && renderCollapsible(section, key)}
 
             <Touchable
               onPress={() => this._toggleSection(key)}
-              underlayColor={this.props.underlayColor}
-              {...this.props.touchableProps}
+              underlayColor={underlayColor}
+              {...touchableProps}
             >
-              {this.props.renderHeader(
+              {renderHeader(
                 section,
                 key,
-                this.state.activeSection === key,
-                this.props.sections
+                activeSections.includes(key),
+                sections
               )}
             </Touchable>
 
-            {!this.props.expandFromBottom && renderCollapsible(section, key)}
+            {!expandFromBottom && renderCollapsible(section, key)}
           </View>
         ))}
       </View>
