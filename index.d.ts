@@ -76,7 +76,4 @@ export interface CollapsibleProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default class Collapsible extends React.Component<
-  CollapsibleProps,
-  any
-> {}
+export default class Collapsible extends React.Component<CollapsibleProps> {}
