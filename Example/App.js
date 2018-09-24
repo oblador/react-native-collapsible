@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
@@ -89,52 +95,54 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Accordion Example</Text>
+        <ScrollView>
+          <Text style={styles.title}>Accordion Example</Text>
 
-        <View style={styles.selectors}>
-          <Text style={styles.selectTitle}>Select:</Text>
-          {SELECTORS.map(selector => (
-            <TouchableOpacity
-              key={selector.title}
-              onPress={() => this.setSections([selector.value])}
-            >
-              <View style={styles.selector}>
-                <Text
-                  style={
-                    this.state.activeSections.indexOf(selector.value) !== -1 &&
-                    styles.activeSelector
-                  }
-                >
-                  {selector.title}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+          <View style={styles.selectors}>
+            <Text style={styles.selectTitle}>Select:</Text>
+            {SELECTORS.map(selector => (
+              <TouchableOpacity
+                key={selector.title}
+                onPress={() => this.setSections([selector.value])}
+              >
+                <View style={styles.selector}>
+                  <Text
+                    style={
+                      this.state.activeSections.indexOf(selector.value) !==
+                        -1 && styles.activeSelector
+                    }
+                  >
+                    {selector.title}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
 
-        <TouchableOpacity onPress={this.toggleExpanded}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>Single Collapsible</Text>
-          </View>
-        </TouchableOpacity>
-        <Collapsible collapsed={this.state.collapsed} align="center">
-          <View style={styles.content}>
-            <Text>
-              Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
-              ribs
-            </Text>
-          </View>
-        </Collapsible>
-        <Accordion
-          activeSections={this.state.activeSections}
-          sections={CONTENT}
-          touchableComponent={TouchableOpacity}
-          expandMultiple={true}
-          renderHeader={this.renderHeader}
-          renderContent={this.renderContent}
-          duration={400}
-          onChange={this.setSections}
-        />
+          <TouchableOpacity onPress={this.toggleExpanded}>
+            <View style={styles.header}>
+              <Text style={styles.headerText}>Single Collapsible</Text>
+            </View>
+          </TouchableOpacity>
+          <Collapsible collapsed={this.state.collapsed} align="center">
+            <View style={styles.content}>
+              <Text>
+                Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
+                ribs
+              </Text>
+            </View>
+          </Collapsible>
+          <Accordion
+            activeSections={this.state.activeSections}
+            sections={CONTENT}
+            touchableComponent={TouchableOpacity}
+            expandMultiple={false}
+            renderHeader={this.renderHeader}
+            renderContent={this.renderContent}
+            duration={400}
+            onChange={this.setSections}
+          />
+        </ScrollView>
       </View>
     );
   }
@@ -143,8 +151,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 60,
   },
   title: {
     textAlign: 'center',
