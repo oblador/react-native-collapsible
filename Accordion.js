@@ -88,6 +88,7 @@ export default class Accordion extends Component {
   render() {
     let viewProps = {};
     let collapsibleProps = {};
+
     Object.keys(this.props).forEach(key => {
       if (COLLAPSIBLE_PROPS.indexOf(key) !== -1) {
         collapsibleProps[key] = this.props[key];
@@ -99,17 +100,18 @@ export default class Accordion extends Component {
     this.handleErrors();
 
     const Touchable = this.props.touchableComponent;
+    const { activeSections } = this.state;
 
     const renderCollapsible = (section, key) => (
       <Collapsible
-        collapsed={this.state.activeSections.indexOf(key) === -1}
+        collapsed={!activeSections.includes(key)}
         {...collapsibleProps}
         onAnimationEnd={() => this.props.onAnimationEnd(section, key)}
       >
         {this.props.renderContent(
           section,
           key,
-          this.state.activeSections.indexOf(key) !== -1,
+          activeSections.includes(key),
           this.props.sections
         )}
       </Collapsible>
@@ -122,7 +124,7 @@ export default class Accordion extends Component {
             {this.props.renderSectionTitle(
               section,
               key,
-              this.state.activeSections.indexOf(key) !== -1
+              activeSections.includes(key)
             )}
 
             {this.props.expandFromBottom && renderCollapsible(section, key)}
@@ -135,7 +137,7 @@ export default class Accordion extends Component {
               {this.props.renderHeader(
                 section,
                 key,
-                this.state.activeSections.indexOf(key) !== -1,
+                activeSections.includes(key),
                 this.props.sections
               )}
             </Touchable>
