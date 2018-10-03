@@ -25,6 +25,7 @@ export default class Accordion extends Component {
     expandFromBottom: PropTypes.bool,
     expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
+    sectionContainerStyle: ViewPropTypes.style,
   };
 
   static defaultProps = {
@@ -35,6 +36,7 @@ export default class Accordion extends Component {
     touchableComponent: TouchableHighlight,
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
+    sectionContainerStyle: {},
   };
 
   _toggleSection(section) {
@@ -101,7 +103,7 @@ export default class Accordion extends Component {
     return (
       <View {...viewProps}>
         {sections.map((section, key) => (
-          <View key={key}>
+          <View key={key} style={this.props.sectionContainerStyle}>
             {renderSectionTitle(section, key, activeSections.includes(key))}
 
             {expandFromBottom && renderCollapsible(section, key)}
