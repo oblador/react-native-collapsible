@@ -103,7 +103,7 @@ export default class Accordion extends Component {
     return (
       <View {...viewProps}>
         {sections.map((section, key) => (
-          <View key={key}  style={containerStyle}>
+          <View key={key} style={containerStyle}>
             {renderSectionTitle(section, key, activeSections.includes(key))}
 
             {expandFromBottom && renderCollapsible(section, key)}
