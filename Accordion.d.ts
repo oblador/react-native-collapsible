@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import { EasingMode } from './index';
 
 export interface AccordionProps {
@@ -100,6 +101,11 @@ export interface AccordionProps {
    * Object of props to pass to the touchable component
    */
   touchableProps?: {};
+
+ /**
+   * Optional styling for the section container
+   */
+  sectionContainerStyle?: StyleProp<ViewStyle>;
 }
 
 export default class Accordion extends React.Component<AccordionProps> {}

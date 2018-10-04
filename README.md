@@ -67,6 +67,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`onAnimationEnd(key, index)`**                        | See `Collapsible`.                                                                                             |
 | **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                              |
 | **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                 |
+| **`sectionContainerStyle`**                             | Optional styling for the section container.                                                                    |
 
 ## Demo
 
