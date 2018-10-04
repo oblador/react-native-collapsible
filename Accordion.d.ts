@@ -100,6 +100,11 @@ export interface AccordionProps {
    * Object of props to pass to the touchable component
    */
   touchableProps?: {};
+
+ /**
+   * Optional styling for the section container
+   */
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
 export default class Accordion extends React.Component<AccordionProps> {}
