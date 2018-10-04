@@ -25,7 +25,7 @@ export default class Accordion extends Component {
     expandFromBottom: PropTypes.bool,
     expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
-    containerStyle: PropTypes.number,
+    sectionContainerStyle: PropTypes.number,
   };
 
   static defaultProps = {
@@ -78,7 +78,7 @@ export default class Accordion extends Component {
 
     const {
       activeSections,
-      containerStyle,
+      sectionContainerStyle,
       expandFromBottom,
       sections,
       underlayColor,
@@ -103,7 +103,7 @@ export default class Accordion extends Component {
     return (
       <View {...viewProps}>
         {sections.map((section, key) => (
-          <View key={key} style={containerStyle}>
+          <View key={key} style={sectionContainerStyle}>
             {renderSectionTitle(section, key, activeSections.includes(key))}
 
             {expandFromBottom && renderCollapsible(section, key)}

@@ -104,7 +104,7 @@ export interface AccordionProps {
  /**
    * Optional styling for the section container
    */
-  containerStyle?: StyleProp<ViewStyle>;
+  sectionContainerStyle?: StyleProp<ViewStyle>;
 }
 
 export default class Accordion extends React.Component<AccordionProps> {}
