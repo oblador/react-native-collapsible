@@ -64,6 +64,13 @@ export interface CollapsibleProps {
   duration?: number;
 
   /**
+   * Enable pointer events on collapsed view
+   * 
+   * @default false
+   */
+  enablePointerEvents?: boolean;
+
+  /**
    * Function or function name from Easing (or tween-functions if < RN 0.8). Collapsible will try to combine Easing functions for you if you name them like tween-functions
    *
    * @default easeOutCubic
