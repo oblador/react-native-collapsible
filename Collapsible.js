@@ -49,6 +49,10 @@ export default class Collapsible extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.unmounted = true;
+  }
+
   _componentDidUpdate(prevProps) {
     if (prevProps.collapsed !== this.props.collapsed) {
       this._toggleCollapsed(this.props.collapsed);
@@ -146,9 +150,17 @@ export default class Collapsible extends Component {
       toValue: height,
       duration,
       easing,
-    }).start(() =>
-      this.setState({ animating: false }, this.props.onAnimationEnd)
-    );
+    }).start(() => {
+      if (this.unmounted) {
+        return;
+      }
+      this.setState({ animating: false }, () => {
+        if (this.unmounted) {
+          return;
+        }
+        this.props.onAnimationEnd();
+      });
+    });
   }
 
   _handleLayoutChange = event => {
