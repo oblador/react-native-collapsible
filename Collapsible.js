@@ -10,6 +10,7 @@ export default class Collapsible extends Component {
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     collapsed: PropTypes.bool,
     collapsedHeight: PropTypes.number,
+    enablePointerEvents: PropTypes.bool,
     duration: PropTypes.number,
     easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     style: ViewPropTypes.style,
@@ -21,6 +22,7 @@ export default class Collapsible extends Component {
     align: 'top',
     collapsed: true,
     collapsedHeight: 0,
+    enablePointerEvents: false,
     duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
@@ -45,6 +47,10 @@ export default class Collapsible extends Component {
     } else {
       this._componentDidUpdate(prevProps);
     }
+  }
+
+  componentWillUnmount() {
+    this.unmounted = true;
   }
 
   _componentDidUpdate(prevProps) {
@@ -144,9 +150,17 @@ export default class Collapsible extends Component {
       toValue: height,
       duration,
       easing,
-    }).start(() =>
-      this.setState({ animating: false }, this.props.onAnimationEnd)
-    );
+    }).start(() => {
+      if (this.unmounted) {
+        return;
+      }
+      this.setState({ animating: false }, () => {
+        if (this.unmounted) {
+          return;
+        }
+        this.props.onAnimationEnd();
+      });
+    });
   }
 
   _handleLayoutChange = event => {
@@ -165,7 +179,7 @@ export default class Collapsible extends Component {
   };
 
   render() {
-    const { collapsed } = this.props;
+    const { collapsed, enablePointerEvents } = this.props;
     const { height, contentHeight, measuring, measured } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
     const style = hasKnownHeight && {
@@ -196,7 +210,10 @@ export default class Collapsible extends Component {
       ];
     }
     return (
-      <Animated.View style={style} pointerEvents={collapsed ? 'none' : 'auto'}>
+      <Animated.View
+        style={style}
+        pointerEvents={!enablePointerEvents && collapsed ? 'none' : 'auto'}
+      >
         <Animated.View
           ref={this._handleRef}
           style={[this.props.style, contentStyle]}
