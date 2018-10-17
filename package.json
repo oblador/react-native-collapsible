@@ -1,14 +1,11 @@
 {
   "name": "react-native-collapsible",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Animated collapsible component for React Native using the Animated API. Good for accordions, toggles etc",
   "main": "Collapsible.js",
   "types": "index.d.ts",
   "scripts": {
     "test": "eslint *.js"
-  },
-  "engines": {
-    "node": "^6.14.0 || ^8.10.0 || >=9.10.0"
   },
   "keywords": [
     "react-native",
