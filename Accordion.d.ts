@@ -2,40 +2,40 @@ import * as React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { EasingMode } from './index';
 
-export interface AccordionProps {
+export interface AccordionProps<T> {
   /**
    * An array of sections passed to the render methods
    */
-  sections: any[];
+  sections: T[];
 
   /**
    * A function that should return a renderable representing the header
    */
   renderHeader(
-    content: any,
+    content: T,
     index: number,
     isActive: boolean,
-    sections: any[]
+    sections: T[]
   ): React.ReactElement<{}>;
 
   /**
    * A function that should return a renderable representing the section title above the touchable
    */
   renderSectionTitle?(
-    content: any,
+    content: T,
     index: number,
     isActive: boolean,
-    sections: any[]
+    sections: T[]
   ): React.ReactElement<{}>;
 
   /**
    * A function that should return a renderable representing the content
    */
   renderContent(
-    content: any,
+    content: T,
     index: number,
     isActive: boolean,
-    sections: any[]
+    sections: T[]
   ): React.ReactElement<{}>;
 
   /**
@@ -108,4 +108,4 @@ export interface AccordionProps {
   sectionContainerStyle?: StyleProp<ViewStyle>;
 }
 
-export default class Accordion extends React.Component<AccordionProps> {}
+export default class Accordion<T> extends React.Component<AccordionProps<T>> {}
