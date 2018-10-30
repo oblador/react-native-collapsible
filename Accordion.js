@@ -57,12 +57,6 @@ export default class Accordion extends Component {
     }
   }
 
-  handleErrors = () => {
-    if (!Array.isArray(this.props.sections)) {
-      throw new Error('Sections should be an array');
-    }
-  };
-
   render() {
     let viewProps = {};
     let collapsibleProps = {};
@@ -74,8 +68,6 @@ export default class Accordion extends Component {
         viewProps[key] = this.props[key];
       }
     });
-
-    this.handleErrors();
 
     const {
       activeSections,
