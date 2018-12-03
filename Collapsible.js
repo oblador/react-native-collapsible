@@ -146,21 +146,16 @@ export default class Collapsible extends Component {
       this._animation.stop();
     }
     this.setState({ animating: true });
-    this._animation = Animated.timing(this.state.height, {
-      toValue: height,
-      duration,
-      easing,
-    }).start(() => {
-      if (this.unmounted) {
-        return;
-      }
-      this.setState({ animating: false }, () => {
-        if (this.unmounted) {
-          return;
-        }
-        this.props.onAnimationEnd();
-      });
-    });
+    this._animation = Animated.parallel([
+      Animated.timing(this.state.height, {
+        toValue: height,
+        duration,
+        easing
+      })
+    ],
+    {useNativeDriver: true}).start(() =>
+      this.setState({ animating: false }, this.props.onAnimationEnd)
+    );
   }
 
   _handleLayoutChange = event => {
