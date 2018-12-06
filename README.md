@@ -69,6 +69,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`expandFromBottom`**                                  | Expand content from the bottom instead of the top                                                              |
 | **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                 |
 | **`sectionContainerStyle`**                             | Optional styling for the section container.                                                                    |
+| **`containerStyle`**                                    | Optional styling for the Accordion container.                                                                  |
 
 ## Demo
 
