@@ -86,7 +86,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 Check full example in the `Example` folder.
 
 ```js
-import React, { Component } from 'react-native';
+import React, { Component } from 'react';
 import Accordion from 'react-native-collapsible/Accordion';
 
 const SECTIONS = [
