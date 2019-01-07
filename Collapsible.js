@@ -181,17 +181,17 @@ export default class Collapsible extends Component {
   };
 
   render() {
-    const { 
-      collapsed, 
-      enablePointerEvents, 
-      renderChildrenCollapsed 
+    const {
+      collapsed,
+      enablePointerEvents,
+      renderChildrenCollapsed,
     } = this.props;
-    const { 
-      animating, 
-      height, 
-      contentHeight, 
-      measuring, 
-      measured 
+    const {
+      animating,
+      height,
+      contentHeight,
+      measuring,
+      measured,
     } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
     const style = hasKnownHeight && {
@@ -221,8 +221,10 @@ export default class Collapsible extends Component {
         },
       ];
     }
-    const renderChildren = renderChildrenCollapsed ||
-      ((!collapsed || (collapsed && animating)) && (animating || measuring || measured));
+    const renderChildren =
+      renderChildrenCollapsed ||
+      ((!collapsed || (collapsed && animating)) &&
+        (animating || measuring || measured));
     return (
       <Animated.View
         style={style}
