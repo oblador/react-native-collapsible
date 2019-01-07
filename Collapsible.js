@@ -13,6 +13,7 @@ export default class Collapsible extends Component {
     enablePointerEvents: PropTypes.bool,
     duration: PropTypes.number,
     easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    renderChildrenCollapsed: PropTypes.bool,
     style: ViewPropTypes.style,
     onAnimationEnd: PropTypes.func,
     children: PropTypes.node,
@@ -26,6 +27,7 @@ export default class Collapsible extends Component {
     duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
+    renderChildrenCollapsed: true,
   };
 
   constructor(props) {
@@ -179,8 +181,8 @@ export default class Collapsible extends Component {
   };
 
   render() {
-    const { collapsed, enablePointerEvents } = this.props;
-    const { height, contentHeight, measuring, measured } = this.state;
+    const { collapsed, enablePointerEvents, renderChildrenCollapsed } = this.props;
+    const { animating, height, contentHeight, measuring, measured } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
     const style = hasKnownHeight && {
       overflow: 'hidden',
@@ -209,6 +211,8 @@ export default class Collapsible extends Component {
         },
       ];
     }
+    const renderChildren = renderChildrenCollapsed ||
+      ((!collapsed || (collapsed && animating)) && (animating || measuring || measured));
     return (
       <Animated.View
         style={style}
@@ -219,7 +223,7 @@ export default class Collapsible extends Component {
           style={[this.props.style, contentStyle]}
           onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
-          {this.props.children}
+          {renderChildren && this.props.children}
         </Animated.View>
       </Animated.View>
     );
