@@ -181,8 +181,18 @@ export default class Collapsible extends Component {
   };
 
   render() {
-    const { collapsed, enablePointerEvents, renderChildrenCollapsed } = this.props;
-    const { animating, height, contentHeight, measuring, measured } = this.state;
+    const { 
+      collapsed, 
+      enablePointerEvents, 
+      renderChildrenCollapsed 
+    } = this.props;
+    const { 
+      animating, 
+      height, 
+      contentHeight, 
+      measuring, 
+      measured 
+    } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
     const style = hasKnownHeight && {
       overflow: 'hidden',
