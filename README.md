@@ -76,6 +76,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                 |
 | **`sectionContainerStyle`**                             | Optional styling for the section container.                                                                    |
 | **`containerStyle`**                                    | Optional styling for the Accordion container.                                                                  |
+| **`loopIndex`**                                         | Optional prop. Accordion in loop                                                                               |
 
 ## Demo
 

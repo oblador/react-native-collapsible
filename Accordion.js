@@ -9,6 +9,7 @@ const VIEW_PROPS = Object.keys(ViewPropTypes);
 
 export default class Accordion extends Component {
   static propTypes = {
+    loopIndex: PropTypes.number,
     sections: PropTypes.array.isRequired,
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
@@ -71,6 +72,7 @@ export default class Accordion extends Component {
     });
 
     const {
+      loopIndex,
       activeSections,
       containerStyle,
       sectionContainerStyle,
@@ -97,28 +99,32 @@ export default class Accordion extends Component {
 
     return (
       <View style={containerStyle} {...viewProps}>
-        {sections.map((section, key) => (
-          <View key={key} style={sectionContainerStyle}>
-            {renderSectionTitle(section, key, activeSections.includes(key))}
+        {sections.map((section, key) => {
+          const concatKey = (loopIndex ? (loopIndex + '_' + key) : key);
 
-            {expandFromBottom && renderCollapsible(section, key)}
+          return (
+            <View key={concatKey} style={sectionContainerStyle}>
+              {renderSectionTitle(section, concatKey, activeSections.includes(concatKey))}
 
-            <Touchable
-              onPress={() => this._toggleSection(key)}
-              underlayColor={underlayColor}
-              {...touchableProps}
-            >
-              {renderHeader(
-                section,
-                key,
-                activeSections.includes(key),
-                sections
-              )}
-            </Touchable>
+              {expandFromBottom && renderCollapsible(section, concatKey)}
 
-            {!expandFromBottom && renderCollapsible(section, key)}
-          </View>
-        ))}
+              <Touchable
+                onPress={() => this._toggleSection(concatKey)}
+                underlayColor={underlayColor}
+                {...touchableProps}
+              >
+                {renderHeader(
+                  section,
+                  concatKey,
+                  activeSections.includes(concatKey),
+                  sections
+                )}
+              </Touchable>
+
+              {!expandFromBottom && renderCollapsible(section, concatKey)}
+            </View>
+          );
+        })}
       </View>
     );
   }
