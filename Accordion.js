@@ -100,11 +100,15 @@ export default class Accordion extends Component {
     return (
       <View style={containerStyle} {...viewProps}>
         {sections.map((section, key) => {
-          const concatKey = (loopIndex ? (loopIndex + '_' + key) : key);
+          const concatKey = (loopIndex ? loopIndex + '_' + key : key);
 
           return (
             <View key={concatKey} style={sectionContainerStyle}>
-              {renderSectionTitle(section, concatKey, activeSections.includes(concatKey))}
+              {renderSectionTitle(
+              	section,
+              	concatKey,
+              	activeSections.includes(concatKey)
+              )}
 
               {expandFromBottom && renderCollapsible(section, concatKey)}
 
