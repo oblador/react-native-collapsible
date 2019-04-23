@@ -61,6 +61,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`sections`**                                          | An array of sections passed to the render methods                                                              |
 | **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                             |
 | **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                            |
+| **`renderFooter(content, index, isActive, sections)`**  | A function that should return a renderable representing the footer                                             |
 | **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element |
 | **`onChange(indexes)`**                                 | A function that is called when the currently active section(s) are updated.                                    |
 | **`activeSections`**                                    | Control which indices in the `sections` array are currently open. If empty, closes all sections.               |
