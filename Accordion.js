@@ -119,12 +119,14 @@ export default class Accordion extends Component {
             </Touchable>
 
             {!expandFromBottom && renderCollapsible(section, key)}
-            {renderFooter && renderFooter(
-              section,
-              key,
-              activeSections.includes(key),
-              sections
-            )}
+
+            {renderFooter &&
+              renderFooter(
+                section,
+                key,
+                activeSections.includes(key),
+                sections
+              )}
           </View>
         ))}
       </View>
