@@ -14,7 +14,10 @@ export default class Accordion extends Component {
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
     renderSectionTitle: PropTypes.func,
-    activeSections: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+    activeSections: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.number),
+      PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired,
     onChange: PropTypes.func.isRequired,
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
