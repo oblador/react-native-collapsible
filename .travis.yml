@@ -8,7 +8,7 @@ cache:
 install:
 - yarn
 script:
-- yarn run test
+- yarn run lint
 deploy:
   provider: npm
   email: joel@oblador.se

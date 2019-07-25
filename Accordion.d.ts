@@ -19,6 +19,16 @@ export interface AccordionProps<T> {
   ): React.ReactElement<{}>;
 
   /**
+   * A function that should return a renderable representing the footer
+   */
+  renderFooter(
+    content: T,
+    index: number,
+    isActive: boolean,
+    sections: T[]
+  ): React.ReactElement<{}>;
+
+  /**
    * A function that should return a renderable representing the section title above the touchable
    */
   renderSectionTitle?(
@@ -42,6 +52,11 @@ export interface AccordionProps<T> {
    * A function that is called when the currently active section(s) are updated.
    */
   onChange(indexes: number[]): void;
+
+  /**
+   * Controls whether user can interact with accordion
+   */
+  disabled?: boolean;
 
   /**
    * Expand content from the bottom instead of the top
@@ -102,12 +117,12 @@ export interface AccordionProps<T> {
    */
   touchableProps?: {};
 
- /**
+  /**
    * Optional styling for the section container
    */
   sectionContainerStyle?: StyleProp<ViewStyle>;
 
- /**
+  /**
    * Optional styling for the Accordion container
    */
   containerStyle?: StyleProp<ViewStyle>;
