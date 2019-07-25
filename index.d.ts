@@ -65,7 +65,7 @@ export interface CollapsibleProps {
 
   /**
    * Enable pointer events on collapsed view
-   * 
+   *
    * @default false
    */
   enablePointerEvents?: boolean;
@@ -81,7 +81,7 @@ export interface CollapsibleProps {
    * Optional styling for the container
    */
   style?: StyleProp<ViewStyle>;
-  
+
   /**
    * Function called when the animation finished
    */

@@ -52,7 +52,7 @@ export interface AccordionProps<T> {
    * A function that is called when the currently active section(s) are updated.
    */
   onChange(indexes: number[]): void;
-  
+
   /**
    * Controls whether user can interact with accordion
    */
@@ -117,12 +117,12 @@ export interface AccordionProps<T> {
    */
   touchableProps?: {};
 
- /**
+  /**
    * Optional styling for the section container
    */
   sectionContainerStyle?: StyleProp<ViewStyle>;
 
- /**
+  /**
    * Optional styling for the Accordion container
    */
   containerStyle?: StyleProp<ViewStyle>;

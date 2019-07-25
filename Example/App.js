@@ -107,9 +107,7 @@ export default class App extends Component {
             <Text style={styles.multipleToggle__title}>Multiple Select?</Text>
             <Switch
               value={multipleSelect}
-              onValueChange={multipleSelect =>
-                this.setState({ multipleSelect })
-              }
+              onValueChange={a => this.setState({ multipleSelect: a })}
             />
           </View>
 

@@ -2,11 +2,6 @@
   "name": "react-native-collapsible",
   "version": "1.4.0",
   "description": "Animated collapsible component for React Native using the Animated API. Good for accordions, toggles etc",
-  "main": "Collapsible.js",
-  "types": "index.d.ts",
-  "scripts": {
-    "test": "eslint *.js"
-  },
   "keywords": [
     "react-native",
     "react-component",
@@ -31,21 +26,19 @@
     "url": "https://github.com/oblador/react-native-collapsible/issues"
   },
   "homepage": "https://github.com/oblador/react-native-collapsible",
+  "main": "Collapsible.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "lint": "eslint --ext js,ts ."
+  },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
+    "@react-native-community/eslint-config": "^0.0.5",
     "eslint": "^5.2.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-babel": "^5.1.0",
-    "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.10.0",
-    "eslint-plugin-react-native": "^3.2.1",
     "husky": "^1.1.0",
     "lint-staged": "^7.3.0",
-    "prettier": "^1.13.7",
     "react": "16.4.1",
-    "react-native": "0.56.0"
+    "react-native": "0.56.0",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "prop-types": "^15.6.2"
@@ -60,7 +53,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,ts}": [
       "eslint --fix",
       "git add"
     ]
