@@ -19,6 +19,16 @@ export interface AccordionProps<T> {
   ): React.ReactElement<{}>;
 
   /**
+   * A function that should return a renderable representing the footer
+   */
+  renderFooter(
+    content: T,
+    index: number,
+    isActive: boolean,
+    sections: T[]
+  ): React.ReactElement<{}>;
+
+  /**
    * A function that should return a renderable representing the section title above the touchable
    */
   renderSectionTitle?(

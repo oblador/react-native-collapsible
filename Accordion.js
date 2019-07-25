@@ -12,6 +12,7 @@ export default class Accordion extends Component {
     sections: PropTypes.array.isRequired,
     renderHeader: PropTypes.func.isRequired,
     renderContent: PropTypes.func.isRequired,
+    renderFooter: PropTypes.func,
     renderSectionTitle: PropTypes.func,
     activeSections: PropTypes.arrayOf(PropTypes.number).isRequired,
     onChange: PropTypes.func.isRequired,
@@ -82,6 +83,7 @@ export default class Accordion extends Component {
       onAnimationEnd,
       renderContent,
       renderHeader,
+      renderFooter,
       renderSectionTitle,
     } = this.props;
 
@@ -117,6 +119,14 @@ export default class Accordion extends Component {
             </Touchable>
 
             {!expandFromBottom && renderCollapsible(section, key)}
+
+            {renderFooter &&
+              renderFooter(
+                section,
+                key,
+                activeSections.includes(key),
+                sections
+              )}
           </View>
         ))}
       </View>
