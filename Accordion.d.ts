@@ -21,7 +21,7 @@ export interface AccordionProps<T> {
   /**
    * A function that should return a renderable representing the footer
    */
-  renderFooter(
+  renderFooter?(
     content: T,
     index: number,
     isActive: boolean,
