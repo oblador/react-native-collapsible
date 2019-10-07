@@ -100,6 +100,16 @@ export default class Accordion extends Component {
       </Collapsible>
     );
 
+    const checkIfItemIsDisabled = key => {
+      if (
+        (typeof disabled === 'boolean' && disabled) ||
+        (Array.isArray(disabled) && disabled.includes(key))
+      ) {
+        return true;
+      }
+      return false;
+    };
+
     return (
       <View style={containerStyle} {...viewProps}>
         {sections.map((section, key) => (
