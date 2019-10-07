@@ -88,6 +88,7 @@ export default class Accordion extends Component {
       renderHeader,
       renderFooter,
       renderSectionTitle,
+      disabled,
     } = this.props;
 
     const renderCollapsible = (section, key) => (
