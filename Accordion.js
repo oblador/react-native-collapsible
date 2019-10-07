@@ -45,21 +45,19 @@ export default class Accordion extends Component {
   };
 
   _toggleSection(section) {
-    if (!this.props.disabled) {
-      const { activeSections, expandMultiple, onChange } = this.props;
+    const { activeSections, expandMultiple, onChange } = this.props;
 
-      let updatedSections = [];
+    let updatedSections = [];
 
-      if (activeSections.includes(section)) {
-        updatedSections = activeSections.filter(a => a !== section);
-      } else if (expandMultiple) {
-        updatedSections = [...activeSections, section];
-      } else {
-        updatedSections = [section];
-      }
-
-      onChange && onChange(updatedSections);
+    if (activeSections.includes(section)) {
+      updatedSections = activeSections.filter(a => a !== section);
+    } else if (expandMultiple) {
+      updatedSections = [...activeSections, section];
+    } else {
+      updatedSections = [section];
     }
+
+    onChange && onChange(updatedSections);
   }
 
   render() {
