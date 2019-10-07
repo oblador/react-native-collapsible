@@ -22,7 +22,10 @@ export default class Accordion extends Component {
     underlayColor: PropTypes.string,
     touchableComponent: PropTypes.func,
     touchableProps: PropTypes.object,
-    disabled: PropTypes.bool,
+    disabled: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.number),
+    ]),
     expandFromBottom: PropTypes.bool,
     expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
