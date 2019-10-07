@@ -111,9 +111,11 @@ export default class Accordion extends Component {
 
     return (
       <View style={containerStyle} {...viewProps}>
-        {sections.map((section, key) => (
-          <View key={key} style={sectionContainerStyle}>
-            {renderSectionTitle(section, key, activeSections.includes(key))}
+        {sections.map((section, key) => {
+          const isDisabled = checkIfItemIsDisabled(key);
+          return (
+            <View key={key} style={sectionContainerStyle}>
+              {renderSectionTitle(section, key, activeSections.includes(key))}
 
             {expandFromBottom && renderCollapsible(section, key)}
 
