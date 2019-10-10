@@ -100,13 +100,8 @@ export default class Accordion extends Component {
     );
 
     const checkIfItemIsDisabled = key => {
-      if (
-        (typeof disabled === 'boolean' && disabled) ||
-        (Array.isArray(disabled) && disabled.includes(key))
-      ) {
-        return true;
-      }
-      return false;
+      return (typeof disabled === 'boolean' && disabled) 
+        || (Array.isArray(disabled) && disabled.includes(key))
     };
 
     return (
