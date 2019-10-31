@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableHighlight } from 'react-native';
+import { View, TouchableHighlight, FlatList } from 'react-native';
 import Collapsible from './Collapsible';
 import { ViewPropTypes } from './config';
 
@@ -14,7 +14,9 @@ export default class Accordion extends Component {
     renderContent: PropTypes.func.isRequired,
     renderFooter: PropTypes.func,
     renderSectionTitle: PropTypes.func,
-    activeSections: PropTypes.arrayOf(PropTypes.number).isRequired,
+    activeSections: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ).isRequired,
     onChange: PropTypes.func.isRequired,
     align: PropTypes.oneOf(['top', 'center', 'bottom']),
     duration: PropTypes.number,
@@ -26,6 +28,7 @@ export default class Accordion extends Component {
     expandFromBottom: PropTypes.bool,
     expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
+    keyExtractor: PropTypes.func,
     sectionContainerStyle: ViewPropTypes.style,
     containerStyle: ViewPropTypes.style,
   };
@@ -36,6 +39,7 @@ export default class Accordion extends Component {
     expandFromBottom: false,
     expandMultiple: false,
     touchableComponent: TouchableHighlight,
+    keyExtractor: (item, index) => index.toString(),
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
     sectionContainerStyle: {},
@@ -81,6 +85,7 @@ export default class Accordion extends Component {
       touchableProps,
       touchableComponent: Touchable,
       onAnimationEnd,
+      keyExtractor,
       renderContent,
       renderHeader,
       renderFooter,
@@ -96,40 +101,48 @@ export default class Accordion extends Component {
         {renderContent(section, key, activeSections.includes(key), sections)}
       </Collapsible>
     );
-
     return (
-      <View style={containerStyle} {...viewProps}>
-        {sections.map((section, key) => (
-          <View key={key} style={sectionContainerStyle}>
-            {renderSectionTitle(section, key, activeSections.includes(key))}
+      <FlatList
+        style={containerStyle}
+        data={sections}
+        nestedScrollEnabled={true}
+        keyExtractor={keyExtractor}
+        renderItem={({ item, index }) => {
+          const section = item;
+          const key = keyExtractor({ item, index });
+          return (
+            <View key={key} style={sectionContainerStyle}>
+              {renderSectionTitle(section, key, activeSections.includes(key))}
 
-            {expandFromBottom && renderCollapsible(section, key)}
+              {expandFromBottom && renderCollapsible(section, key)}
 
-            <Touchable
-              onPress={() => this._toggleSection(key)}
-              underlayColor={underlayColor}
-              {...touchableProps}
-            >
-              {renderHeader(
-                section,
-                key,
-                activeSections.includes(key),
-                sections
-              )}
-            </Touchable>
+              <Touchable
+                onPress={() => this._toggleSection(key)}
+                underlayColor={underlayColor}
+                {...touchableProps}
+              >
+                {renderHeader(
+                  section,
+                  key,
+                  activeSections.includes(key),
+                  sections
+                )}
+              </Touchable>
 
-            {!expandFromBottom && renderCollapsible(section, key)}
+              {!expandFromBottom && renderCollapsible(section, key)}
 
-            {renderFooter &&
-              renderFooter(
-                section,
-                key,
-                activeSections.includes(key),
-                sections
-              )}
-          </View>
-        ))}
-      </View>
+              {renderFooter &&
+                renderFooter(
+                  section,
+                  key,
+                  activeSections.includes(key),
+                  sections
+                )}
+            </View>
+          );
+        }}
+        {...viewProps}
+      />
     );
   }
 }
