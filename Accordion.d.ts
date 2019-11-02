@@ -61,6 +61,12 @@ export interface AccordionProps<T> {
   keyExtractor(item: T, index: number): number | string;
 
   /**
+   * Controls how many columns should be rendered. Multiple columns support
+   * not tested, defaults to 1.
+   */
+  numColumns?: number;
+
+  /**
    * Controls whether user can interact with accordion
    */
   disabled?: boolean;

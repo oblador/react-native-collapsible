@@ -29,6 +29,7 @@ export default class Accordion extends Component {
     expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
     keyExtractor: PropTypes.func,
+    numColumns: PropTypes.number,
     sectionContainerStyle: ViewPropTypes.style,
     containerStyle: ViewPropTypes.style,
   };
@@ -42,6 +43,7 @@ export default class Accordion extends Component {
     keyExtractor: (item, index) => index.toString(),
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
+    numColumns: 1,
     sectionContainerStyle: {},
   };
 
