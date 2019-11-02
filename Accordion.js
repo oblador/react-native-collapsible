@@ -109,7 +109,7 @@ export default class Accordion extends Component {
         keyExtractor={keyExtractor}
         renderItem={({ item, index }) => {
           const section = item;
-          const key = keyExtractor({ item, index });
+          const key = keyExtractor(item, index);
           return (
             <View key={key} style={sectionContainerStyle}>
               {renderSectionTitle(section, key, activeSections.includes(key))}
