@@ -64,6 +64,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`renderFooter(content, index, isActive, sections)`**  | A function that should return a renderable representing the footer                                             |
 | **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element |
 | **`onChange(indexes)`**                                 | A function that is called when the currently active section(s) are updated.                                    |
+| **`keyExtractor(item, index)`**                         | Used to extract a unique key for a given item at the specified index.                                          |
 | **`activeSections`**                                    | Control which indices in the `sections` array are currently open. If empty, closes all sections.               |
 | **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                   |
 | **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                |

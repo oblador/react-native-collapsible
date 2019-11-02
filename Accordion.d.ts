@@ -54,6 +54,13 @@ export interface AccordionProps<T> {
   onChange(indexes: number[]): void;
 
   /**
+   *
+   * @param item
+   * @param index
+   */
+  keyExtractor(item: T, index: number): number | string;
+
+  /**
    * Controls whether user can interact with accordion
    */
   disabled?: boolean;
@@ -73,9 +80,10 @@ export interface AccordionProps<T> {
   expandMultiple?: boolean;
 
   /**
-   * Control which indices in the sections array are currently open. If empty, closes all sections.
+   * Control which indices from keyEctractor in the sections array are currently
+   * open. If empty, closes all sections.
    */
-  activeSections: number[];
+  activeSections: number[] | string[];
 
   /**
    * The color of the underlay that will show through when tapping on headers.
