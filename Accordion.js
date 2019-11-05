@@ -118,7 +118,12 @@ export default class Accordion extends Component {
           const isDisabled = checkIfItemIsDisabled(key);
           return (
             <View key={key} style={sectionContainerStyle}>
-              {renderSectionTitle(section, key, activeSections.includes(key))}
+              {renderSectionTitle(
+                section,
+                key,
+                activeSections.includes(key),
+                isDisabled
+              )}
 
               {expandFromBottom && renderCollapsible(section, key)}
 
