@@ -15,6 +15,7 @@ export interface AccordionProps<T> {
     content: T,
     index: number,
     isActive: boolean,
+    isDisabled: boolean,
     sections: T[]
   ): React.ReactElement<{}>;
 
@@ -25,6 +26,7 @@ export interface AccordionProps<T> {
     content: T,
     index: number,
     isActive: boolean,
+    isDisabled: boolean,
     sections: T[]
   ): React.ReactElement<{}>;
 
@@ -35,6 +37,7 @@ export interface AccordionProps<T> {
     content: T,
     index: number,
     isActive: boolean,
+    isDisabled: boolean,
     sections: T[]
   ): React.ReactElement<{}>;
 
@@ -45,6 +48,7 @@ export interface AccordionProps<T> {
     content: T,
     index: number,
     isActive: boolean,
+    isDisabled: boolean,
     sections: T[]
   ): React.ReactElement<{}>;
 
