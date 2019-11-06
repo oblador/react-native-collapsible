@@ -49,7 +49,7 @@ export default class Collapsible extends Component {
     }
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     this.unmounted = true
   }
 
