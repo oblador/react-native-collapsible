@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Animated, { Easing } from 'react-native-reanimated'
 import { ViewPropTypes } from './config'
 
-const { Value, Clock, block, cond, clockRunning, set, stopClock, startClock, spring, debug, timing } = Animated
+const { spring, timing } = Animated
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn']
 
@@ -32,7 +32,6 @@ export default class Collapsible extends Component {
 
   constructor(props) {
     super(props)
-    this.clock = new Clock()
     this.state = {
       measuring: false,
       measured: false,
@@ -125,7 +124,7 @@ export default class Collapsible extends Component {
       restDisplacementThreshold: 0.001,
     }
     const config2 = {
-      duration: this.props.duration,
+      duration: 300,
       toValue: 0,
       easing: Easing.inOut(Easing.ease),
     }
