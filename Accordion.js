@@ -99,8 +99,8 @@ export default class Accordion extends Component {
           section,
           key,
           activeSections.includes(key),
-          isDisabled,
-          sections
+          sections,
+          isDisabled
         )}
       </Collapsible>
     );
@@ -125,7 +125,7 @@ export default class Accordion extends Component {
                 isDisabled
               )}
 
-              {expandFromBottom && renderCollapsible(section, key)}
+              {expandFromBottom && renderCollapsible(section, key, isDisabled)}
 
               <Touchable
                 onPress={() => (isDisabled ? {} : this._toggleSection(key))}
@@ -136,8 +136,8 @@ export default class Accordion extends Component {
                   section,
                   key,
                   activeSections.includes(key),
-                  isDisabled,
-                  sections
+                  sections,
+                  isDisabled
                 )}
               </Touchable>
 
@@ -148,8 +148,8 @@ export default class Accordion extends Component {
                   section,
                   key,
                   activeSections.includes(key),
-                  isDisabled,
-                  sections
+                  sections,
+                  isDisabled
                 )}
             </View>
           );
