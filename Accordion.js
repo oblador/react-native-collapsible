@@ -128,6 +128,7 @@ export default class Accordion extends Component {
               {expandFromBottom && renderCollapsible(section, key, isDisabled)}
 
               <Touchable
+                disabled={isDisabled}
                 onPress={() => (isDisabled ? {} : this._toggleSection(key))}
                 underlayColor={isDisabled ? 'transparent' : underlayColor}
                 {...touchableProps}
