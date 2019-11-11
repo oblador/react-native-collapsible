@@ -129,7 +129,7 @@ export default class Accordion extends Component {
 
               <Touchable
                 disabled={isDisabled}
-                onPress={() => (isDisabled ? {} : this._toggleSection(key))}
+                onPress={() => this._toggleSection(key)}
                 underlayColor={isDisabled ? 'transparent' : underlayColor}
                 {...touchableProps}
               >
