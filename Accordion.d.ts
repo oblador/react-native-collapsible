@@ -140,6 +140,13 @@ export interface AccordionProps<T> {
    * Optional styling for the Accordion container
    */
   containerStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * Render the Accordion as a FlatList. Defaults to false for legacy behavior.
+   *
+   * @default false
+   */
+  renderAsFlatList?: boolean;
 }
 
 export default class Accordion<T> extends React.Component<AccordionProps<T>> {}
