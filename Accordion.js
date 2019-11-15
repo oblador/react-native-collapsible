@@ -32,6 +32,7 @@ export default class Accordion extends Component {
     numColumns: PropTypes.number,
     sectionContainerStyle: ViewPropTypes.style,
     containerStyle: ViewPropTypes.style,
+    renderAsView: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -45,6 +46,7 @@ export default class Accordion extends Component {
     onAnimationEnd: () => null,
     numColumns: 1,
     sectionContainerStyle: {},
+    renderAsFlatList: false,
   };
 
   _toggleSection(section) {
@@ -65,6 +67,41 @@ export default class Accordion extends Component {
     }
   }
 
+  _renderContainer = (section, key, renderCollapsible) => {
+    const {
+      activeSections,
+      sectionContainerStyle,
+      expandFromBottom,
+      sections,
+      underlayColor,
+      touchableProps,
+      touchableComponent: Touchable,
+      renderHeader,
+      renderFooter,
+      renderSectionTitle,
+    } = this.props;
+    return (
+      <View key={key} style={sectionContainerStyle}>
+        {renderSectionTitle(section, key, activeSections.includes(key))}
+
+        {expandFromBottom && renderCollapsible(section, key)}
+
+        <Touchable
+          onPress={() => this._toggleSection(key)}
+          underlayColor={underlayColor}
+          {...touchableProps}
+        >
+          {renderHeader(section, key, activeSections.includes(key), sections)}
+        </Touchable>
+
+        {!expandFromBottom && renderCollapsible(section, key)}
+
+        {renderFooter &&
+          renderFooter(section, key, activeSections.includes(key), sections)}
+      </View>
+    );
+  };
+
   render() {
     let viewProps = {};
     let collapsibleProps = {};
@@ -80,18 +117,11 @@ export default class Accordion extends Component {
     const {
       activeSections,
       containerStyle,
-      sectionContainerStyle,
-      expandFromBottom,
       sections,
-      underlayColor,
-      touchableProps,
-      touchableComponent: Touchable,
       onAnimationEnd,
       keyExtractor,
       renderContent,
-      renderHeader,
-      renderFooter,
-      renderSectionTitle,
+      renderAsFlatList,
     } = this.props;
 
     const renderCollapsible = (section, key) => (
@@ -103,48 +133,30 @@ export default class Accordion extends Component {
         {renderContent(section, key, activeSections.includes(key), sections)}
       </Collapsible>
     );
-    return (
-      <FlatList
-        style={containerStyle}
-        data={sections}
-        nestedScrollEnabled={true}
-        keyExtractor={keyExtractor}
-        renderItem={({ item, index }) => {
-          const section = item;
-          const key = keyExtractor(item, index);
-          return (
-            <View key={key} style={sectionContainerStyle}>
-              {renderSectionTitle(section, key, activeSections.includes(key))}
 
-              {expandFromBottom && renderCollapsible(section, key)}
-
-              <Touchable
-                onPress={() => this._toggleSection(key)}
-                underlayColor={underlayColor}
-                {...touchableProps}
-              >
-                {renderHeader(
-                  section,
-                  key,
-                  activeSections.includes(key),
-                  sections
-                )}
-              </Touchable>
-
-              {!expandFromBottom && renderCollapsible(section, key)}
-
-              {renderFooter &&
-                renderFooter(
-                  section,
-                  key,
-                  activeSections.includes(key),
-                  sections
-                )}
-            </View>
-          );
-        }}
-        {...viewProps}
-      />
-    );
+    if (renderAsFlatList) {
+      return (
+        <FlatList
+          style={containerStyle}
+          data={sections}
+          nestedScrollEnabled={true}
+          keyExtractor={keyExtractor}
+          renderItem={({ item, index }) => {
+            const section = item;
+            const key = keyExtractor(item, index);
+            return this._renderContainer(section, key, renderCollapsible);
+          }}
+          {...viewProps}
+        />
+      );
+    } else {
+      return (
+        <View style={containerStyle} {...viewProps}>
+          {sections.map((section, key) =>
+            this._renderContainer(section, key, renderCollapsible)
+          )}
+        </View>
+      );
+    }
   }
 }
