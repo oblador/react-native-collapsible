@@ -32,7 +32,7 @@ export default class Accordion extends Component {
     numColumns: PropTypes.number,
     sectionContainerStyle: ViewPropTypes.style,
     containerStyle: ViewPropTypes.style,
-    renderAsView: PropTypes.bool,
+    renderAsFlatList: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -152,9 +152,10 @@ export default class Accordion extends Component {
     } else {
       return (
         <View style={containerStyle} {...viewProps}>
-          {sections.map((section, key) =>
-            this._renderContainer(section, key, renderCollapsible)
-          )}
+          {sections.map((section, index) => {
+            const key = keyExtractor(section, index);
+            return this._renderContainer(section, key, renderCollapsible);
+          })}
         </View>
       );
     }
