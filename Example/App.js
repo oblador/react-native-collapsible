@@ -155,7 +155,6 @@ export default class App extends Component {
             renderContent={this.renderContent}
             duration={400}
             onChange={this.setSections}
-            renderAsFlatList={false}
           />
         </ScrollView>
       </View>

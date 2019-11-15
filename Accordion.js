@@ -139,6 +139,7 @@ export default class Accordion extends Component {
         <FlatList
           style={containerStyle}
           data={sections}
+          extraData={activeSections}
           nestedScrollEnabled={true}
           keyExtractor={keyExtractor}
           renderItem={({ item, index }) => {
