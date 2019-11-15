@@ -54,15 +54,16 @@ export interface AccordionProps<T> {
   onChange(indexes: number[]): void;
 
   /**
-   *
-   * @param item
-   * @param index
+   * Used to extract a unique key for a given item at the specified index. Key is used for caching
+   * and as the react key to track item re-ordering. The default extractor checks `item.key`, then
+   * falls back to using the index, like React does.
    */
-  keyExtractor(item: T, index: number): number | string;
+  keyExtractor?: (item: T, index: number) => number | string;
 
   /**
-   * Controls how many columns should be rendered. Multiple columns support
-   * not tested, defaults to 1.
+   * Multiple columns can only be rendered with `horizontal={false}` and will zig-zag like a `flexWrap` layout.
+   * Items should all be the same height - masonry layouts are not supported.
+   * Support not tested, defaults to 1.
    */
   numColumns?: number;
 
