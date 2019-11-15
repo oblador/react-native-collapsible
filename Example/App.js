@@ -41,11 +41,11 @@ const CONTENT = [
 const SELECTORS = [
   {
     title: 'First',
-    value: 0,
+    value: '0',
   },
   {
     title: 'Third',
-    value: 2,
+    value: '2',
   },
   {
     title: 'None',
@@ -155,6 +155,7 @@ export default class App extends Component {
             renderContent={this.renderContent}
             duration={400}
             onChange={this.setSections}
+            renderAsFlatList={false}
           />
         </ScrollView>
       </View>
