@@ -186,7 +186,6 @@ export default class Collapsible extends Component {
       overflow: collapsed ? 'hidden' : 'visible',
       height: height,
     };
-    style && (style.overflow = collapsed ? 'hidden' : 'visible');
     const contentStyle = {};
     if (measuring) {
       contentStyle.position = 'absolute';
