@@ -1,31 +1,17 @@
 {
-  "name": "react-native-collapsible",
-  "version": "1.5.1",
+  "name": "@kenetto/react-native-collapsible",
+  "version": "1.5.3",
   "description": "Animated collapsible component for React Native using the Animated API. Good for accordions, toggles etc",
-  "keywords": [
-    "react-native",
-    "react-component",
-    "react-native-component",
-    "react",
-    "mobile",
-    "ios",
-    "android",
-    "ui",
-    "collapse",
-    "collapsible",
-    "toggle",
-    "accordion"
-  ],
   "repository": {
     "type": "git",
-    "url": "https://oblador@github.com/oblador/react-native-collapsible.git"
+    "url": "https://github.com/kenettotech/react-native-collapsible.git"
   },
   "author": "Joel Arvidsson <joel@oblador.se>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oblador/react-native-collapsible/issues"
+    "url": "https://github.com/kenettotech/react-native-collapsible/issues"
   },
-  "homepage": "https://github.com/oblador/react-native-collapsible",
+  "homepage": "https://github.com/kenettotech/react-native-collapsible.git",
   "main": "Collapsible.js",
   "types": "index.d.ts",
   "scripts": {
