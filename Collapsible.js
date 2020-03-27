@@ -16,6 +16,7 @@ export default class Collapsible extends Component {
     style: ViewPropTypes.style,
     onAnimationEnd: PropTypes.func,
     children: PropTypes.node,
+    dynamic: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class Collapsible extends Component {
     duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
+    dynamic: false,
   };
 
   constructor(props) {
@@ -46,6 +48,15 @@ export default class Collapsible extends Component {
       );
     } else {
       this._componentDidUpdate(prevProps);
+    }
+    if (
+      this.props.dynamic &&
+      React.Children.count(prevProps.children) !==
+        React.Children.count(this.props.children)
+    ) {
+      this._measureContent(contentHeight => {
+        this._transitionToHeight(contentHeight);
+      });
     }
   }
 
