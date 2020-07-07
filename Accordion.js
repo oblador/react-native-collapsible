@@ -20,7 +20,7 @@ export default class Accordion extends Component {
     duration: PropTypes.number,
     easing: PropTypes.string,
     underlayColor: PropTypes.string,
-    touchableComponent: PropTypes.func,
+    touchableComponent: PropTypes.elementType,
     touchableProps: PropTypes.object,
     disabled: PropTypes.bool,
     expandFromBottom: PropTypes.bool,
