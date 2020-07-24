@@ -85,7 +85,13 @@ export default class Collapsible extends Component {
               () => callback(this.props.collapsedHeight)
             );
           } else {
-            this.contentHandle.getNode().measure((x, y, width, height) => {
+            let ref;
+            if (typeof this.contentHandle.measure === 'function') {
+              ref = this.contentHandle;
+            } else {
+              ref = this.contentHandle.getNode();
+            }
+            ref.measure((x, y, width, height) => {
               this.setState(
                 {
                   measuring: false,
