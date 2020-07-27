@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Easing } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 import { ViewPropTypes } from './config';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
@@ -15,6 +15,7 @@ export default class Collapsible extends Component {
     easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     style: ViewPropTypes.style,
     onAnimationEnd: PropTypes.func,
+    fixedHeight: PropTypes.bool,
     children: PropTypes.node,
   };
 
@@ -26,6 +27,7 @@ export default class Collapsible extends Component {
     duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
+    fixedHeight: false,
   };
 
   constructor(props) {
@@ -35,6 +37,7 @@ export default class Collapsible extends Component {
       measured: false,
       height: new Animated.Value(props.collapsedHeight),
       contentHeight: 0,
+      savedContentHeight: null,
       animating: false,
     };
   }
@@ -97,6 +100,11 @@ export default class Collapsible extends Component {
                   measuring: false,
                   measured: true,
                   contentHeight: height,
+                  savedContentHeight: (
+                    this.state.savedContentHeight === null
+                    ? height
+                    : this.state.savedContentHeight
+                  ),
                 },
                 () => callback(height)
               );
@@ -185,6 +193,20 @@ export default class Collapsible extends Component {
     this.setState({ contentHeight });
   };
 
+  _renderChildren = () => {
+    const { savedContentHeight } = this.state;
+    let { children, fixedHeight } = this.props;
+
+    if (fixedHeight) {
+      children = (
+        <View style={{ height: savedContentHeight }}>
+          {children}
+        </View>
+      );
+    }
+    return children;
+  };
+
   render() {
     const { collapsed, enablePointerEvents } = this.props;
     const { height, contentHeight, measuring, measured } = this.state;
@@ -226,7 +248,7 @@ export default class Collapsible extends Component {
           style={[this.props.style, contentStyle]}
           onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
-          {this.props.children}
+          {this._renderChildren()}
         </Animated.View>
       </Animated.View>
     );
