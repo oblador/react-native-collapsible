@@ -100,11 +100,10 @@ export default class Collapsible extends Component {
                   measuring: false,
                   measured: true,
                   contentHeight: height,
-                  savedContentHeight: (
+                  savedContentHeight:
                     this.state.savedContentHeight === null
-                    ? height
-                    : this.state.savedContentHeight
-                  ),
+                      ? height
+                      : this.state.savedContentHeight,
                 },
                 () => callback(height)
               );
@@ -198,11 +197,7 @@ export default class Collapsible extends Component {
     let { children, fixedHeight } = this.props;
 
     if (fixedHeight) {
-      children = (
-        <View style={{ height: savedContentHeight }}>
-          {children}
-        </View>
-      );
+      children = <View style={{ height: savedContentHeight }}>{children}</View>;
     }
     return children;
   };
