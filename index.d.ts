@@ -86,6 +86,15 @@ export interface CollapsibleProps {
    * Function called when the animation finished
    */
   onAnimationEnd?: () => void;
+
+  /**
+   * If true, children will be wrapped in a fixed-height header. In use with
+   * `<Text/>` children, this helps avoid unpleasant re-layouts during
+   * animations.
+   *
+   * @default false
+   */
+  fixedHeight?: boolean;
 }
 
 export default class Collapsible extends React.Component<CollapsibleProps> {}
