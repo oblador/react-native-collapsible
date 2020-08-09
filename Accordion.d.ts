@@ -126,6 +126,11 @@ export interface AccordionProps<T> {
    * Optional styling for the Accordion container
    */
   containerStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * Optional ignore measurements and always adjust to content size, this prop is passed to the Collapsible component
+   */
+  neverMeasure: boolean;
 }
 
 export default class Accordion<T> extends React.Component<AccordionProps<T>> {}

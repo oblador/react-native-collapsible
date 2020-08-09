@@ -28,6 +28,7 @@ export default class Accordion extends Component {
     onAnimationEnd: PropTypes.func,
     sectionContainerStyle: ViewPropTypes.style,
     containerStyle: ViewPropTypes.style,
+    neverMeasure: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -39,6 +40,7 @@ export default class Accordion extends Component {
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
     sectionContainerStyle: {},
+    neverMeasure: false,
   };
 
   _toggleSection(section) {

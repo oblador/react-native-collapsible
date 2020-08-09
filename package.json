@@ -1,6 +1,6 @@
 {
   "name": "@kenetto/react-native-collapsible",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Animated collapsible component for React Native using the Animated API. Good for accordions, toggles etc",
   "repository": {
     "type": "git",

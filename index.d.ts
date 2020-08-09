@@ -86,6 +86,11 @@ export interface CollapsibleProps {
    * Function called when the animation finished
    */
   onAnimationEnd?: () => void;
+
+  /**
+   * Optional ignore measurements and always adjust to content size
+   */
+  neverMeasure: boolean;
 }
 
 export default class Collapsible extends React.Component<CollapsibleProps> {}

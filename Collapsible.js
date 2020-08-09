@@ -17,6 +17,7 @@ export default class Collapsible extends Component {
     onAnimationEnd: PropTypes.func,
     children: PropTypes.node,
     dynamic: PropTypes.bool.isRequired,
+    neverMeasure: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -28,6 +29,7 @@ export default class Collapsible extends Component {
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
     dynamic: false,
+    neverMeasure: false,
   };
 
   constructor(props) {
@@ -190,13 +192,14 @@ export default class Collapsible extends Component {
   };
 
   render() {
-    const { collapsed, enablePointerEvents } = this.props;
+    const { collapsed, enablePointerEvents, neverMeasure } = this.props;
     const { height, contentHeight, measuring, measured } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
-    const style = hasKnownHeight && {
-      overflow: 'hidden',
-      height: height,
-    };
+    const style = !neverMeasure &&
+      hasKnownHeight && {
+        overflow: 'hidden',
+        height: height,
+      };
     const contentStyle = {};
     if (measuring) {
       contentStyle.position = 'absolute';
