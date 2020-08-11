@@ -1,2 +1,3 @@
-import { View, ViewPropTypes as RNViewPropTypes } from 'react-native';
-export const ViewPropTypes = RNViewPropTypes || View.propTypes;
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
+export const ViewPropTypes = PropTypes;
