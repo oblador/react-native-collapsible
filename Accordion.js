@@ -48,7 +48,7 @@ export default class Accordion extends Component {
       let updatedSections = [];
 
       if (activeSections.includes(section)) {
-        updatedSections = activeSections.filter(a => a !== section);
+        updatedSections = activeSections.filter((a) => a !== section);
       } else if (expandMultiple) {
         updatedSections = [...activeSections, section];
       } else {
@@ -63,7 +63,7 @@ export default class Accordion extends Component {
     let viewProps = {};
     let collapsibleProps = {};
 
-    Object.keys(this.props).forEach(key => {
+    Object.keys(this.props).forEach((key) => {
       if (COLLAPSIBLE_PROPS.includes(key)) {
         collapsibleProps[key] = this.props[key];
       } else if (VIEW_PROPS.includes(key)) {
