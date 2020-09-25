@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableHighlight } from 'react-native';
 import Collapsible from './Collapsible';
-import { ViewPropTypes } from './config';
 
 const COLLAPSIBLE_PROPS = Object.keys(Collapsible.propTypes);
-const VIEW_PROPS = Object.keys(ViewPropTypes);
+const VIEW_PROPS = Object.keys(PropTypes);
 
 export default class Accordion extends Component {
   static propTypes = {
@@ -26,8 +25,8 @@ export default class Accordion extends Component {
     expandFromBottom: PropTypes.bool,
     expandMultiple: PropTypes.bool,
     onAnimationEnd: PropTypes.func,
-    sectionContainerStyle: ViewPropTypes.style,
-    containerStyle: ViewPropTypes.style,
+    sectionContainerStyle: PropTypes.object,
+    containerStyle: PropTypes.object,
   };
 
   static defaultProps = {
