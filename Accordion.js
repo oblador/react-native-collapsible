@@ -109,6 +109,9 @@ export default class Accordion extends Component {
               onPress={() => this._toggleSection(key)}
               underlayColor={underlayColor}
               {...touchableProps}
+              accessibilityState={{
+                expanded: activeSections.includes(key),
+              }}
             >
               {renderHeader(
                 section,
