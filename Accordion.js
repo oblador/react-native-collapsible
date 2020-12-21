@@ -4,7 +4,7 @@ import { View, TouchableHighlight } from 'react-native';
 import Collapsible from './Collapsible';
 import { ViewPropTypes } from './config';
 
-const COLLAPSIBLE_PROPS = Object.keys(Collapsible.propTypes);
+const COLLAPSIBLE_PROPS = Object.keys(Collapsible.defaultProps);
 const VIEW_PROPS = Object.keys(ViewPropTypes);
 
 export default class Accordion extends Component {

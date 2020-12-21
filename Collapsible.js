@@ -25,7 +25,9 @@ export default class Collapsible extends Component {
     enablePointerEvents: false,
     duration: 300,
     easing: 'easeOutCubic',
+    style: undefined,
     onAnimationEnd: () => null,
+    children: null,
   };
 
   constructor(props) {
