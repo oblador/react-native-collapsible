@@ -212,15 +212,6 @@ Interested in contributing to this repo? Have a look at our [Contributing Guide]
         <br>
         Author
       </td>
-      <td align="center">
-        <a href="https://github.com/iRoachie">
-          <img width="150" height="150" src="https://github.com/iRoachie.png?v=3&s=150">
-          </br>
-          <strong>Kyle Roach</strong>
-        </a>
-        <br>
-        Maintainer
-      </td>
     </tr>
   <tbody>
 </table>
