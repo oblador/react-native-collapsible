@@ -29,13 +29,18 @@
   "main": "Collapsible.js",
   "types": "index.d.ts",
   "scripts": {
-    "lint": "eslint --ext js,ts ."
+    "lint": "eslint --ext js,ts src",
+    "build": "babel src --out-dir .",
+    "prepare": "yarn build"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
     "@react-native-community/eslint-config": "^0.0.5",
     "eslint": "^5.2.0",
     "husky": "^1.1.0",
     "lint-staged": "^7.3.0",
+    "metro-react-native-babel-preset": "^0.64.0",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "typescript": "^3.5.3"
