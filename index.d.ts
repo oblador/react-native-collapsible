@@ -78,6 +78,13 @@ export interface CollapsibleProps {
   easing?: EasingMode | any;
 
   /**
+   * Render children in collapsible even if not visible
+   *
+   * @default true
+   */
+  renderChildrenCollapsed?: boolean;
+
+  /**
    * Optional styling for the container
    */
   style?: StyleProp<ViewStyle>;

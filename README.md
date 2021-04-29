@@ -24,16 +24,17 @@ import Collapsible from 'react-native-collapsible';
 
 ## Properties
 
-| Prop                      | Description                                                                                                                                                                                                                                                                                                             | Default        |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| **`align`**               | Alignment of the content when transitioning, can be `top`, `center` or `bottom`                                                                                                                                                                                                                                         | `top`          |
-| **`collapsed`**           | Whether to show the child components or not                                                                                                                                                                                                                                                                             | `true`         |
-| **`collapsedHeight`**     | Which height should the component collapse to                                                                                                                                                                                                                                                                           | `0`            |
-| **`enablePointerEvents`** | Enable pointer events on collapsed view                                                                                                                                                                                                                                                                                 | `false`        |
-| **`duration`**            | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
-| **`easing`**              | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
-| **`style`**               | Optional styling for the container                                                                                                                                                                                                                                                                                      |                |
-| **`onAnimationEnd`**      | Callback when the toggle animation is done. Useful to avoid heavy layouting work during the animation                                                                                                                                                                                                                   | `() => {}`     |
+| Prop                          | Description                                                                                                                                                                                                                                                                                                             | Default        |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| **`align`**                   | Alignment of the content when transitioning, can be `top`, `center` or `bottom`                                                                                                                                                                                                                                         | `top`          |
+| **`collapsed`**               | Whether to show the child components or not                                                                                                                                                                                                                                                                             | `true`         |
+| **`collapsedHeight`**         | Which height should the component collapse to                                                                                                                                                                                                                                                                           | `0`            |
+| **`enablePointerEvents`**     | Enable pointer events on collapsed view                                                                                                                                                                                                                                                                                 | `false`        |
+| **`duration`**                | Duration of transition in milliseconds                                                                                                                                                                                                                                                                                  | `300`          |
+| **`easing`**                  | Function or function name from [`Easing`](https://github.com/facebook/react-native/blob/master/Libraries/Animated/src/Easing.js) (or [`tween-functions`](https://github.com/chenglou/tween-functions) if < RN 0.8). Collapsible will try to combine `Easing` functions for you if you name them like `tween-functions`. | `easeOutCubic` |
+| **`renderChildrenCollapsed`** | Render children in collapsible even if not visible.                                                                                                                                                                                                                                                                     | `true`         |
+| **`style`**                   | Optional styling for the container                                                                                                                                                                                                                                                                                      |                |
+| **`onAnimationEnd`**          | Callback when the toggle animation is done. Useful to avoid heavy layouting work during the animation                                                                                                                                                                                                                   | `() => {}`     |
 
 ## Accordion Usage
 
@@ -108,7 +109,7 @@ class AccordionView extends Component {
     activeSections: [],
   };
 
-  _renderSectionTitle = section => {
+  _renderSectionTitle = (section) => {
     return (
       <View style={styles.content}>
         <Text>{section.content}</Text>
@@ -116,7 +117,7 @@ class AccordionView extends Component {
     );
   };
 
-  _renderHeader = section => {
+  _renderHeader = (section) => {
     return (
       <View style={styles.header}>
         <Text style={styles.headerText}>{section.title}</Text>
@@ -124,7 +125,7 @@ class AccordionView extends Component {
     );
   };
 
-  _renderContent = section => {
+  _renderContent = (section) => {
     return (
       <View style={styles.content}>
         <Text>{section.content}</Text>
@@ -132,7 +133,7 @@ class AccordionView extends Component {
     );
   };
 
-  _updateSections = activeSections => {
+  _updateSections = (activeSections) => {
     this.setState({ activeSections });
   };
 
