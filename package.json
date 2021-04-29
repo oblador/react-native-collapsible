@@ -36,9 +36,9 @@
     "eslint": "^5.2.0",
     "husky": "^1.1.0",
     "lint-staged": "^7.3.0",
-    "react": "16.4.1",
-    "react-native": "0.56.0",
-    "typescript": "^3.5.3"
+    "react": "16.13.1",
+    "react-native": "~0.63.4",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
     "prop-types": "^15.6.2"
