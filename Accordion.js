@@ -6,6 +6,7 @@ const COLLAPSIBLE_PROPS = [
   'align',
   'collapsed',
   'collapsedHeight',
+  'renderChildrenCollapsed',
   'enablePointerEvents',
   'duration',
   'easing',
