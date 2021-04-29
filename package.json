@@ -1,6 +1,6 @@
 {
   "name": "react-native-collapsible",
-  "version": "1.5.1",
+  "version": "1.5.3",
   "description": "Animated collapsible component for React Native using the Animated API. Good for accordions, toggles etc",
   "keywords": [
     "react-native",
@@ -32,18 +32,13 @@
     "lint": "eslint --ext js,ts ."
   },
   "devDependencies": {
-    "@react-native-community/eslint-config": "^0.0.5",
-    "eslint": "^5.2.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "husky": "^1.1.0",
-    "lint-staged": "^7.3.0",
-    "prettier": "^1.18.2",
-    "react": "16.4.1",
-    "react-native": "0.56.0",
-    "typescript": "^3.5.3"
-  },
-  "dependencies": {
-    "prop-types": "^15.6.2"
+    "@react-native-community/eslint-config": "^2.0.0",
+    "eslint": "^7.25.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "react": "16.13.1",
+    "react-native": "~0.63.4",
+    "typescript": "~4.0.0"
   },
   "peerDependencies": {
     "react": "*",

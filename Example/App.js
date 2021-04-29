@@ -63,7 +63,7 @@ export default class App extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  setSections = sections => {
+  setSections = (sections) => {
     this.setState({
       activeSections: sections.includes(undefined) ? [] : sections,
     });
@@ -107,14 +107,14 @@ export default class App extends Component {
             <Text style={styles.multipleToggle__title}>Multiple Select?</Text>
             <Switch
               value={multipleSelect}
-              onValueChange={a => this.setState({ multipleSelect: a })}
+              onValueChange={(a) => this.setState({ multipleSelect: a })}
             />
           </View>
 
           <View style={styles.selectors}>
             <Text style={styles.selectTitle}>Select:</Text>
 
-            {SELECTORS.map(selector => (
+            {SELECTORS.map((selector) => (
               <TouchableOpacity
                 key={selector.title}
                 onPress={() => this.setSections([selector.value])}
