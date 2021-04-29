@@ -1,35 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { View, TouchableHighlight } from 'react-native';
 import Collapsible from './Collapsible';
-import { ViewPropTypes } from './config';
 
-const COLLAPSIBLE_PROPS = Object.keys(Collapsible.propTypes);
-const VIEW_PROPS = Object.keys(ViewPropTypes);
+const COLLAPSIBLE_PROPS = [
+  'align',
+  'collapsed',
+  'collapsedHeight',
+  'enablePointerEvents',
+  'duration',
+  'easing',
+  'style',
+  'onAnimationEnd',
+];
 
 export default class Accordion extends Component {
-  static propTypes = {
-    sections: PropTypes.array.isRequired,
-    renderHeader: PropTypes.func.isRequired,
-    renderContent: PropTypes.func.isRequired,
-    renderFooter: PropTypes.func,
-    renderSectionTitle: PropTypes.func,
-    activeSections: PropTypes.arrayOf(PropTypes.number).isRequired,
-    onChange: PropTypes.func.isRequired,
-    align: PropTypes.oneOf(['top', 'center', 'bottom']),
-    duration: PropTypes.number,
-    easing: PropTypes.string,
-    underlayColor: PropTypes.string,
-    touchableComponent: PropTypes.elementType,
-    touchableProps: PropTypes.object,
-    disabled: PropTypes.bool,
-    expandFromBottom: PropTypes.bool,
-    expandMultiple: PropTypes.bool,
-    onAnimationEnd: PropTypes.func,
-    sectionContainerStyle: ViewPropTypes.style,
-    containerStyle: ViewPropTypes.style,
-  };
-
   static defaultProps = {
     underlayColor: 'black',
     disabled: false,
@@ -55,24 +39,17 @@ export default class Accordion extends Component {
         updatedSections = [section];
       }
 
-      onChange && onChange(updatedSections);
+      if (onChange) {
+        onChange(updatedSections);
+      }
     }
   }
 
   render() {
-    let viewProps = {};
-    let collapsibleProps = {};
-
-    Object.keys(this.props).forEach(key => {
-      if (COLLAPSIBLE_PROPS.includes(key)) {
-        collapsibleProps[key] = this.props[key];
-      } else if (VIEW_PROPS.includes(key)) {
-        viewProps[key] = this.props[key];
-      }
-    });
-
     const {
       activeSections,
+      expandMultiple,
+      onChange,
       containerStyle,
       sectionContainerStyle,
       expandFromBottom,
@@ -85,7 +62,20 @@ export default class Accordion extends Component {
       renderHeader,
       renderFooter,
       renderSectionTitle,
+      disabled,
+      ...restProps
     } = this.props;
+
+    const viewProps = {};
+    const collapsibleProps = {};
+
+    Object.keys(restProps).forEach(key => {
+      if (COLLAPSIBLE_PROPS.includes(key)) {
+        collapsibleProps[key] = restProps[key];
+      } else {
+        viewProps[key] = restProps[key];
+      }
+    });
 
     const renderCollapsible = (section, key) => (
       <Collapsible
