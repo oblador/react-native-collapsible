@@ -41,11 +41,11 @@ const CONTENT = [
 const SELECTORS = [
   {
     title: 'First',
-    value: '0',
+    value: 0,
   },
   {
     title: 'Third',
-    value: '2',
+    value: 2,
   },
   {
     title: 'None',

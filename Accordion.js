@@ -20,7 +20,7 @@ export default class Accordion extends Component {
     expandFromBottom: false,
     expandMultiple: false,
     touchableComponent: TouchableHighlight,
-    keyExtractor: (item, index) => index.toString(),
+    keyExtractor: (item, index) => index,
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
     sectionContainerStyle: {},
