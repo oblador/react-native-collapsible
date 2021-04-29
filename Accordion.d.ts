@@ -61,13 +61,6 @@ export interface AccordionProps<T> {
   keyExtractor?: (item: T, index: number) => number | string;
 
   /**
-   * Multiple columns can only be rendered with `horizontal={false}` and will zig-zag like a `flexWrap` layout.
-   * Items should all be the same height - masonry layouts are not supported.
-   * Support not tested, defaults to 1.
-   */
-  numColumns?: number;
-
-  /**
    * Controls whether user can interact with accordion
    */
   disabled?: boolean;

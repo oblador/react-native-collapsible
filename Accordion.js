@@ -23,7 +23,6 @@ export default class Accordion extends Component {
     keyExtractor: (item, index) => index.toString(),
     renderSectionTitle: () => null,
     onAnimationEnd: () => null,
-    numColumns: 1,
     sectionContainerStyle: {},
     renderAsFlatList: false,
   };
