@@ -12,6 +12,7 @@ export default class Collapsible extends Component {
     duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
+    renderChildrenCollapsed: true,
   };
 
   constructor(props) {
@@ -172,7 +173,11 @@ export default class Collapsible extends Component {
   };
 
   render() {
-    const { collapsed, enablePointerEvents } = this.props;
+    const {
+      collapsed,
+      enablePointerEvents,
+      renderChildrenCollapsed,
+    } = this.props;
     const {
       height,
       contentHeight,
@@ -211,6 +216,11 @@ export default class Collapsible extends Component {
     if (animating) {
       contentStyle.height = contentHeight;
     }
+    const shouldRenderChildren =
+      renderChildrenCollapsed ||
+      ((!collapsed || (collapsed && animating)) &&
+        (animating || measuring || measured));
+
     return (
       <Animated.View
         style={style}
@@ -221,7 +231,7 @@ export default class Collapsible extends Component {
           style={[this.props.style, contentStyle]}
           onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
-          {this.props.children}
+          {shouldRenderChildren && this.props.children}
         </Animated.View>
       </Animated.View>
     );
