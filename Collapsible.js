@@ -52,7 +52,7 @@ export default class Collapsible extends Component {
 
   contentHandle = null;
 
-  _handleRef = ref => {
+  _handleRef = (ref) => {
     this.contentHandle = ref;
   };
 
@@ -102,7 +102,7 @@ export default class Collapsible extends Component {
       }
       return;
     } else {
-      this._measureContent(contentHeight => {
+      this._measureContent((contentHeight) => {
         this._transitionToHeight(contentHeight);
       });
     }
@@ -156,7 +156,7 @@ export default class Collapsible extends Component {
     });
   }
 
-  _handleLayoutChange = event => {
+  _handleLayoutChange = (event) => {
     const contentHeight = event.nativeEvent.layout.height;
     if (
       this.state.animating ||
