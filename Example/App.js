@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -63,7 +63,7 @@ export default class App extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  setSections = sections => {
+  setSections = (sections) => {
     this.setState({
       activeSections: sections.includes(undefined) ? [] : sections,
     });
@@ -107,16 +107,14 @@ export default class App extends Component {
             <Text style={styles.multipleToggle__title}>Multiple Select?</Text>
             <Switch
               value={multipleSelect}
-              onValueChange={multipleSelect =>
-                this.setState({ multipleSelect })
-              }
+              onValueChange={(a) => this.setState({ multipleSelect: a })}
             />
           </View>
 
           <View style={styles.selectors}>
             <Text style={styles.selectTitle}>Select:</Text>
 
-            {SELECTORS.map(selector => (
+            {SELECTORS.map((selector) => (
               <TouchableOpacity
                 key={selector.title}
                 onPress={() => this.setSections([selector.value])}
@@ -157,6 +155,7 @@ export default class App extends Component {
             renderContent={this.renderContent}
             duration={400}
             onChange={this.setSections}
+            renderAsFlatList={false}
           />
         </ScrollView>
       </View>

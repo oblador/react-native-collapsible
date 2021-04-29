@@ -19,6 +19,16 @@ export interface AccordionProps<T> {
   ): React.ReactElement<{}>;
 
   /**
+   * A function that should return a renderable representing the footer
+   */
+  renderFooter?(
+    content: T,
+    index: number,
+    isActive: boolean,
+    sections: T[]
+  ): React.ReactElement<{}>;
+
+  /**
    * A function that should return a renderable representing the section title above the touchable
    */
   renderSectionTitle?(
@@ -44,6 +54,18 @@ export interface AccordionProps<T> {
   onChange(indexes: number[]): void;
 
   /**
+   * Used to extract a unique key for a given item at the specified index. Key is used for caching
+   * and as the react key to track item re-ordering. The default extractor checks `item.key`, then
+   * falls back to using the index, like React does.
+   */
+  keyExtractor?: (item: T, index: number) => number | string;
+
+  /**
+   * Controls whether user can interact with accordion
+   */
+  disabled?: boolean;
+
+  /**
    * Expand content from the bottom instead of the top
    *
    * @default false
@@ -58,9 +80,10 @@ export interface AccordionProps<T> {
   expandMultiple?: boolean;
 
   /**
-   * Control which indices in the sections array are currently open. If empty, closes all sections.
+   * Control which indices from keyEctractor in the sections array are currently
+   * open. If empty, closes all sections.
    */
-  activeSections: number[];
+  activeSections: number[] | string[];
 
   /**
    * The color of the underlay that will show through when tapping on headers.
@@ -102,15 +125,22 @@ export interface AccordionProps<T> {
    */
   touchableProps?: {};
 
- /**
+  /**
    * Optional styling for the section container
    */
   sectionContainerStyle?: StyleProp<ViewStyle>;
 
- /**
+  /**
    * Optional styling for the Accordion container
    */
   containerStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * Render the Accordion as a FlatList. Defaults to false for legacy behavior.
+   *
+   * @default false
+   */
+  renderAsFlatList?: boolean;
 }
 
 export default class Accordion<T> extends React.Component<AccordionProps<T>> {}

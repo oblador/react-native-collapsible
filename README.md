@@ -61,8 +61,10 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`sections`**                                          | An array of sections passed to the render methods                                                              |
 | **`renderHeader(content, index, isActive, sections)`**  | A function that should return a renderable representing the header                                             |
 | **`renderContent(content, index, isActive, sections)`** | A function that should return a renderable representing the content                                            |
+| **`renderFooter(content, index, isActive, sections)`**  | A function that should return a renderable representing the footer                                             |
 | **`renderSectionTitle(content, index, isActive)`**      | A function that should return a renderable representing the title of the section outside the touchable element |
 | **`onChange(indexes)`**                                 | A function that is called when the currently active section(s) are updated.                                    |
+| **`keyExtractor(item, index)`**                         | Used to extract a unique key for a given item at the specified index.                                          |
 | **`activeSections`**                                    | Control which indices in the `sections` array are currently open. If empty, closes all sections.               |
 | **`underlayColor`**                                     | The color of the underlay that will show through when tapping on headers. Defaults to black.                   |
 | **`touchableComponent`**                                | The touchable component used in the Accordion. Defaults to `TouchableHighlight`                                |
@@ -76,6 +78,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 | **`expandMultiple`**                                    | Allow more than one section to be expanded. Defaults to false.                                                 |
 | **`sectionContainerStyle`**                             | Optional styling for the section container.                                                                    |
 | **`containerStyle`**                                    | Optional styling for the Accordion container.                                                                  |
+| **`renderAsFlatList`**                                  | Optional rendering as FlatList (defaults to false).                                                            |
 
 ## Demo
 
@@ -211,19 +214,10 @@ Interested in contributing to this repo? Have a look at our [Contributing Guide]
         <br>
         Author
       </td>
-      <td align="center">
-        <a href="https://github.com/iRoachie">
-          <img width="150" height="150" src="https://github.com/iRoachie.png?v=3&s=150">
-          </br>
-          <strong>Kyle Roach</strong>
-        </a>
-        <br>
-        Maintainer
-      </td>
     </tr>
   <tbody>
 </table>
 
 ## License
 
-[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015-2017
+[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson and contributors 2015-2021
