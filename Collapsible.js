@@ -173,7 +173,13 @@ export default class Collapsible extends Component {
 
   render() {
     const { collapsed, enablePointerEvents } = this.props;
-    const { height, contentHeight, measuring, measured } = this.state;
+    const {
+      height,
+      contentHeight,
+      measuring,
+      measured,
+      animating,
+    } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
     const style = hasKnownHeight && {
       overflow: 'hidden',
@@ -201,6 +207,9 @@ export default class Collapsible extends Component {
           }),
         },
       ];
+    }
+    if (animating) {
+      contentStyle.height = contentHeight;
     }
     return (
       <Animated.View
