@@ -218,4 +218,4 @@ Interested in contributing to this repo? Have a look at our [Contributing Guide]
 
 ## License
 
-[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2015-2017
+[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson and contributors 2015-2021
