@@ -141,6 +141,11 @@ export interface AccordionProps<T> {
    * @default false
    */
   renderAsFlatList?: boolean;
+
+  /**
+   * Render children in collapsible even if not visible.
+   */
+  renderChildrenCollapsed: boolean;
 }
 
-export default class Accordion<T> extends React.Component<AccordionProps<T>> {}
+export default class Accordion<T> extends React.Component<AccordionProps<T>> { }
