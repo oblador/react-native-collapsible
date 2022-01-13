@@ -123,7 +123,8 @@ export default class Accordion extends Component {
     });
 
     const renderCollapsible = (section, key) => (
-      <Collapsible renderChildrenCollapsed={renderChildrenCollapsed}
+      <Collapsible
+        renderChildrenCollapsed={renderChildrenCollapsed}
         collapsed={!activeSections.includes(key)}
         {...collapsibleProps}
         onAnimationEnd={() => onAnimationEnd(section, key)}
