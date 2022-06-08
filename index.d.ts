@@ -93,6 +93,8 @@ export interface CollapsibleProps {
    * Function called when the animation finished
    */
   onAnimationEnd?: () => void;
+
+  children: React.ReactNode;
 }
 
 export default class Collapsible extends React.Component<CollapsibleProps> {}
