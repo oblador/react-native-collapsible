@@ -1,13 +1,13 @@
 # react-native-collapsible
 
-_Animated collapsible component for React Native using the Animated API_
+_Animated collapsible component for React Native using the Reanimated API_
 
-Pure JavaScript, supports dynamic content heights and components that is aware of its `collapsed` state (good for toggling arrows etc).
+Supports dynamic content heights and components that is aware of its `collapsed` state (good for toggling arrows etc).
 
 ## Installation
 
 ```bash
-npm install --save react-native-collapsible
+npm install --save react-native-collapsible react-native-reanimated
 ```
 
 ## Collapsible Usage
