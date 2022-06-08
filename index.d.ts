@@ -93,9 +93,7 @@ export interface CollapsibleProps {
    * Function called when the animation finished
    */
   onAnimationEnd?: () => void;
-  /** 
-   * Add children JSX
-   */
+
   children: React.ReactNode;
 }
 
