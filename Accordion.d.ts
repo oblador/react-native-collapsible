@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import { EasingMode } from './index';
+import { CollapsibleProps, EasingMode } from './index';
 
-export interface AccordionProps<T> {
+export interface AccordionProps<T> extends Omit<CollapsibleProps, 'children'> {
   /**
    * An array of sections passed to the render methods
    */
