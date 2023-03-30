@@ -38,13 +38,11 @@
     "lint-staged": "^10.5.4",
     "react": "16.13.1",
     "react-native": "~0.63.4",
-    "react-native-reanimated": "^2.1.0",
     "typescript": "~4.0.0"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
-    "react-native-reanimated": "*"
+    "react-native": "*"
   },
   "husky": {
     "hooks": {

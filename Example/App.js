@@ -88,7 +88,9 @@ export default class App extends Component {
         style={[styles.content, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor"
       >
-        <Text>{section.content}</Text>
+        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>
+          {section.content}
+        </Animatable.Text>
       </Animatable.View>
     );
   }
@@ -136,20 +138,15 @@ export default class App extends Component {
               <Text style={styles.headerText}>Single Collapsible</Text>
             </View>
           </TouchableOpacity>
-          <Collapsible collapsed={this.state.collapsed}>
+          <Collapsible collapsed={this.state.collapsed} align="center">
             <View style={styles.content}>
-              <Animatable.Text
-                animation={this.state.collapsed ? undefined : 'zoomIn'}
-                duration={300}
-                useNativeDriver
-              >
+              <Text>
                 Bacon ipsum dolor amet chuck turducken landjaeger tongue spare
                 ribs
-              </Animatable.Text>
+              </Text>
             </View>
           </Collapsible>
           <Accordion
-            align="bottom"
             activeSections={activeSections}
             sections={CONTENT}
             touchableComponent={TouchableOpacity}

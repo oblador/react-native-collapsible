@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Animated from 'react-native-reanimated';
-
-const Easing = Animated.EasingNode || Animated.Easing;
+import { Animated, Easing } from 'react-native';
 
 const ANIMATED_EASING_PREFIXES = ['easeInOut', 'easeOut', 'easeIn'];
 
@@ -11,7 +9,7 @@ export default class Collapsible extends Component {
     collapsed: true,
     collapsedHeight: 0,
     enablePointerEvents: false,
-    duration: 200,
+    duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
     renderChildrenCollapsed: true,
