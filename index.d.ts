@@ -97,4 +97,6 @@ export interface CollapsibleProps {
   children: React.ReactNode;
 }
 
-export default class Collapsible extends React.Component<CollapsibleProps> {}
+export default class Collapsible extends React.Component<
+  React.PropsWithChildren<CollapsibleProps>
+> {}
