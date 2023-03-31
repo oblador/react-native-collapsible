@@ -26,6 +26,7 @@ export default class Accordion extends Component {
     onAnimationEnd: () => null,
     sectionContainerStyle: {},
     renderAsFlatList: false,
+    renderChildrenCollapsed: true,
   };
 
   _toggleSection(section) {
@@ -106,6 +107,7 @@ export default class Accordion extends Component {
       disabled,
       renderAsFlatList,
       keyExtractor,
+      renderChildrenCollapsed,
       ...restProps
     } = this.props;
 
@@ -122,6 +124,7 @@ export default class Accordion extends Component {
 
     const renderCollapsible = (section, key) => (
       <Collapsible
+        renderChildrenCollapsed={renderChildrenCollapsed}
         collapsed={!activeSections.includes(key)}
         {...collapsibleProps}
         onAnimationEnd={() => onAnimationEnd(section, key)}
