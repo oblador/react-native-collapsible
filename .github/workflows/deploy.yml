@@ -8,6 +8,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -15,6 +17,8 @@ jobs:
         with:
           node-version-file: '.node-version'
       - name: Publish
-        uses: JS-DevTools/npm-publish@v1
+        id: publish
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          provenance: true
