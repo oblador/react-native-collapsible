@@ -32,13 +32,17 @@
     "lint": "eslint --ext js,ts ."
   },
   "devDependencies": {
-    "@react-native-community/eslint-config": "^2.0.0",
-    "eslint": "^7.25.0",
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native/babel-preset": "0.75.2",
+    "@react-native/eslint-config": "0.75.2",
+    "eslint": "^8.19.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "react": "16.13.1",
-    "react-native": "~0.63.4",
-    "typescript": "~4.0.0"
+    "react": "18.3.1",
+    "react-native": "0.75.2",
+    "typescript": "5.0.4"
   },
   "peerDependencies": {
     "react": "*",

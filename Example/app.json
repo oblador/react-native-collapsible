@@ -1,14 +1,4 @@
 {
   "name": "Example",
-  "displayName": "Example",
-  "expo": {
-    "name": "Example",
-    "description": "React Native Collapsible example app",
-    "slug": "Example",
-    "privacy": "public",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  }
+  "displayName": "Example"
 }
