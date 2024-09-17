@@ -51,6 +51,12 @@ export default class Collapsible extends Component {
     }
   }
 
+  componentDidMount() {
+    if (!this.props.collapsed) {
+      this._toggleCollapsed(this.props.collapsed);
+    }
+  }
+
   contentHandle = null;
 
   _handleRef = (ref) => {
