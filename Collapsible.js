@@ -141,7 +141,7 @@ export default class Collapsible extends Component {
     this.setState({ animating: true });
     this._animation = Animated.timing(this.state.height, {
       useNativeDriver: false,
-      toValue: height ? height : 0,
+      toValue: height ? height : 'unset',
       duration,
       easing,
     }).start(() => {
