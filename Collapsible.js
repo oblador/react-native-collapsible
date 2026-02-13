@@ -22,7 +22,6 @@ export default class Collapsible extends Component {
       measured: false,
       height: new Animated.Value(props.collapsedHeight),
       contentHeight: 0,
-      animating: false,
     };
   }
 
@@ -138,7 +137,6 @@ export default class Collapsible extends Component {
     if (this._animation) {
       this._animation.stop();
     }
-    this.setState({ animating: true });
     this._animation = Animated.timing(this.state.height, {
       useNativeDriver: false,
       toValue: height ? height : 0,
@@ -148,19 +146,13 @@ export default class Collapsible extends Component {
       if (this.unmounted) {
         return;
       }
-      this.setState({ animating: false }, () => {
-        if (this.unmounted) {
-          return;
-        }
-        this.props.onAnimationEnd();
-      });
+      this.props.onAnimationEnd();
     });
   }
 
   _handleLayoutChange = (event) => {
     const contentHeight = event.nativeEvent.layout.height;
     if (
-      this.state.animating ||
       this.props.collapsed ||
       this.state.measuring ||
       this.state.contentHeight === contentHeight
@@ -183,7 +175,6 @@ export default class Collapsible extends Component {
       contentHeight,
       measuring,
       measured,
-      animating,
     } = this.state;
     const hasKnownHeight = !measuring && (measured || collapsed);
     const style = {
@@ -213,13 +204,10 @@ export default class Collapsible extends Component {
         },
       ];
     }
-    if (animating) {
-      contentStyle.height = contentHeight;
-    }
     const shouldRenderChildren =
       renderChildrenCollapsed ||
-      ((!collapsed || (collapsed && animating)) &&
-        (animating || measuring || measured));
+      ((!collapsed || (collapsed)) &&
+        (measuring || measured));
 
     return (
       <Animated.View
@@ -229,7 +217,6 @@ export default class Collapsible extends Component {
         <Animated.View
           ref={this._handleRef}
           style={[this.props.style, contentStyle]}
-          onLayout={this.state.animating ? undefined : this._handleLayoutChange}
         >
           {shouldRenderChildren && this.props.children}
         </Animated.View>
